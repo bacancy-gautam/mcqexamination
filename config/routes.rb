@@ -1,0 +1,26 @@
+Rails.application.routes.draw do
+  get 'faculty/new'
+  get 'faculty/create'
+  get 'faculty/update'
+  get 'faculty/edit'
+  get 'faculty/destroy'
+  get 'faculty/show'
+  get 'faculty/index'
+  get 'student/new'
+  get 'student/create'
+  get 'student/update'
+  get 'student/edit'
+  get 'student/destroy'
+  get 'student/show'
+  get 'student/index'
+  get 'admin/new'
+  get 'admin/create'
+  get 'admin/update'
+  get 'admin/edit'
+  get 'admin/destroy'
+  get 'admin/show'
+  get 'admin/index'
+  root 'users#home'
+  devise_for :users
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+end
