@@ -1,11 +1,12 @@
-<center><h1>MCQ Exam</h1></center>
-<%if current_user%>
+<center><h1>MCQ Exam</h1>
+
+<%= link_to 'sign in', new_user_session_path %></center>
+<!--<%if current_user%>-->
 <!--<%= @user = current_user %>
 <%= @user.email%>-->
-<%= current_user.email%>
+<!--<%= current_user.email%>
 <%= link_to 'Edit Profile', edit_user_registration_path%>
 <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-<%else%>
+<%else%>-->
 <!--<%= link_to 'sign up', new_user_registration_path %>-->
-<%= link_to 'sign in', new_user_session_path %>
-<%end%>
+<!--<%end%>-->
