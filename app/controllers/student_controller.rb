@@ -1,5 +1,6 @@
 class StudentController < ApplicationController
   def new
+  #  @user = Usaer.new 
   end
 
   def create
