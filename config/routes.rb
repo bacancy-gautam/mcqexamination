@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # get 'student/destroy'
   # get 'student/show'
   # get 'student/index'
-  # get 'admin/new'
+  get 'admin/new'
   # get 'admin/create'
   # get 'admin/update'
   # get 'admin/edit'
