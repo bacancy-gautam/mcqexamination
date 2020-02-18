@@ -14,23 +14,30 @@ class AdminController < ApplicationController
     puts "                   ------------------hii"
     # byebug
     @user = User.new(info_params)
-    if params[:id].to_i==1
+
+
+    if params[:status].to_i==1
       @user.email = @user.enrollment.to_s+"@vatsal.com"
     end
+
     # @user.email = "vatsal"+User.maximum(:id).to_i.next+"@gmail.com"
 
-    # byebug
-    if @user.save
+    
+    a=params[:branch_id]
+    @user.branch_id = a
+  
+    if @user.save!
+
       puts "===========firstsave"
-      if (params[:id].to_i==1)
+      if (params[:status].to_i==1)
         puts "===========first if"
         @user.add_role :student
-        redirect_to new_admin_path(:id => 1)
-      elsif (params[:id].to_i==2)
+        redirect_to new_admin_path(:id => "student")
+      elsif (params[:status].to_i==0)
         puts "===========first elsif"
         # byebug
         @user.add_role :faculty
-        redirect_to new_admin_path(:id => 2)
+        redirect_to new_admin_path(:id => "faculty")
       end
       
     end
@@ -52,8 +59,8 @@ class AdminController < ApplicationController
   def info_params
     puts "hello"
     # devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:enrollment, :sem, :branch, :pyear, :encrypted_password, :email) }
-
-    params.required(:user).permit(:enrollment, :sem, :branch, :pyear, :password, :email,:fname,:lname,:mobile, :password_confirmation)
+    # byebug
+    params.required(:user).permit(:enrollment, :sem, :branch_id, :status, :pyear, :password, :email,:fname,:lname,:mobile, :password_confirmation)
   end
 
 

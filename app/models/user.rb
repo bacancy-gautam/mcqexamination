@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :exams
   has_many :assigns
   has_one :useran
+  belongs_to :branch
 
 
   after_create do
@@ -19,7 +20,7 @@ class User < ApplicationRecord
   after_commit do
     puts "=========================after commit"
   end
-  validates :enrollment, presence: true
+  # validates :enrollment, presence: true
 
   validates :password, confirmation: true
   validates :password_confirmation, presence: true

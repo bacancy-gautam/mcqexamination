@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_063648) do
+ActiveRecord::Schema.define(version: 2020_02_18_082358) do
 
   create_table "assigns", force: :cascade do |t|
     t.datetime "date"
@@ -90,10 +90,12 @@ ActiveRecord::Schema.define(version: 2020_02_17_063648) do
 
   create_table "subjects", force: :cascade do |t|
     t.string "name"
-    t.string "branch"
-    t.integer "sem"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "semester_id"
+    t.integer "branch_id"
+    t.index ["branch_id"], name: "index_subjects_on_branch_id"
+    t.index ["semester_id"], name: "index_subjects_on_semester_id"
   end
 
   create_table "userans", force: :cascade do |t|
@@ -117,16 +119,18 @@ ActiveRecord::Schema.define(version: 2020_02_17_063648) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "enrollment"
+    t.integer "enrollment"
     t.string "fname"
     t.string "lname"
-    t.integer "sem"
-    t.string "branch"
-    t.bigint "mobile"
+    t.integer "mobile"
     t.integer "pyear"
     t.integer "status"
+    t.integer "branch_id"
+    t.integer "semester_id"
+    t.index ["branch_id"], name: "index_users_on_branch_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["semester_id"], name: "index_users_on_semester_id"
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
@@ -145,8 +149,12 @@ ActiveRecord::Schema.define(version: 2020_02_17_063648) do
   add_foreign_key "questions", "exams"
   add_foreign_key "results", "exams"
   add_foreign_key "results", "users"
+  add_foreign_key "subjects", "branches"
+  add_foreign_key "subjects", "semesters"
   add_foreign_key "userans", "exams"
   add_foreign_key "userans", "options"
   add_foreign_key "userans", "questions"
   add_foreign_key "userans", "users"
+  add_foreign_key "users", "branches"
+  add_foreign_key "users", "semesters"
 end
