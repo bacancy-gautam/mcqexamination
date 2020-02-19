@@ -1,11 +1,24 @@
 
 <%= link_to 'Back', admin_index_path%>
+<script>
+function myFunction(category) {
+    alert(category);
 
+
+
+
+  }
+</script>
 
 <% if params[:id]=="student" %>
-
+  <center>
 <h2>:::Add Student:::</h2>
 
+<table class="roundedCorners" id="studadd">
+
+<thead>
+<tr>
+<td>
 <%= form_with(model: @user,url: admin_index_path) do |f|%>
   
   <% if @user.errors.any? %>
@@ -63,10 +76,40 @@
   </div>
 
 <% end %>
+</thead>
+</tr>
+</td>
+</table>
+  </center>
+
+  <center>
+    <h4>or</h4>
+    <h2>:::Add data from Excell Sheet:::</h2>
+    <table class="roundedCorners" >
+
+    <thead>
+    <tr>
+    <td>
+    <%= form_tag import_admin_index_path,multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+    <%end%>
+    </td>
+    </tr>
+    </thead>
+    </table>
+  </center>
 
 
 <% elsif params[:id]=="faculty" %>
+
+<center>
 <h2>:::Add Faculty:::</h2>
+<table class="roundedCorners" >
+
+    <thead>
+    <tr>
+    <td>
 
 <%= form_with(model: @user,url: admin_index_path) do |f|%>
 
@@ -104,7 +147,8 @@
   <div class="field">
     <%= f.label :branch_id %><br />
     
-    <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class=>'form-control', :prompt => 'Select Branch'}) %>
+    
+    <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class=>'form-control', :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
   </div>
 
   <div class="field">
@@ -130,11 +174,19 @@
     <%= f.submit "Register", id: "1" %>
   </div>
 <% end %>
+ </td>
+    </tr>
+    </thead>
+    </table>
+    </center>
+
+
+
 
 <div>
     <center>
     <h2>:::Faculty List:::</h2>
-      <table class="roundedCorners">
+      <table class="roundedCorners" id="faclist">
 
         <thead>
           <tr>
@@ -144,11 +196,14 @@
             <th>Branch</th>
             <th>Mobile</th>
             <th>Status</th>
+            <th></th>
+            
           </tr>
         </thead>
 
 
         <%@usershow.each do |i|%>
+        
         <%if i.has_role? (:faculty)%>
           <tr>
             
@@ -158,7 +213,8 @@
          
             <td><%= i.branch.name %></td>
             <td><%=i.mobile %></td>
-            <td><%=i.status %></td>  
+            <td><%=i.status %></td> 
+            <td><%=link_to("Delete", admin_path(i), method: :delete, data: {confirm:"Are you sure?"}) %></td>
             
           </tr>
           <% end %>

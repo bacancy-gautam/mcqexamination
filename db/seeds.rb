@@ -6,55 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Branch.create([
-    {
-        name: "IT"
-    },
-    {
-        name: "CE"
-    },
-    {
-        name: "PE"
-    },
-    {
-        name: "ME"
-    },
-    {
-        name: "EC"
-    },
-    {
-        name: "ChmE"
-    },
-])
-
-
-Semester.create([
-    {
-        sem: "1"
-    },
-    {
-        sem: "2"
-    },
-    {
-        sem: "3"
-    },
-    {
-        sem: "4"
-    },
-    {
-        sem: "5"
-    },
-    {
-        sem: "6"
-    },
-    {
-        sem: "7"
-    },
-    {
-        sem: "8"
-    },
-])
-
 User.create([
     {
         fname: "Vtsl",
@@ -69,7 +20,7 @@ User.create([
         mobile: "9876543211",
         email: "faculty@faculty.com",
         password: "faculty",
-        branch: "IT",
+        branch_id: 1,
         status: 1
     },
     {
@@ -77,8 +28,8 @@ User.create([
         lname: "Mewada",
         mobile: "9876543210",
         enrollment: 121212121212,
-        sem: 8,
-        branch: "IT",
+        semester_id: 8,
+        branch_id: 1,
         pyear: 2020,
         email: "student@student.com",
         password: "student"

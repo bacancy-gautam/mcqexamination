@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   resources :faculty
   resources :student
   resources :admin
+  resources :admin do
+    collection { post :import }
+  end
+
+  
 
   # get 'faculty/new'
   # get 'faculty/create'
@@ -17,7 +22,9 @@ Rails.application.routes.draw do
   # get 'student/destroy'
   # get 'student/show'
   # get 'student/index'
-  get 'admin/new'
+  get "admin/filltable"
+
+  # get 'admin/new'
   # get 'admin/create'
   # get 'admin/update'
   # get 'admin/edit'

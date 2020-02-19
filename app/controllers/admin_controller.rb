@@ -3,11 +3,16 @@ class AdminController < ApplicationController
   end
 
   def show
+
+    
+
+
   end
   
   def new
     @user = User.new
     @usershow = User.all
+    
   end
 
   def create
@@ -15,25 +20,26 @@ class AdminController < ApplicationController
     # byebug
     @user = User.new(info_params)
 
-
-    if params[:status].to_i==1
+    # byebug
+    if @user.status.to_i==2
       @user.email = @user.enrollment.to_s+"@vatsal.com"
+      # byebug
     end
 
     # @user.email = "vatsal"+User.maximum(:id).to_i.next+"@gmail.com"
 
-    
+    # byebug
     a=params[:branch_id]
     @user.branch_id = a
   
     if @user.save!
 
       puts "===========firstsave"
-      if (params[:status].to_i==1)
+      if (@user.status.to_i==2)
         puts "===========first if"
         @user.add_role :student
         redirect_to new_admin_path(:id => "student")
-      elsif (params[:status].to_i==0)
+      elsif (@user.status.to_i==1)
         puts "===========first elsif"
         # byebug
         @user.add_role :faculty
@@ -44,6 +50,15 @@ class AdminController < ApplicationController
     # redirect_to :back
   end
 
+  def filltable
+    @branch_name = Branch.find(params[:branch_id])
+    
+    respond_to do |format|
+      # format.html { render partial: 'minor_categories_select' }
+      format.js
+    end
+  end
+
   def edit
   end
 
@@ -51,9 +66,17 @@ class AdminController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy!
+    redirect_to new_admin_path(:id => "faculty")
   end
 
   def addfaculty
+  end
+
+  def import
+    User.import(params[:file])
+    redirect_to new_admin_path(:id => "student"), notice: "Students added."
   end
 
   def info_params
