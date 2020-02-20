@@ -31,8 +31,8 @@ class AdminController < ApplicationController
     # byebug
     a=params[:branch_id]
     @user.branch_id = a
-  
-    if @user.save!
+    binding.pry
+    if @user.save
 
       puts "===========firstsave"
       if (@user.status.to_i==2)
@@ -45,7 +45,8 @@ class AdminController < ApplicationController
         @user.add_role :faculty
         redirect_to new_admin_path(:id => "faculty")
       end
-      
+    else
+      render :new, id: 'faculty'
     end
     # redirect_to :back
   end

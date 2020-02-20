@@ -1,2 +1,9 @@
-<h1>Faculty#new</h1>
-<p>Find me in app/views/faculty/new.html.erb</p>
+<%if current_user%>
+<%= link_to "Back", :back %>
+<%= render "addnew"%>
+<%else%>
+<script type="text/javascript">
+    window.location.href="/"  // put your correct path in a string here
+</script>
+<%end%>
+

@@ -11,6 +11,9 @@
 <%= link_to 'Edit Profile', edit_user_registration_path%>
 <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
 <%else%>
+<script type="text/javascript">
+    window.location.href="/"  // put your correct path in a string here
+</script>
 <!--<%= link_to 'sign up', new_user_registration_path %>-->
 <%= link_to 'sign in', new_user_session_path %>
 <%end%>
