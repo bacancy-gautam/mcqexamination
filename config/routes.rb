@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :modifysubject
+  resources :createexam
   resources :faculty
   get "student/download_excel"
   resources :student

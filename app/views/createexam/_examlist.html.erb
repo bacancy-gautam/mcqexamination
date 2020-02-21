@@ -1,0 +1,26 @@
+<div>
+  <center>
+    <table class="roundedCorners" id="faclist">
+      <thead><tr>
+          <th>Exam Name</th>
+          <th>Info</th>
+          <th>Duration</th>
+          <th>Passing Marks</th>
+          <th>Subject</th>
+          <th></th>
+        </tr> </thead>
+
+      <%@exam.each do |i|%>
+      <tr> 
+        <td><%=i.name %></td>
+        <td><%=i.info %></td>
+        <td><%=i.duration %></td>
+        <td><%= i.pmarks %></td>
+        <td><%=i.subject.name %></td>
+         
+        <td><%=link_to("Delete", faculty_path(i), method: :delete, data: {confirm:"Are you sure?"}) %></td>  
+      </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
