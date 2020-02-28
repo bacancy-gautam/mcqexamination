@@ -1,0 +1,45 @@
+<%= link_to  "Back", exams_path %>
+
+
+
+<center>
+<h2>Edit Exam</h2>
+    <%= form_with(model: @exam,:url => new_exam_path, local: true) do |f|%>
+
+    <table class="roundedCorners">
+        <tr>
+            <td><%=f.label :name %></td>
+            <td><%=f.text_field :name , class: 'my_class' %></td>
+        </tr>
+
+        <tr>
+            <td><%=f.label :info %></td>
+            <td><%=f.text_field :info , class: 'my_class' %></td>
+        </tr>
+
+        <tr>
+            <td><%=f.label :duration %></td>
+            <td><%=f.text_field :duration, class: 'my_class' %></td>
+        </tr>
+
+        <tr>
+            <td><%=f.label :pmarks %></td>
+            <td><%=f.text_field :pmarks, class: 'my_class' %></td>
+        </tr>
+
+        <div class="field">
+            <%= f.hidden_field :id %>
+        </div>
+
+        <tr>
+            <td></td>
+
+            <td align=center>
+                <%= f.submit class:'my_class'%>
+            </td>
+        </tr>
+
+    </table>
+
+    <%end%>
+</center>

@@ -1,16 +1,31 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  resources :modifysubject
-  resources :createexam
-  resources :faculty
-  get "student/download_excel"
-  resources :student
+  root 'users#home'
+  resources :faculties
+  resources :subjects
+ 
+  
+  resources :exams do
+    resources :questions do
+      resources :options
+    end
+  end
+
+  resources :questions do
+    resources :options
+  end
+
+
+  get 'students/download_excel'
+  resources :students
   resources :admin
   resources :admin do
     collection { post :import }
+    collection { post :importf }
   end
-  
-  get "admin/filltable"
-  root 'users#home'
+
+  get 'admin/filltable'
 
   devise_for :users
 

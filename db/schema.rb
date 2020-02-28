@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_082358) do
+ActiveRecord::Schema.define(version: 2020_02_27_101804) do
 
   create_table "assigns", force: :cascade do |t|
     t.datetime "date"
@@ -42,8 +42,18 @@ ActiveRecord::Schema.define(version: 2020_02_18_082358) do
     t.index ["user_id"], name: "index_exams_on_user_id"
   end
 
+  create_table "optionfields", force: :cascade do |t|
+    t.string "name"
+    t.string "field_type"
+    t.boolean "required"
+    t.integer "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_optionfields_on_question_id"
+  end
+
   create_table "options", force: :cascade do |t|
-    t.string "option"
+    t.string "opt"
     t.integer "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -145,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_02_18_082358) do
   add_foreign_key "assigns", "users"
   add_foreign_key "exams", "subjects"
   add_foreign_key "exams", "users"
+  add_foreign_key "optionfields", "questions"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "exams"
   add_foreign_key "results", "exams"

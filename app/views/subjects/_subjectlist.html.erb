@@ -1,0 +1,26 @@
+<div>
+  <center>
+    <table class="roundedCorners" id="faclist">
+      <thead>
+        <tr>
+          <th>Branch</th>
+          <th>Semester</th>
+          <th>Subject</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <% @subjects.each do |subject|%>
+
+      <tr>
+        <td><%=subject.branch.name %></td>
+        <td><%=subject.semester.sem %></td>
+        <td><%=subject.name %></td>
+
+        <td><%=link_to("Delete", subject_path(subject), method: :delete, data: {confirm:"Are you sure?"}) %></td>
+      </tr>
+
+      <% end %>
+    </table>
+  </center>
+</div>

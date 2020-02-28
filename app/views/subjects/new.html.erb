@@ -1,0 +1,12 @@
+<%if current_user%>
+<%= link_to "Back", subjects_path %>|
+<%= link_to "My Dashboard", admin_index_path %>
+
+<%= render  "addsubject" %>
+<%else%>
+<!--<%= link_to 'sign up', new_user_registration_path %>-->
+<script type="text/javascript">
+    window.location.href = "/" // put your correct path in a string here
+</script>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%>

@@ -1,0 +1,13 @@
+<%if current_user%>
+<%= link_to  "back", exam_questions_path %>
+<center>
+    <h2>Options</h2>
+</center>
+<%= render  "option_list" %>
+<%else%>
+<!--<%= link_to 'sign up', new_user_registration_path %>-->
+<script type="text/javascript">
+    window.location.href = "/" // put your correct path in a string here
+</script>
+<%= link_to 'sign in', new_user_session_path %>
+<%end%>

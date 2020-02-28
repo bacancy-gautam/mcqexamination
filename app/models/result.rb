@@ -1,5 +1,6 @@
-class Result < ApplicationRecord
+# frozen_string_literal: true
 
-    belongs_to :user 
-    belongs_to :exam 
+class Result < ApplicationRecord
+  belongs_to :user
+  belongs_to :exam
 end
