@@ -33,4 +33,4 @@ en:
   activerecord:
     attributes:
       user:  
-        login: "enrollment or email"
+        login: "Enrollment or email"

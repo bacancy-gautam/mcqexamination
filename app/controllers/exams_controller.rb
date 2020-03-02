@@ -32,8 +32,11 @@ class ExamsController < ApplicationController
     #  byebug
     @exam = Exam.find(params[:exam][:id])
     if @exam.update(info_params)
-      flash[:notice] = 'Exam updated Successfully'
-      redirect_to exams_path
+      # flash[:notice] = 'Exam updated Successfully'
+      redirect_to exams_path, notice: 'Exam updated Successfully'
+    else
+      flash[:alert] = 'Something went wrong'
+      render :error
     end
   end
 

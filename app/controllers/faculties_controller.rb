@@ -32,6 +32,7 @@ class FacultiesController < ApplicationController
     @user.branch_id = a
     if @user.save!
       @user.add_role :faculty
+      flash[:notice] = 'Student has been added successfully'
       redirect_to new_faculty_path
     else
       flash[:alert] = 'Something went wrong'

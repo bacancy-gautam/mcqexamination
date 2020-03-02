@@ -21,6 +21,26 @@ class SubjectsController < ApplicationController
     if @subject.save
       flash[:notice] = 'Subject added Successfully'
       redirect_to subjects_path
+    else
+      flash[:alert] = 'Something went wrong!'
+
+    end
+  end
+
+  def edit
+    @subject = Subject.find(params[:id])
+  end
+
+  def update
+    @subject = Subject.find(params[:id])
+    @subject.branch_id = params[:branch_id]
+    @subject.semester_id = params[:semester_id]
+    if @subject.update(info_params)
+      redirect_to subjects_path, notice: 'Subject updated Successfully'
+    else
+      byebug
+      render 'edit'
+      flash[:alert] = 'Something went wrong!'
     end
   end
 

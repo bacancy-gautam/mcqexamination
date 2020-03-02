@@ -9,15 +9,16 @@ class StudentsController < ApplicationController
   end
 
   def create
-    puts '   ------------------hii'
     # byebug
     @user = User.new(info_params)
     a = params[:branch_id]
     @user.branch_id = a
-
     if @user.save
       @user.add_role :student
+      flash[:notice] = 'Student has been added successfully'
       redirect_to new_student_path
+    else
+      flash[:alert] = 'Something went wrong'
     end
   end
 

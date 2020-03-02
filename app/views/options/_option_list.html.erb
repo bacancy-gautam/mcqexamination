@@ -30,7 +30,7 @@
         </table>
         <%else%>
         <h2 style="color: red">No Option has been added!!!</h2>
-        <h3><%=link_to("Add Option", new_exam_question_path(params[:exam_id]), data: {confirm:"Are you sure?"}) %>
+        <h3><%=link_to("Add Option", new_exam_question_option_path(params[:exam_id]), data: {confirm:"Are you sure?"}) %>
         </h3>
         <% end %>
     </center>

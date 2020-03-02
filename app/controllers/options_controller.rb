@@ -16,9 +16,11 @@ class OptionsController < ApplicationController
 
   def create
     @option = Option.new(info_params)
-
+    @option.question_id = params[:question_id]
+    # byebug
     if @option.save!
       flash[:notice] = 'Option added successfully!'
+      redirect_to exam_question_options_path
     else
       flash[:alert] = 'Something went wrong'
     end

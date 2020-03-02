@@ -19,24 +19,12 @@ class QuestionsController < ApplicationController
     # @question.exam_id = params[:exam_id]
     find_exam
     a = @exam.questions.build(info_params)
-
     if a.save!
       flash[:notice] = 'Question added successfully!'
     else
       flash[:alert] = 'Something went wrong'
     end
   end
-
-  # def saveoption
-  #   @option = Option.new(info_params1)
-  #   @option.question_id = @question.id
-  #   if @option.save!
-  #     flash[:notice] = 'Question added Successfully!'
-  #     redirect_to new_exam_question_path
-  #   else
-  #     flash[:alert] = 'Something went wrong'
-  #   end
-  # end
 
   def show; end
 

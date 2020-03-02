@@ -19,13 +19,25 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+    devise_signin
+    devise_signup
+    devise_update
+  end
+
+  def devise_signin
     devise_parameter_sanitizer.permit(:sign_in) do |u|
       u.permit(:login, :enrollment, :email, :remember_me, :password)
     end
+  end
+
+  def devise_signup
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:enrollment, :sem, :fname, :lname, :email, :branch, :password,
                :mobile, :pyear, :status)
     end
+  end
+
+  def devise_update
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:enrollment, :sem, :fname, :lname, :email, :branch, :password,
                :mobile, :pyear, :password_confirmation, :current_password,

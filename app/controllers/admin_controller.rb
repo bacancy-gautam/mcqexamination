@@ -11,21 +11,7 @@ class AdminController < ApplicationController
     @users = User.all
   end
 
-  def create
-    @user = User.new(info_params)
-    @user.branch_id = params[:branch_id]
-    if @user.save
-      if @user.status.to_i == 2
-        @user.add_role :student
-        redirect_to new_admin_path(id: 'student')
-      elsif @user.status.to_i == 1
-        @user.add_role :faculty
-        redirect_to new_admin_path(id: 'faculty')
-      end
-    else
-      render :new, id: 'faculty'
-    end
-  end
+  def create; end
 
   def filltable
     @branch_name = Branch.find(params[:branch_id])
@@ -57,8 +43,6 @@ class AdminController < ApplicationController
   end
 
   def info_params
-    puts 'hello'
-    # devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:enrollment, :sem, :branch, :pyear, :encrypted_password, :email) }
     # byebug
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
                                   :pyear, :password, :email, :fname, :lname,
