@@ -9,23 +9,21 @@
           <th>Passing Marks</th>
           <th>Subject</th>
           <th colspan="4">Operations</th>
-          
         </tr>
       </thead>
 
       <%@exams.each do |exam|%>
-      <tr>
-        <td><%=exam.name %></td>
-        <td><%=exam.info %></td>
-        <td><%=exam.duration %></td>
-        <td><%= exam.pmarks %></td>
-        <td><%=exam.subject.name %></td>
-        <td><%=link_to("Edit", edit_exam_path(exam)) %></td>
-        <td><%=link_to("Delete", exam_path(exam), method: :delete, data: {confirm:"Are you sure?"}) %></td>
-        <td><%=link_to("Add Question", new_exam_question_path(exam)) %></td>
-        <td><%=link_to("Show Question", exam_questions_path(exam)) %></td> 
-        
-      </tr>
+        <tr>
+          <td><%=exam.name %></td>
+          <td><%=exam.info %></td>
+          <td><%=exam.duration %></td>
+          <td><%= exam.pmarks %></td>
+          <td><%=exam.subject.name %></td>
+          <td><%=link_to("Edit", edit_exam_path(exam)) %></td>
+          <td><%=link_to("Delete", exam_path(exam), method: :delete, data: {confirm:"Are you sure?"}) %></td>
+          <td><%=link_to("Add Question", new_exam_question_path(exam)) %></td>
+          <td><%=link_to("Show Question", exam_questions_path(exam)) %></td> 
+        </tr>
       <% end %>
     </table>
   </center>

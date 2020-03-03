@@ -2,6 +2,7 @@
 
 # controller to create exam
 class ExamsController < ApplicationController
+  before_action :set_exam, only: %i[edit update destroy]
   def index
     @exams = current_user.exams
   end
@@ -14,41 +15,36 @@ class ExamsController < ApplicationController
     @exam = Exam.new(info_params)
     @exam.user_id = current_user.id
     @exam.subject_id = params[:subject_id]
-    if @exam.save!
-      flash[:notice] = 'Exam added Successfully'
-      redirect_to new_exam_path
+    if @exam.save
+      redirect_to new_exam_path, notice: 'Exam added Successfully'
     else
-      flash[:alert] = 'Exam not added'
+      render 'new'
     end
   end
 
-  def show; end
-
-  def edit
-    @exam = Exam.find(params[:id])
-  end
+  def edit; end
 
   def update
-    #  byebug
-    @exam = Exam.find(params[:exam][:id])
     if @exam.update(info_params)
-      # flash[:notice] = 'Exam updated Successfully'
       redirect_to exams_path, notice: 'Exam updated Successfully'
     else
-      flash[:alert] = 'Something went wrong'
-      render :error
+      render 'edit'
     end
   end
 
   def destroy
-    @exam = Exam.find(params[:id])
-    @exam.destroy!
-    flash[:alert] = 'Exam Deleted Successfully'
-    redirect_to exams_path
+    @exam.destroy
+    redirect_to exams_path, alert: 'Exam Deleted Successfully'
   end
+
+  private
 
   def info_params
     params.required(:exam).permit(:name, :info, :duration, :pmarks,
                                   :subject_id, :etype)
+  end
+
+  def set_exam
+    @exam = Exam.find(params[:id])
   end
 end

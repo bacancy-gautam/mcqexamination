@@ -1,14 +1,16 @@
 <%if current_user%>
-<%= link_to "Back", exams_path %> ||
-<%= link_to "My Dashboard(#{current_user.email})", faculties_path%> ||
-<%= link_to 'Exam List', exams_path %>
-<h2>================================</h2>
-
-<%= render "createnewexam"%>
+  <%= link_to "Back", exams_path %> ||
+  <%= link_to "My Dashboard(#{current_user.email})", faculties_path%> ||
+  <%= link_to 'Exam List', exams_path %>
+  <h2>================================</h2>
+  <center>
+    <h2>:::Add Exam:::</h2>
+    <%= render "form"%>
+  </center>
 <%else%>
-<!--<%= link_to 'sign up', new_user_registration_path %>-->
-<script type="text/javascript">
+  <!--<%= link_to 'sign up', new_user_registration_path %>-->
+  <script type="text/javascript">
     window.location.href = "/" // put your correct path in a string here
-</script>
-<%= link_to 'sign in', new_user_session_path %>
+  </script>
+  <%= link_to 'sign in', new_user_session_path %>
 <%end%>
