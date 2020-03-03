@@ -2,53 +2,48 @@
 
 # controller for student related task
 class StudentsController < ApplicationController
+  before_action :set_student, only: %i[edit update destroy]
+  def index; end
+
   def new
-    #  @user = Usaer.new
     @user = User.new
-    @users = User.all
   end
 
   def create
     # byebug
     @user = User.new(info_params)
-    a = params[:branch_id]
-    @user.branch_id = a
+    @user.branch_id = params[:branch_id]
     if @user.save
       @user.add_role :student
-      flash[:notice] = 'Student has been added successfully'
-      redirect_to new_student_path
+      redirect_to new_student_path, notice: 'Student has been added!'
     else
       flash[:alert] = 'Something went wrong'
+      render 'new'
     end
   end
 
-  def update; end
-
-  def edit; end
-
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy!
+    @user.destroy
     redirect_to new_faculty_path
   end
 
-  def show; end
-
-  def index; end
-
-  def info_params
-    # puts "fac hello"
-    params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
-                                  :pyear, :password, :email, :fname, :lname,
-                                  :mobile, :password_confirmation)
-  end
-
   def download_excel
-    puts '==============================in download'
     send_file(
       "#{Rails.root}/public/v1.csv",
       filename: 'add_student.csv',
       type: 'application/csv'
     )
+  end
+
+  private
+
+  def info_params
+    params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
+                                  :pyear, :password, :email, :fname, :lname,
+                                  :mobile, :password_confirmation)
+  end
+
+  def set_student
+    @user = User.find(params[:id])
   end
 end

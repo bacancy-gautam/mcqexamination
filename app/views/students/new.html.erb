@@ -1,9 +1,11 @@
 <%if current_user%>
-<%= link_to "Back", :back %>
-<%= render "addnew"%>
-
+  <%= link_to "Back", :back %>
+  <center>
+    <h2>:::Add Student:::</h2>
+    <%= render "addnew"%>
+  </center>
 <%else%>
-<script type="text/javascript">
+  <script type="text/javascript">
     window.location.href = "/" // put your correct path in a string here
-</script>
+  </script>
 <%end%>
