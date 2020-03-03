@@ -1,47 +1,5 @@
 <%= link_to  "Back", subjects_path %>
-
 <center>
-  <h2>:::Add Subject:::</h2>
-  <table class="roundedCorners">
-
-    <thead>
-      <tr>
-        <td>
-          <%= form_with(model: @subject, local: true) do |f|%>
-            <% if @subject.errors.any? %>
-              <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-              <ul>
-                <% @subject.errors.full_messages.each do |message| %>
-                        <%byebug%>
-
-                <li><%= message %></li>
-                <% end %>
-              </ul>
-            <% end %>
-
-          <div class="field">
-            <%= f.label :branch %><br />
-            <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class=>'form-control', :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
-          </div>
-
-          <div class="field">
-            <%= f.label :semester %><br />
-            <%= select_tag(:semester_id,  options_from_collection_for_select(Semester.all, :id, :sem), {:class=>'form-control', :prompt => 'Select Semester', :onchange => "myFunction(this.value);"}) %>
-          </div>
-
-          <div class="field">
-            <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-          </div>
-
-
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-          <% end %>
-        </td>
-      </tr>
-    </thead>
-  </table>
+  <h2>:::Edit Subject:::</h2>
+  <%= render "form" %>
 </center>
