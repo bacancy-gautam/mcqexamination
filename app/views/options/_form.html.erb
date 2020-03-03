@@ -7,23 +7,23 @@
         <td>
           <%= form_with(model: @option,url: exam_question_options_path) do |f|%>
           <% if @option.errors.any? %>
-          <h2><%= pluralize(@option.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <h2><%= pluralize(@option.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-          <ul>
-            <% @option.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+            <ul>
+              <% @option.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
             <% end %>
-          </ul>
-          <% end %>
 
-          <div class="field">
-            <%= f.label :option %><br />
-            <%= f.text_field :opt, autofocus: true%>
-          </div>
+            <div class="field">
+              <%= f.label :option %><br />
+              <%= f.text_field :opt, autofocus: true%>
+            </div>
 
-          <div class="actions">
-            <%= f.submit "Add Option" %>
-          </div>
+            <div class="actions">
+              <%= f.submit "Add Option" %>
+            </div>
           <% end %>
         </td>
       </tr>

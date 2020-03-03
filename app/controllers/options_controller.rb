@@ -2,7 +2,7 @@
 
 # Option Controller
 class OptionsController < ApplicationController
-  # before_action :set_exam, only: [:edit, :update]
+  before_action :set_option, only: %i[edit update destroy]
 
   def index
     # byebug
@@ -11,48 +11,42 @@ class OptionsController < ApplicationController
 
   def new
     @option = Option.new
-    @options = Option.all
   end
 
   def create
     @option = Option.new(info_params)
     @option.question_id = params[:question_id]
     # byebug
-    if @option.save!
-      flash[:notice] = 'Option added successfully!'
-      redirect_to exam_question_options_path
+    if @option.save
+      redirect_to exam_question_options_path, notice: 'Option added!'
     else
-      flash[:alert] = 'Something went wrong'
+      render 'new'
     end
   end
 
-  def show; end
-
-  def edit
-    # byebug
-    @option = Option.find(params[:id])
-  end
+  def edit; end
 
   def update
-    # byebug
-    @option = Option.find(params[:id])
-    # byebug
     if @option.update(info_params)
-      flash[:notice] = 'Option updated Successfully'
-      redirect_to exam_question_options_path
+      redirect_to exam_question_options_path, notice: 'Option updated!'
     else
-      flash[:alert] = 'Something went wrong!'
+      render 'edit'
     end
   end
+
+  def destroy
+    @option = Option.find(params[:id])
+    @option.destroy
+    redirect_to exam_question_options_path
+  end
+
+  private
 
   def info_params
     params.required(:option).permit(:opt, :question_id)
   end
 
-  def destroy
-    byebug
+  def set_option
     @option = Option.find(params[:id])
-    @option.destroy!
-    redirect_to exam_question_options_path
   end
 end
