@@ -2,13 +2,11 @@
 
 # admincontroller
 class AdminController < ApplicationController
+  before_action :set_user, only: %i[edit update destroy]
   def index; end
-
-  def show; end
 
   def new
     @user = User.new
-    @users = User.all
   end
 
   def create; end
@@ -20,17 +18,10 @@ class AdminController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def update; end
-
   def destroy
-    @user = User.find(params[:id])
     @user.destroy!
     redirect_to new_admin_path(id: 'faculty')
   end
-
-  def addfaculty; end
 
   def import
     User.import(params[:file])
@@ -42,10 +33,16 @@ class AdminController < ApplicationController
     redirect_to new_faculty_path, notice: 'Faculty added.'
   end
 
+  private
+
   def info_params
     # byebug
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
                                   :pyear, :password, :email, :fname, :lname,
                                   :mobile, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
