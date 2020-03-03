@@ -1,36 +1,13 @@
 <%if current_user%>
-<%= link_to  "Back", :back %>
-<h2>Edit Question</h2>
-
-<center>
-    <%= form_with(model: @question,:url => exam_question_path, local: true) do |f|%>
-
-    <table class="roundedCorners">
-        <tr>
-            <td><%=f.label :question %></td>
-            <td><%=f.text_area :info , class: 'my_class' %></td>
-        </tr>
-
-        <div class="field">
-            <%= f.hidden_field :id %>
-        </div>
-
-        <tr>
-            <td></td>
-
-            <td align=center>
-                <%= f.submit class:'my_class'%>
-            </td>
-        </tr>
-
-    </table>
-
-    <%end%>
-</center>
+  <%= link_to  "Back", :back %>
+  <center>
+    <h2>:::Edit Question:::</h2>
+    <%= render "form" %>
+  </center>
 <%else%>
-<!--<%= link_to 'sign up', new_user_registration_path %>-->
-<script type="text/javascript">
+  <!--<%= link_to 'sign up', new_user_registration_path %>-->
+  <script type="text/javascript">
     window.location.href = "/" // put your correct path in a string here
-</script>
-<%= link_to 'sign in', new_user_session_path %>
+  </script>
+  <%= link_to 'sign in', new_user_session_path %>
 <%end%>

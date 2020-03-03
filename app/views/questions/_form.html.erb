@@ -1,45 +1,38 @@
 <center>
-  <h2>:::Add Question:::</h2>
   <table class="roundedCorners">
-
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @question,url: exam_questions_path) do |f|%>
-          <% if @question.errors.any? %>
-          <h2><%= pluralize(@question.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-          <ul>
-            <% @question.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-          <% end %>
-
-          <div class="field">
-            <%= f.label :question %><br />
-            <%= f.text_field :info, autofocus: true, autocomplete: "name" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :answer %><br />
-            <%= f.text_field :answer, autofocus: true, autocomplete: "answer" %>
-          </div>
-          <div class="myfield">
-            <%= f.fields_for @question.options.build do |option| %>
-              <%= render 'option_fields', f: option %>
-              <div class="links">
-                <%= link_to_add_association 'Add Option', f, :options %><br />
-              </div>
+          <%= form_with(model: [@exam, @question], local: true) do |f|%>
+            <% if @question.errors.any? %>
+              <h2><%= pluralize(@question.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <ul>
+                <% @question.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
             <% end %>
 
-          </div>
+            <div class="field">
+              <%= f.label :question %><br />
+              <%= f.text_field :info, autofocus: true, autocomplete: "name" %>
+            </div>
 
-
-
-          <div class="actions">
-            <%= f.submit "Add Question", id: "1" %>
-          </div>
+            <div class="field">
+              <%= f.label :answer %><br />
+              <%= f.text_field :answer, autofocus: true, autocomplete: "answer" %>
+            </div>
+            <div class="myfield">
+              <%= f.fields_for @question.options.build do |option| %>
+                <%= render 'option_fields', f: option %>
+                <div class="links">
+                  <%= link_to_add_association 'Add Option', f, :options %><br />
+                </div>
+              <% end %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Add Question", id: "1" %>
+            </div>
           <% end %>
         </td>
       </tr>

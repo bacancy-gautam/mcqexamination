@@ -2,62 +2,56 @@
 
 # Question Controller
 class QuestionsController < ApplicationController
+  before_action :set_question, only: %i[edit update destroy]
+  before_action :find_exam, only: %i[index create new]
   def index
     # byebug
-    find_exam
     @questions = @exam.questions
   end
 
   def new
-    @question = Question.new
-    @questions = Question.all
+    @question = Question.new(exam_id: @exam.id)
   end
 
   def create
     # binding.pry
     @question = Question.new(info_params)
-    # @question.exam_id = params[:exam_id]
-    find_exam
     a = @exam.questions.build(info_params)
-    if a.save!
-      flash[:notice] = 'Question added successfully!'
+    if a.save
+      redirect_to exam_questions_path, notice: 'Question added!'
     else
-      flash[:alert] = 'Something went wrong'
+      render 'new'
     end
   end
 
-  def show; end
-
-  def edit
-    @question = Question.find(params[:id])
-  end
+  def edit; end
 
   def update
     # byebug
-    @question = Question.find(params[:question][:id])
     if @question.update(info_params)
-      flash[:notice] = 'Question updated Successfully'
-      redirect_to exam_questions_path
+      redirect_to exam_questions_path, notice: 'Question updated Successfully'
     else
-      flash[:alert] = 'Something went wrong!'
+      render 'edit'
     end
   end
 
   def destroy
-    @question = Question.find(params[:id])
-    @question.destroy!
+    @question.destroy
     redirect_to exam_questions_path
   end
 
-  def info_params
-    params.required(:question).permit(:info, :answer, :exam_id, options_attributes: %i[opt _destroy])
-  end
+  private
 
-  def info_params1
-    params.required(:question).permit(:opt)
+  def info_params
+    params.required(:question).permit(:info, :answer, :exam_id,
+                                      options_attributes: %i[opt _destroy])
   end
 
   def find_exam
     @exam = Exam.find(params[:exam_id])
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 end
