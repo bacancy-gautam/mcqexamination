@@ -1,59 +1,12 @@
 <%if current_user%>
-<%= link_to  "Back", new_faculty_path %>
-
-<center>
-  <%= form_with(model: @user,:url => new_faculty_path, local: true) do |f|%>
-
-  <table class="roundedCorners">
-    <tr>
-      <td>
-        <%=f.label :fname %></td>
-        <td>
-          <%=f.text_field :fname , class: 'my_class' %></td>
-        </tr>
-
-        <tr>
-          <td>
-            <%=f.label :lname %></td>
-            <td>
-              <%=f.text_field :lname , class: 'my_class' %></td>
-            </tr>
-
-            <tr>
-              <td>
-                <%=f.label :email %></td>
-                <td>
-                  <%=f.text_field :email, class: 'my_class' %></td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <%=f.label :mobile %></td>
-                    <td>
-                      <%=f.text_field :mobile, class: 'my_class' %></td>
-                    </tr>
-
-                    <div class="field">
-                      <%= f.hidden_field :id %>
-                    </div>
-
-                    <tr>
-                      <td></td>
-
-                      <td align=center>
-                        <%= f.submit class:'my_class'%>
-                      </td>
-                    </tr>
-
-                  </table>
-
-                  <%end%>
-                </center>
-
-                <%else%>
-                <!--<%= link_to 'sign up', new_user_registration_path %>-->
-                <script type="text/javascript">
-    window.location.href = "/" // put your correct path in a string here
+  <%= link_to  "Back", new_faculty_path %>
+  <center>
+    <h2>:::Edit Faculty:::</h2>
+    <%= render "addnew"%>
+  </center>
+<%else%>
+  <script type="text/javascript">
+    window.location.href = "/"
   </script>
   <%= link_to 'sign in', new_user_session_path %>
-  <%end%>
+<%end%>

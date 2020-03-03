@@ -2,53 +2,49 @@
 
 # Faculty controller
 class FacultiesController < ApplicationController
+  before_action :set_faculty, only: %i[edit update destroy]
   def index; end
-
-  def show; end
 
   def new
     @user = User.new
-    @users = User.all
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
+  def edit; end
 
   def update
     # byebug
-    @user = User.find(params[:user][:id])
     if @user.update(info_params)
-      flash[:notice] = 'Faculty updated Successfully'
-      redirect_to new_faculty_path
+      redirect_to new_faculty_path, notice: 'Faculty updated Successfully'
     else
-      flash[:alert] = 'Something went wrong!'
+      render 'edit'
     end
   end
 
   def create
     @user = User.new(info_params)
-    a = params[:branch_id]
-    @user.branch_id = a
-    if @user.save!
+    @user.branch_id = params[:branch_id]
+    if @user.save
       @user.add_role :faculty
-      flash[:notice] = 'Student has been added successfully'
-      redirect_to new_faculty_path
+      redirect_to new_faculty_path, notice: 'Faculty has been added'
     else
-      flash[:alert] = 'Something went wrong'
+      render 'new'
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy!
+    @user.destroy
     redirect_to new_faculty_path
   end
 
+  private
+
   def info_params
-    # puts "fac hello"
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
                                   :pyear, :password, :email, :fname, :lname,
                                   :mobile, :password_confirmation)
+  end
+
+  def set_faculty
+    @user = User.find(params[:id])
   end
 end
