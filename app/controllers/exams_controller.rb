@@ -2,7 +2,7 @@
 
 # controller to create exam
 class ExamsController < ApplicationController
-  before_action :set_exam, only: %i[edit update destroy]
+  before_action :find_exam, only: %i[edit update destroy]
   def index
     @exams = current_user.exams
   end
@@ -13,7 +13,7 @@ class ExamsController < ApplicationController
 
   def create
     @exam = Exam.new(info_params)
-    @exam.user_id = current_user.id
+    @exam = current_user.exams.build
     @exam.subject_id = params[:subject_id]
     if @exam.save
       redirect_to new_exam_path, notice: 'Exam added Successfully'
@@ -44,7 +44,7 @@ class ExamsController < ApplicationController
                                   :subject_id, :etype)
   end
 
-  def set_exam
+  def find_exam
     @exam = Exam.find(params[:id])
   end
 end

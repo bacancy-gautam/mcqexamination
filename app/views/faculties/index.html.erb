@@ -1,6 +1,6 @@
-<%if current_user%>
+<% if current_user %>
   <center>
-    <h1>Faculty Dashboard</h1>(<%= current_user.email%>)
+    <h1>Faculty Dashboard</h1>(<%= current_user.email %>)
     <%= link_to 'Edit Profile', edit_user_registration_path %>
     <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
     <br>

@@ -2,7 +2,7 @@
 
 # Faculty controller
 class FacultiesController < ApplicationController
-  before_action :set_faculty, only: %i[edit update destroy]
+  before_action :find_faculty, only: %i[edit update destroy]
   def index; end
 
   def new
@@ -44,7 +44,7 @@ class FacultiesController < ApplicationController
                                   :mobile, :password_confirmation)
   end
 
-  def set_faculty
+  def find_faculty
     @user = User.find(params[:id])
   end
 end

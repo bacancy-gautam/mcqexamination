@@ -2,7 +2,7 @@
 
 # Option Controller
 class OptionsController < ApplicationController
-  before_action :set_option, only: %i[edit update destroy]
+  before_action :find_option, only: %i[edit update destroy]
 
   def index
     # byebug
@@ -35,7 +35,6 @@ class OptionsController < ApplicationController
   end
 
   def destroy
-    @option = Option.find(params[:id])
     @option.destroy
     redirect_to exam_question_options_path
   end
@@ -46,7 +45,7 @@ class OptionsController < ApplicationController
     params.required(:option).permit(:opt, :question_id)
   end
 
-  def set_option
+  def find_option
     @option = Option.find(params[:id])
   end
 end

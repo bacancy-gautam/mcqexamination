@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   root 'users#home'
   resources :faculties
   resources :subjects
- 
-  
+
   resources :exams do
     resources :questions do
       resources :options
@@ -16,13 +15,14 @@ Rails.application.routes.draw do
     resources :options
   end
 
+  resources :students do
+    get 'download_excel', on: :collection
+  end
 
-  get 'students/download_excel'
-  resources :students
   resources :admin
   resources :admin do
     collection { post :import }
-    collection { post :importf }
+    collection { post :import_faculty }
   end
 
   get 'admin/filltable'

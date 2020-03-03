@@ -1,29 +1,28 @@
 <center>
   <h2>:::Add Option:::</h2>
   <table class="roundedCorners">
-
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @option, local: true) do |f|%>
+          <%= form_with(model: @option, local: true) do |f| %>
           <% if @option.errors.any? %>
             <h2><%= pluralize(@option.errors.count, "error") %> prohibited this user from being saved:</h2>
 
             <ul>
               <% @option.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
-              <% end %>
+                <% end %>
             </ul>
-            <% end %>
+          <% end %>
 
-            <div class="field">
-              <%= f.label :option %><br />
-              <%= f.text_field :opt, autofocus: true%>
-            </div>
+          <div class="field">
+            <%= f.label :option %><br />
+            <%= f.text_field :opt, autofocus: true %>
+          </div>
 
-            <div class="actions">
-              <%= f.submit "Add Option" %>
-            </div>
+          <div class="actions">
+            <%= f.submit "Add Option" %>
+          </div>
           <% end %>
         </td>
       </tr>

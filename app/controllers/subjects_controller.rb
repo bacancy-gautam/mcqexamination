@@ -48,7 +48,7 @@ class SubjectsController < ApplicationController
     params.required(:subject).permit(:branch_id, :semester_id, :name)
   end
 
-  def set_subjects
+  def find_subjects
     @subject = Subject.find(params[:id])
   end
 end

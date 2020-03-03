@@ -2,7 +2,7 @@
 
 # controller for student related task
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[edit update destroy]
+  before_action :find_student, only: %i[edit update destroy]
   def index; end
 
   def new
@@ -43,7 +43,7 @@ class StudentsController < ApplicationController
                                   :mobile, :password_confirmation)
   end
 
-  def set_student
+  def find_student
     @user = User.find(params[:id])
   end
 end

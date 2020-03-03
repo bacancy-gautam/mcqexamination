@@ -2,7 +2,7 @@
 
 # Question Controller
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[edit update destroy]
+  before_action :find_question, only: %i[edit update destroy]
   before_action :find_exam, only: %i[index create new]
   def index
     # byebug
@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new(exam_id: @exam.id)
+    @question = @exam.questions.build
   end
 
   def create
@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
     @exam = Exam.find(params[:exam_id])
   end
 
-  def set_question
+  def find_question
     @question = Question.find(params[:id])
   end
 end

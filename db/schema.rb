@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_101804) do
+ActiveRecord::Schema.define(version: 2020_03_03_131121) do
 
   create_table "assigns", force: :cascade do |t|
     t.datetime "date"
@@ -108,17 +108,17 @@ ActiveRecord::Schema.define(version: 2020_02_27_101804) do
     t.index ["semester_id"], name: "index_subjects_on_semester_id"
   end
 
-  create_table "userans", force: :cascade do |t|
+  create_table "user_answer", force: :cascade do |t|
     t.integer "user_id"
     t.integer "exam_id"
     t.integer "option_id"
     t.integer "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exam_id"], name: "index_userans_on_exam_id"
-    t.index ["option_id"], name: "index_userans_on_option_id"
-    t.index ["question_id"], name: "index_userans_on_question_id"
-    t.index ["user_id"], name: "index_userans_on_user_id"
+    t.index ["exam_id"], name: "index_user_answer_on_exam_id"
+    t.index ["option_id"], name: "index_user_answer_on_option_id"
+    t.index ["question_id"], name: "index_user_answer_on_question_id"
+    t.index ["user_id"], name: "index_user_answer_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -162,10 +162,10 @@ ActiveRecord::Schema.define(version: 2020_02_27_101804) do
   add_foreign_key "results", "users"
   add_foreign_key "subjects", "branches"
   add_foreign_key "subjects", "semesters"
-  add_foreign_key "userans", "exams"
-  add_foreign_key "userans", "options"
-  add_foreign_key "userans", "questions"
-  add_foreign_key "userans", "users"
+  add_foreign_key "user_answer", "exams"
+  add_foreign_key "user_answer", "options"
+  add_foreign_key "user_answer", "questions"
+  add_foreign_key "user_answer", "users"
   add_foreign_key "users", "branches"
   add_foreign_key "users", "semesters"
 end

@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @exam, local: true) do |f|%>
+          <%= form_with(model: @exam, local: true) do |f| %>
             <% if @exam.errors.any? %>
               <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this user from being saved:</h2>
               <ul>
@@ -30,7 +30,7 @@
 
             <div class="field">
               <%= f.label :passing_marks %><br />
-              <%= f.number_field :pmarks, autofocus: true, min: 1, value: 1%>
+              <%= f.number_field :pmarks, autofocus: true, min: 1, value: 1 %>
             </div>
 
             <div class="field">

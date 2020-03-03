@@ -2,7 +2,7 @@
 
 # admincontroller
 class AdminController < ApplicationController
-  before_action :set_user, only: %i[edit update destroy]
+  before_action :find_user, only: %i[edit update destroy]
   def index; end
 
   def new
@@ -28,7 +28,7 @@ class AdminController < ApplicationController
     redirect_to new_student_path, notice: 'Students added.'
   end
 
-  def importf
+  def import_faculty
     User.import(params[:file])
     redirect_to new_faculty_path, notice: 'Faculty added.'
   end
@@ -42,7 +42,7 @@ class AdminController < ApplicationController
                                   :mobile, :password_confirmation)
   end
 
-  def set_user
+  def find_user
     @user = User.find(params[:id])
   end
 end

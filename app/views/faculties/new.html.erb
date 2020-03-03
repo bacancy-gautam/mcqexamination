@@ -1,11 +1,11 @@
-<%if current_user%>
+<% if current_user %>
   <%= link_to "Back", admin_index_path %>
   <center>
     <h2>:::Add Faculty:::</h2>
     <%= render "addnew"%>
   </center>
-<%else%>
+<% else %>
   <script type="text/javascript">
     window.location.href = "/" // put your correct path in a string here
   </script>
-<%end%>
+<% end %>

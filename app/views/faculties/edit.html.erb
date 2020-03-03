@@ -1,12 +1,12 @@
-<%if current_user%>
+<% if current_user %>
   <%= link_to  "Back", new_faculty_path %>
   <center>
     <h2>:::Edit Faculty:::</h2>
     <%= render "addnew"%>
   </center>
-<%else%>
+<% else %>
   <script type="text/javascript">
     window.location.href = "/"
   </script>
   <%= link_to 'sign in', new_user_session_path %>
-<%end%>
+<% end %>

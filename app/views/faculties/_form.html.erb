@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @user,local: true) do |f|%>
+          <%= form_with(model: @user,local: true) do |f| %>
             <% if @user.errors.any? %>
               <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
               <ul>
@@ -82,17 +82,17 @@
         </tr>
       </thead>
 
-      <%@users.each do |faculty|%>
-        <%if faculty.has_role? (:faculty)%>
+      <% @users.each do |faculty| %>
+        <% if faculty.has_role? (:faculty) %>
           <tr>
-            <td><%=faculty.fname %></td>
-            <td><%=faculty.lname %></td>
-            <td><%=faculty.email %></td>
+            <td><%= faculty.fname %></td>
+            <td><%= faculty.lname %></td>
+            <td><%= faculty.email %></td>
             <td><%= faculty.branch&.name %></td>
-            <td><%=faculty.mobile %></td>
-            <td><%=faculty.status %></td>
-            <td><%=link_to("Edit", edit_faculty_path(faculty.id)) %></td>
-            <td><%=link_to("Delete", faculty_path(faculty), method: :delete, data: {confirm:"Are you sure?"}) %></td>
+            <td><%= faculty.mobile %></td>
+            <td><%= faculty.status %></td>
+            <td><%= link_to 'Edit', edit_faculty_path(faculty.id) %></td>
+            <td><%= link_to 'Delete', faculty_path(faculty), method: :delete, data: {confirm:"Are you sure?"} %></td>
           </tr>
         <% end %>
       <% end %>
