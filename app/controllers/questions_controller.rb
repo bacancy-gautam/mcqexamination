@@ -2,6 +2,7 @@
 
 # Question Controller
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_question, only: %i[edit update destroy]
   before_action :find_exam, only: %i[index create new]
   def index
@@ -23,8 +24,6 @@ class QuestionsController < ApplicationController
       render 'new'
     end
   end
-
-  def edit; end
 
   def update
     # byebug

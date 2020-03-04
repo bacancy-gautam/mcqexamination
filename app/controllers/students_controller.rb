@@ -2,9 +2,8 @@
 
 # controller for student related task
 class StudentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_student, only: %i[edit update destroy]
-  def index; end
-
   def new
     @user = User.new
   end

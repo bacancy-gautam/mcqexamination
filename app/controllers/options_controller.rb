@@ -2,8 +2,8 @@
 
 # Option Controller
 class OptionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_option, only: %i[edit update destroy]
-
   def index
     # byebug
     @options = Option.where(question_id: params[:question_id].to_i)
@@ -23,8 +23,6 @@ class OptionsController < ApplicationController
       render 'new'
     end
   end
-
-  def edit; end
 
   def update
     if @option.update(info_params)

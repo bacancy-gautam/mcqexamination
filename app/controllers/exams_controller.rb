@@ -2,6 +2,7 @@
 
 # controller to create exam
 class ExamsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_exam, only: %i[edit update destroy]
   def index
     @exams = current_user.exams

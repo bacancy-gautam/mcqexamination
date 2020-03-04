@@ -2,14 +2,11 @@
 
 # admincontroller
 class AdminController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_user, only: %i[edit update destroy]
-  def index; end
-
   def new
     @user = User.new
   end
-
-  def create; end
 
   def filltable
     @branch_name = Branch.find(params[:branch_id])

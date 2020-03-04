@@ -2,6 +2,7 @@
 
 # add subject
 class SubjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_student, only: %i[edit update destroy]
   def index
     @subjects = Subject.all
@@ -23,8 +24,6 @@ class SubjectsController < ApplicationController
       render 'new'
     end
   end
-
-  def edit; end
 
   def update
     @subject.branch_id = params[:branch_id]

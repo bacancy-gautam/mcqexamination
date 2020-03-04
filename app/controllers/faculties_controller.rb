@@ -2,14 +2,12 @@
 
 # Faculty controller
 class FacultiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_faculty, only: %i[edit update destroy]
-  def index; end
-
+  before_action :all_faculty, only: %i[edit new]
   def new
     @user = User.new
   end
-
-  def edit; end
 
   def update
     # byebug
@@ -46,5 +44,9 @@ class FacultiesController < ApplicationController
 
   def find_faculty
     @user = User.find(params[:id])
+  end
+
+  def all_faculty
+    @users = User.all
   end
 end
