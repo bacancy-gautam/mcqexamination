@@ -1,6 +1,6 @@
 <center>
-  <table class="roundedCorners">
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
         <td>
           <%= form_with(model: @user,url: user_session_path, local: true) do |f| %>
@@ -83,18 +83,16 @@
       </thead>
 
       <% @users.each do |faculty| %>
-        <% if faculty.has_role? (:faculty) %>
-          <tr>
-            <td><%= faculty.fname %></td>
-            <td><%= faculty.lname %></td>
-            <td><%= faculty.email %></td>
-            <td><%= faculty.branch&.name %></td>
-            <td><%= faculty.mobile %></td>
-            <td><%= faculty.status %></td>
-            <td><%= link_to 'Edit', edit_faculty_path(faculty.id) %></td>
-            <td><%= link_to 'Delete', faculty_path(faculty), method: :delete, data: {confirm:"Are you sure?"} %></td>
-          </tr>
-        <% end %>
+        <tr>
+          <td><%= faculty.fname %></td>
+          <td><%= faculty.lname %></td>
+          <td><%= faculty.email %></td>
+          <td><%= faculty.branch&.name %></td>
+          <td><%= faculty.mobile %></td>
+          <td><%= faculty.status %></td>
+          <td><%= link_to 'Edit', edit_faculty_path(faculty.id) %></td>
+          <td><%= link_to 'Delete', faculty_path(faculty), method: :delete, data: {confirm:"Are you sure?"} %></td>
+        </tr>
       <% end %>
     </table>
   </center>

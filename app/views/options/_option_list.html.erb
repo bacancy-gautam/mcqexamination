@@ -1,12 +1,12 @@
 <div>
   <center>
     <% if !@options.blank? %>
-      <table class="roundedCorners" id="optionlist1">
+      <table id="optionlist1">
         <th>
           <%=link_to("Add More Option", new_exam_question_option_path(params[:exam_id])) %>
         </th>
       </table>
-      <table class="roundedCorners" id="optionlist">
+      <table class="table" id="optionlist">
         <thead>
           <tr>
             <th>No.</th>

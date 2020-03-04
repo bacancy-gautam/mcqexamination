@@ -4,21 +4,18 @@ Rails.application.routes.draw do
   root 'users#home'
   resources :faculties
   resources :subjects
-
+  resources :exams do
+    resources :assigns
+  end
+  post '/exams/:exam_id/assigns/new' => 'assigns#create'
   resources :exams do
     resources :questions do
       resources :options
     end
   end
-
-  resources :questions do
-    resources :options
-  end
-
   resources :students do
     get 'download_excel', on: :collection
   end
-
   resources :admin
   resources :admin do
     collection { post :import }

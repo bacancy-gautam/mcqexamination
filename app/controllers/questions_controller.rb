@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @exam.questions.build
+    @option = @question.options.build
   end
 
   def create

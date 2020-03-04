@@ -13,17 +13,15 @@ class ExamsController < ApplicationController
   end
 
   def create
-    @exam = Exam.new(info_params)
-    @exam = current_user.exams.build
+    @exam = current_user.exams.build(info_params)
     @exam.subject_id = params[:subject_id]
+    # byebug
     if @exam.save
       redirect_to new_exam_path, notice: 'Exam added Successfully'
     else
       render 'new'
     end
   end
-
-  def edit; end
 
   def update
     if @exam.update(info_params)

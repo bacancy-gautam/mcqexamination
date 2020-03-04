@@ -11,6 +11,7 @@ class StudentsController < ApplicationController
   def create
     # byebug
     @user = User.new(info_params)
+    
     @user.branch_id = params[:branch_id]
     if @user.save
       @user.add_role :student

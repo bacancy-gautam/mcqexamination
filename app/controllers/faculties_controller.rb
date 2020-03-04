@@ -47,6 +47,6 @@ class FacultiesController < ApplicationController
   end
 
   def all_faculty
-    @users = User.all
+    @users = User.with_role :faculty
   end
 end

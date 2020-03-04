@@ -4,13 +4,16 @@
 class OptionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_option, only: %i[edit update destroy]
+  before_action :find_question, only: %i[new find_exam index]
+  before_action :find_exam, only: %i[new]
+
   def index
     # byebug
-    @options = Option.where(question_id: params[:question_id].to_i)
+    @options = @question.options
   end
 
   def new
-    @option = Option.new
+    @option = Option.new(question_id: @question)
   end
 
   def create
@@ -45,5 +48,13 @@ class OptionsController < ApplicationController
 
   def find_option
     @option = Option.find(params[:id])
+  end
+
+  def find_question
+    @question = Question.find(params[:question_id])
+  end
+
+  def find_exam
+    @exam = Exam.find(params[:exam_id])
   end
 end
