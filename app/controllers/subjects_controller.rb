@@ -14,7 +14,7 @@ class SubjectsController < ApplicationController
 
   def create
     # byebug
-    @subject = Subject.new(info_params)
+    @subject = Subject.new(subject_params)
     @subject.branch_id = params[:branch_id]
     @subject.semester_id = params[:semester_id]
     if @subject.save
@@ -28,7 +28,7 @@ class SubjectsController < ApplicationController
   def update
     @subject.branch_id = params[:branch_id]
     @subject.semester_id = params[:semester_id]
-    if @subject.update(info_params)
+    if @subject.update(subject_params)
       redirect_to subjects_path, notice: 'Subject updated Successfully'
     else
       flash[:alert] = 'Something went wrong!'
@@ -43,7 +43,7 @@ class SubjectsController < ApplicationController
 
   private
 
-  def info_params
+  def subject_params
     params.required(:subject).permit(:branch_id, :semester_id, :name)
   end
 

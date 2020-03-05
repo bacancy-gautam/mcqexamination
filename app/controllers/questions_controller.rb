@@ -12,12 +12,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @exam.questions.build
+    @option = @question.options.build
   end
 
   def create
     # binding.pry
-    @question = Question.new(info_params)
-    a = @exam.questions.build(info_params)
+    @question = Question.new(question_params)
+    a = @exam.questions.build(question_params)
     if a.save
       redirect_to exam_questions_path, notice: 'Question added!'
     else
@@ -27,7 +28,7 @@ class QuestionsController < ApplicationController
 
   def update
     # byebug
-    if @question.update(info_params)
+    if @question.update(question_params)
       redirect_to exam_questions_path, notice: 'Question updated Successfully'
     else
       render 'edit'
@@ -41,7 +42,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  def info_params
+  def question_params
     params.required(:question).permit(:info, :answer, :exam_id,
                                       options_attributes: %i[opt _destroy])
   end

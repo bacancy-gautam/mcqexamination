@@ -32,7 +32,7 @@ class AdminController < ApplicationController
 
   private
 
-  def info_params
+  def admin_params
     # byebug
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
                                   :pyear, :password, :email, :fname, :lname,

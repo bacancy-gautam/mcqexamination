@@ -19,9 +19,9 @@ class User < ApplicationRecord
 
   # devise :database_authenticatable, :authentication_keys => [:email], if: :user.has_role?(:faculty)
 
-  has_many :results
-  has_many :exams
-  has_many :assigns
+  has_many :results, dependent: :destroy
+  has_many :exams, dependent: :destroy
+  has_many :assigns, dependent: :destroy
   has_one :useran
   belongs_to :branch, optional: true
   belongs_to :semester, optional: true

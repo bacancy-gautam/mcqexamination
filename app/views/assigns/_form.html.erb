@@ -1,0 +1,39 @@
+<%= form_tag @student do %>
+  <table class="table" data-page-size="31" data-filter=#filter>
+    <thead class="thead-dark">
+      <tr>
+        <th>Student Enrollment</th>
+        <th data-sort-ignore="true"><input type="checkbox" id="selectAll" /></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+      <tr>
+        <td><%= student.enrollment %></td>
+        <td><%= check_box_tag 'student_ids[]', student.id, false, class: 'selectable' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="12">
+          <ul class="pagination pull-right"></ul>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <%= submit_tag "Assign selected", :class => 'btn btn-primary btn-xs' %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#selectAll").on("click", function (event) {
+      var cbxs = $('input[type="checkbox"]');
+      if ($("#selectAll").prop("checked") == true) {
+        cbxs.prop("checked", true);
+      } else if ($("#selectAll").prop("checked") == false) {
+        cbxs.prop("checked", false);
+      }
+    });
+  });
+</script>

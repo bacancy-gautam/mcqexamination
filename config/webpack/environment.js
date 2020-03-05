@@ -7,6 +7,7 @@ environment.plugins.prepend('Provide',
   new webpack.ProvidePlugin({
     $: 'jquery/src/jquery',
     jQuery: 'jquery/src/jquery',
-    Cocoon: ['Cocoon.js', 'default']
+    Cocoon: ['Cocoon.js', 'default'],
+    Popper: ['popper.js', 'default']
   })
 )

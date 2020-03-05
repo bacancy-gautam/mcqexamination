@@ -2,7 +2,5 @@
 <%= link_to "My Dashboard(#{current_user.email})", faculties_path %> ||
 <%= link_to 'Exam List', exams_path %>
 <h2>================================</h2>
-<center>
-  <h2>:::Add Exam:::</h2>
-  <%= render "form"%>
-</center>
+<h2 class="text-center">:::Add Exam:::</h2>
+<%= render "form"%>

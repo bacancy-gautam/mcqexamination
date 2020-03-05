@@ -1,7 +1,7 @@
 <div>
   <center>
-    <table class="roundedCorners" id="faclist">
-      <thead>
+    <table class="table" id="faclist">
+      <thead class="thead-dark">
         <tr>
           <th>Exam Name</th>
           <th>Info</th>
@@ -9,6 +9,7 @@
           <th>Passing Marks</th>
           <th>Subject</th>
           <th colspan="4">Operations</th>
+          <th>\\//</th>
         </tr>
       </thead>
 
@@ -23,6 +24,7 @@
           <td><%= link_to 'Delete', exam_path(exam), method: :delete, data: {confirm:"Are you sure?"} %></td>
           <td><%= link_to 'Add Question', new_exam_question_path(exam) %></td>
           <td><%= link_to 'Show Question', exam_questions_path(exam) %></td> 
+          <td>|| <%= link_to 'Assign', new_exam_assign_path(exam) %></td>
         </tr>
       <% end %>
     </table>

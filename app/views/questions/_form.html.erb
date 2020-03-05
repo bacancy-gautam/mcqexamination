@@ -22,16 +22,17 @@
               <%= f.label :answer %><br />
               <%= f.text_field :answer, autofocus: true, autocomplete: "answer" %>
             </div>
-            <div class="myfield">
-              <%= f.fields_for @question.options.build do |option| %>
+            <h3>Options</h3>
+            <div id="options">
+              <%= f.fields_for :options do |option| %>
                 <%= render 'option_fields', f: option %>
-                <div class="links">
-                  <%= link_to_add_association 'Add Option', f, :options %><br />
-                </div>
               <% end %>
+              <div class="links">
+                <%= link_to_add_association 'Add Option', f, :options %><br />
+              </div>
             </div>
             <div class="actions">
-              <%= f.submit "Add Question", id: "1" %>
+              <%= f.submit  %>
             </div>
           <% end %>
         </td>
