@@ -12,23 +12,32 @@
 
       <div class="form-group row">
         <%= f.label :name ,class: "col-md-4"%>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name" ,class: "col-md-4" %>
-
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
         <%= f.label :info ,class: "col-md-4"%>
-        <%= f.text_area :info, autofocus: true, autocomplete: "info",class: "col-md-4" %>
+        <%= f.text_area :info, autofocus: true, autocomplete: "info", class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
-        <%= f.label :duration ,class: "col-md-4" %><br />
-        <%= f.number_field :duration, autofocus: true, min: 1, value: 1,class: "col-md-4" %>
+        <%=# f.label :duration ,class: "col-md-4" %><br />
+        <%=# f.number_field :duration, autofocus: true, min: 1, value: 1, class: "col-md-4" %>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :start_date ,class: "col-md-4" %><br />
+        <%= f.number_field :start_date, autofocus: true, class: "col-md-4" %>
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :end_date ,class: "col-md-4" %><br />
+        <%= f.number_field :start_date, autofocus: true, class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
         <%= f.label :passing_marks ,class: "col-md-4"%><br />
-        <%= f.number_field :pmarks, autofocus: true, min: 1, value: 1 ,class: "col-md-4" %>
+        <%= f.number_field :pmarks, autofocus: true, min: 1, value: 1, class: "col-md-4" %>
       </div>
 
       <div class="form-group row">

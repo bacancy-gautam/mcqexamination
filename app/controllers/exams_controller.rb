@@ -3,7 +3,7 @@
 # controller to create exam
 class ExamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_exam, only: %i[edit update destroy]
+  before_action :find_exam, only: %i[edit update destroy student_exam]
   def index
     @exams = current_user.exams
   end
@@ -34,6 +34,17 @@ class ExamsController < ApplicationController
   def destroy
     @exam.destroy
     redirect_to exams_path, alert: 'Exam Deleted Successfully'
+  end
+
+  def student_exam
+
+    # byebug
+    @questions = @exam.questions
+  end
+
+  def count_result
+    # method to count result
+    # byebug
   end
 
   private

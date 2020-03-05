@@ -1,0 +1,17 @@
+<br/>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Exam name</th>
+      <th>Exam description</th>
+      <th>Option</th>
+    </tr> 
+  </thead>
+  <% @exams.each do |exam| %>
+    <tr>
+      <td><%= exam.exam.name %></td>
+      <td><%= exam.exam.info %></td>
+    <td><%=link_to 'Sign in', new_exam_student_answer_path(exam.exam.id) %></td>
+    </tr>
+  <% end %>
+</table>

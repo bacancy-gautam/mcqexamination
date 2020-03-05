@@ -4,15 +4,23 @@ Rails.application.routes.draw do
   root 'users#home'
   resources :faculties
   resources :subjects
-  resources :exams do
-    resources :assigns
-  end
+  # resources :exams do
+  # end
   post '/exams/:exam_id/assigns/new' => 'assigns#create'
   resources :exams do
+    get 'student_exam'
+    post 'count_result'
+    resources :student_answers
+    resources :assigns
     resources :questions do
       resources :options
     end
   end
+
+  # resources :questions do
+  #   resources :options
+  # end
+
   resources :students do
     get 'download_excel', on: :collection
   end
@@ -23,6 +31,8 @@ Rails.application.routes.draw do
   end
 
   get 'admin/filltable'
+  # get 'student/exam/:id' => 'exams#student_exam', as: 'student_exam'
+  post 'student/result/:id' => 'exams#count_result', as: 'count_result'
 
   devise_for :users
 

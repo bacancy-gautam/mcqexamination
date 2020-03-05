@@ -52,7 +52,11 @@
             </div>
 
             <div class="actions">
-              <%= f.submit "Register" %>
+              <% if @user.new_record? %>
+                <%= f.submit formaction: students_path %>
+              <% else %>
+                <%= f.submit formaction: edit_student_path %>
+              <% end %>
             </div>
           <% end %>
         </thead>
