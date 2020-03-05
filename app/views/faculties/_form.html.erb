@@ -1,0 +1,101 @@
+<center>
+  <table class="roundedCorners">
+    <thead>
+      <tr>
+        <td>
+          <%= form_with(model: @user,url: user_session_path, local: true) do |f| %>
+            <% if @user.errors.any? %>
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <div class="field">
+              <%= f.label :first_name %><br />
+              <%= f.text_field :fname, autofocus: true, autocomplete: "fname" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :last_name %><br />
+              <%= f.text_field :lname, autofocus: true, autocomplete: "lname" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :mobile %><br />
+              <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :branch_id %><br />
+              <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class=>'form-control', :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation %>
+            </div>
+
+            <div class="field">
+              <%= f.hidden_field :status, :value =>1 %>
+            </div>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </thead>
+  </table>
+</center>
+
+
+<div>
+  <center>
+    <h2>:::Faculty List:::</h2>
+    <table class="roundedCorners" id="faclist">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Branch</th>
+          <th>Mobile</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <% @users.each do |faculty| %>
+        <% if faculty.has_role? (:faculty) %>
+          <tr>
+            <td><%= faculty.fname %></td>
+            <td><%= faculty.lname %></td>
+            <td><%= faculty.email %></td>
+            <td><%= faculty.branch&.name %></td>
+            <td><%= faculty.mobile %></td>
+            <td><%= faculty.status %></td>
+            <td><%= link_to 'Edit', edit_faculty_path(faculty.id) %></td>
+            <td><%= link_to 'Delete', faculty_path(faculty), method: :delete, data: {confirm:"Are you sure?"} %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </center>
+</div>

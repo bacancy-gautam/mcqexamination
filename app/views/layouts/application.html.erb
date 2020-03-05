@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Mcq</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Mcq</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body><center>
-  <div style="background-color: green;">
-   <p class="notice" style="color:white;font-weight: bold;font-size: 15px;" ><%= notice %></p> 
-   </div>
-       <p class="alert"><%= alert %></p>
-       </center>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <center>
+    <div style="background-color: green;">
+      <p class="notice" style="color:white;font-weight: bold;font-size: 15px;"><%= notice %></p>
+    </div>
+    <div style="background-color: red;">
+      <p class="alert" style="color:white;font-weight: bold;font-size: 15px;"><%= alert %></p>
+    </div>
+  </center>
+  <%= yield %>
+</body>
+
 </html>

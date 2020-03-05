@@ -1,20 +1,10 @@
 <center>
-<h1>Admin Dashboard</h1>(Welcome Admin!)
-<center>
-
-<%if current_user%>
-<!--<%= @user = current_user %>
-<%= @user.email%>-->
-
-<%= link_to 'Edit Profile', edit_user_registration_path%>
-<%= link_to 'sign out', destroy_user_session_path, method: :delete %>
-<br>
-<%= link_to 'Add Faculty', admin_new_path%>
-<%= link_to 'Add Students', admin_new_path%>
-
-<%else%>
-
-<!--<%= link_to 'sign up', new_user_registration_path %>-->
-<%= link_to 'sign in', new_user_session_path %>
-<%end%>
-
+  <h1>Admin Dashboard</h1>(Welcome Admin!)
+    <%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;|&nbsp;
+    <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+    <br>
+    <h3>==========================</h3>
+    <%= link_to 'Add Faculty', new_faculty_path %>&nbsp;|&nbsp;
+    <%= link_to 'Add Students', new_student_path %>&nbsp;|&nbsp;
+    <%= link_to 'Add Subject', subjects_path %>
+</center>

@@ -1,0 +1,38 @@
+<div>
+  <center>
+    <% if !@options.blank? %>
+      <table class="roundedCorners" id="optionlist1">
+        <th>
+          <%=link_to("Add More Option", new_exam_question_option_path(params[:exam_id])) %>
+        </th>
+      </table>
+      <table class="roundedCorners" id="optionlist">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Option</th>
+            <th colspan="2">Operations</th>
+          </tr>
+        </thead>
+        <%count = 1%>
+        <%@options.each do |option|%>
+          <tr>
+            <td><%= count %></td>
+            <td><%=option.opt %></td>
+            <td><%=link_to("Edit", edit_exam_question_option_path(option.question.exam,option.question, option)) %>
+            </td>
+            <td>
+              <%=link_to("Remove", exam_question_option_path(option.question.exam,option.question, option), method: :delete, data: {confirm:"Are you sure?"}) %>
+            </td>
+
+          </tr>
+          <%count+=1%>
+        <% end %>
+      </table>
+    <%else%>
+      <h2 style="color: red">No Option has been added!!!</h2>
+      <h3><%=link_to("Add Option", new_exam_question_option_path(params[:exam_id]), data: {confirm:"Are you sure?"}) %>
+      </h3>
+    <% end %>
+  </center>
+</div>
