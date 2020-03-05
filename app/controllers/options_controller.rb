@@ -17,7 +17,7 @@ class OptionsController < ApplicationController
   end
 
   def create
-    @option = Option.new(info_params)
+    @option = Option.new(option_params)
     @option.question_id = params[:question_id]
     # byebug
     if @option.save
@@ -28,7 +28,7 @@ class OptionsController < ApplicationController
   end
 
   def update
-    if @option.update(info_params)
+    if @option.update(option_params)
       redirect_to exam_question_options_path, notice: 'Option updated!'
     else
       render 'edit'
@@ -42,7 +42,7 @@ class OptionsController < ApplicationController
 
   private
 
-  def info_params
+  def option_params
     params.required(:option).permit(:opt, :question_id)
   end
 

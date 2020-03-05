@@ -13,7 +13,7 @@ class ExamsController < ApplicationController
   end
 
   def create
-    @exam = current_user.exams.build(info_params)
+    @exam = current_user.exams.build(exam_params)
     @exam.subject_id = params[:subject_id]
     # byebug
     if @exam.save
@@ -24,7 +24,7 @@ class ExamsController < ApplicationController
   end
 
   def update
-    if @exam.update(info_params)
+    if @exam.update(exam_params)
       redirect_to exams_path, notice: 'Exam updated Successfully'
     else
       render 'edit'
@@ -38,7 +38,7 @@ class ExamsController < ApplicationController
 
   private
 
-  def info_params
+  def exam_params
     params.required(:exam).permit(:name, :info, :duration, :pmarks,
                                   :subject_id, :etype)
   end

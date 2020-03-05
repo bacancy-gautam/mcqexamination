@@ -10,8 +10,7 @@ class StudentsController < ApplicationController
 
   def create
     # byebug
-    @user = User.new(info_params)
-    
+    @user = User.new(student_params)
     @user.branch_id = params[:branch_id]
     if @user.save
       @user.add_role :student
@@ -37,7 +36,7 @@ class StudentsController < ApplicationController
 
   private
 
-  def info_params
+  def student_params
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
                                   :pyear, :password, :email, :fname, :lname,
                                   :mobile, :password_confirmation)

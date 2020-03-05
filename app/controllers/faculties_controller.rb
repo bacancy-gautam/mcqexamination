@@ -11,7 +11,7 @@ class FacultiesController < ApplicationController
 
   def update
     # byebug
-    if @user.update(info_params)
+    if @user.update(faculty_params)
       redirect_to new_faculty_path, notice: 'Faculty updated Successfully'
     else
       render 'edit'
@@ -19,7 +19,7 @@ class FacultiesController < ApplicationController
   end
 
   def create
-    @user = User.new(info_params)
+    @user = User.new(faculty_params)
     @user.branch_id = params[:branch_id]
     if @user.save
       @user.add_role :faculty
@@ -36,7 +36,7 @@ class FacultiesController < ApplicationController
 
   private
 
-  def info_params
+  def faculty_params
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
                                   :pyear, :password, :email, :fname, :lname,
                                   :mobile, :password_confirmation)

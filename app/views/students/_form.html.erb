@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @user,local: true) do |f|%>
+          <%= form_with(model: @user, url: user_session_path, local: true) do |f|%>
             <% if @user.errors.any? %>
               <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
               <ul>
@@ -63,9 +63,9 @@
 
 <center>
   <h4>or</h4>
-
+  
   <h2>:::Add data from Excell Sheet:::</h2>
-  <%= link_to 'Download sample', students_download_excel_path %>
+  <%= link_to 'Download sample', download_excel_students_path %>
   <table class="roundedCorners">
     <thead>
       <tr>

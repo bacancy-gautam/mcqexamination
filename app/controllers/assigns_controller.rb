@@ -9,7 +9,7 @@ class AssignsController < ApplicationController
   end
 
   def create
-    @assign = info_params
+    @assign = assign_params
     @assign['student_ids'].each do |assign|
       new_assign = Assign.new
       new_assign.exam_id = @assign['exam_id']
@@ -22,7 +22,7 @@ class AssignsController < ApplicationController
 
   private
 
-  def info_params
+  def assign_params
     params.permit(:exam_id, student_ids: [])
   end
 end
