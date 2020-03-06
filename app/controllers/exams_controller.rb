@@ -14,7 +14,6 @@ class ExamsController < ApplicationController
 
   def create
     @exam = current_user.exams.build(exam_params)
-    @exam.subject_id = params[:subject_id]
     # byebug
     if @exam.save
       redirect_to new_exam_path, notice: 'Exam added Successfully'
@@ -37,7 +36,6 @@ class ExamsController < ApplicationController
   end
 
   def student_exam
-
     # byebug
     @questions = @exam.questions
   end
@@ -51,7 +49,8 @@ class ExamsController < ApplicationController
 
   def exam_params
     params.required(:exam).permit(:name, :info, :duration, :pmarks,
-                                  :subject_id, :etype)
+                                  :subject_id, :start_date, :end_date,
+                                  :etype)
   end
 
   def find_exam

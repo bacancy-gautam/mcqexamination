@@ -4,9 +4,10 @@
       <thead class="thead-dark">
         <tr>
           <th>Exam Name</th>
-          <th>Info</th>
-          <th>Start Date</th>
-          <th>End Date</th>
+          <th>Description</th>
+          <th>Exam Date</th>
+          <th>Exam start time</th>
+          <th>Exam end time</th>
           <th>Passing Marks</th>
           <th>Subject</th>
           <th colspan="4">Operations</th>
@@ -18,8 +19,9 @@
         <tr>
           <td><%= exam.name %></td>
           <td><%= exam.info %></td>
-          <td><%= exam.start_date %></td>
-          <td><%= exam.end_date %></td>
+          <td><%= exam.start_date.strftime("%d/%m/%Y") %></td>
+          <td><%= exam.start_date.strftime("%I:%M%p")  %></td>
+          <td><%= exam.end_date.strftime("%I:%M%p") %></td>
           <td><%= exam.pmarks %></td>
           <td><%= exam.subject.name %></td>
           <td><%= link_to 'Edit', edit_exam_path(exam) %></td>

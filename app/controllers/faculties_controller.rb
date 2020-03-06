@@ -20,7 +20,6 @@ class FacultiesController < ApplicationController
 
   def create
     @faculty = User.new(faculty_params)
-    @faculty.branch_id = params[:branch_id]
     if @faculty.save
       @faculty.add_role :faculty
       redirect_to new_faculty_path, notice: 'Faculty has been added'

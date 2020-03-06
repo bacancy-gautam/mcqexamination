@@ -15,12 +15,12 @@
 
             <div class="field">
               <%= f.label :branch %><br />
-              <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class=>'form-control', :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
+              <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => 'Select Branch') %>
             </div>
 
             <div class="field">
               <%= f.label :semester %><br />
-              <%= select_tag(:semester_id,  options_from_collection_for_select(Semester.all, :id, :sem), {:class=>'form-control', :prompt => 'Select Semester', :onchange => "myFunction(this.value);"}) %>
+              <%= f.collection_select(:semester_id, Semester.all, :id, :sem, :prompt => 'Select Semester') %>
             </div>
 
             <div class="field">

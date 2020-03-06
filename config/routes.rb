@@ -31,9 +31,6 @@ Rails.application.routes.draw do
   end
 
   get 'admin/filltable'
-  # get 'student/exam/:id' => 'exams#student_exam', as: 'student_exam'
-  post 'student/result/:id' => 'exams#count_result', as: 'count_result'
-
   devise_for :users
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

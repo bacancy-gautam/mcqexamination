@@ -11,7 +11,6 @@ class StudentAnswersController < ApplicationController
   def create
     # @questions = @exam.questions
     # byebug
-
   end
 
   private

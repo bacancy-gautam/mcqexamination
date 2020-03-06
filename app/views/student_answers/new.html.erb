@@ -1,33 +1,3 @@
-<%= form_with(model: @question, url: exam_student_answers_path, local: true) do |f| %>
-  <% count=1 %>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>No.</th>
-        <th style="width:95%;">Question</th>
-      </tr> 
-    </thead>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= count %></td>
-        <td><%= question.info %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <% acount=65 %>
-          <% question.options.each do |option| %>
-            (<%= [acount].pack('U') %>.)
-            <%= option.name %>
-            <%= f.radio_button question.id, option.id, :checked => false %>
-            <br />
-            <% acount += 1 %>
-          <% end %>
-        </td>
-      </tr>
-      <br/>
-      <% count += 1%>
-    <% end %>
-  </table>
-  <%= submit_tag "Submit Exam", :class => 'btn btn-primary btn-xs' %> 
+<% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") > @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
+  <%= render "form" %>
 <% end %>

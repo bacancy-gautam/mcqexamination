@@ -4,6 +4,9 @@
     <tr>
       <th>Exam name</th>
       <th>Exam description</th>
+      <th>Exam Date</th>
+      <th>Exam start time</th>
+      <th>Exam end time</th>
       <th>Option</th>
     </tr> 
   </thead>
@@ -11,6 +14,9 @@
     <tr>
       <td><%= exam.exam.name %></td>
       <td><%= exam.exam.info %></td>
+      <td><%= exam.exam.start_date.strftime("%d/%m/%Y") %></td>
+      <td><%= exam.exam.start_date.strftime("%I:%M%p")  %></td>
+      <td><%= exam.exam.end_date.strftime("%I:%M%p") %></td>
     <td><%=link_to 'Sign in', new_exam_student_answer_path(exam.exam.id) %></td>
     </tr>
   <% end %>

@@ -31,7 +31,7 @@
 
     <div class="form-group row">
       <%= f.label :branch_id, class: "col-md-2" %><br />
-      <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class => "col-md-4", :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
+      <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => 'Select Branch') %>
     </div>
 
     <div class="form-group row">
