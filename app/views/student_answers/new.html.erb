@@ -1,3 +1,5 @@
 <% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") > @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
   <%= render "form" %>
+<% else %>
+  <h3 class="text-center">Session Expired!!!!</h3>
 <% end %>

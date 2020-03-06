@@ -112,17 +112,17 @@ ActiveRecord::Schema.define(version: 2020_03_05_131633) do
     t.index ["semester_id"], name: "index_subjects_on_semester_id"
   end
 
-  create_table "user_answer", force: :cascade do |t|
+  create_table "user_answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "exam_id"
     t.integer "option_id"
     t.integer "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exam_id"], name: "index_user_answer_on_exam_id"
-    t.index ["option_id"], name: "index_user_answer_on_option_id"
-    t.index ["question_id"], name: "index_user_answer_on_question_id"
-    t.index ["user_id"], name: "index_user_answer_on_user_id"
+    t.index ["exam_id"], name: "index_user_answers_on_exam_id"
+    t.index ["option_id"], name: "index_user_answers_on_option_id"
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -166,10 +166,10 @@ ActiveRecord::Schema.define(version: 2020_03_05_131633) do
   add_foreign_key "results", "users"
   add_foreign_key "subjects", "branches"
   add_foreign_key "subjects", "semesters"
-  add_foreign_key "user_answer", "exams"
-  add_foreign_key "user_answer", "options"
-  add_foreign_key "user_answer", "questions"
-  add_foreign_key "user_answer", "users"
+  add_foreign_key "user_answers", "exams"
+  add_foreign_key "user_answers", "options"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "users"
   add_foreign_key "users", "branches"
   add_foreign_key "users", "semesters"
 end
