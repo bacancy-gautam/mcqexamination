@@ -20,12 +20,9 @@ class StudentAnswersController < ApplicationController
 
   private
 
-  def save_my_selected(q, o)
-    my_answer = UserAnswer.new
-    my_answer.question_id = q
-    my_answer.option_id = o
-    my_answer.user_id = current_user.id
-    my_answer.exam_id = @exam.id
+  def save_my_selected(question, option)
+    my_answer = UserAnswer.new(question_id: question, option_id: option,
+                               user_id: current_user.id, exam_id: @exam.id)
     my_answer.save
   end
 

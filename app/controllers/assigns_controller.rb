@@ -11,9 +11,7 @@ class AssignsController < ApplicationController
   def create
     @assign = assign_params
     @assign['student_ids'].each do |assign|
-      new_assign = Assign.new
-      new_assign.exam_id = @assign['exam_id']
-      new_assign.user_id = assign
+      new_assign = Assign.new(exam_id: @assign['exam_id'], user_id: assign)
       assign_student
     end
   end
