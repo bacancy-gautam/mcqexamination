@@ -9,8 +9,10 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-
+require('jquery_ujs')
 require('bootstrap')
+// require('moment')
+require('bootstrap-datetimepicker')
 
 import 'cocoon-js';
 // require('link_to_add_fields').start()

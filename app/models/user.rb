@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :results, dependent: :destroy
   has_many :exams, dependent: :destroy
   has_many :assigns, dependent: :destroy
-  has_one :useran
+  has_many :user_answers, dependent: :destroy
   belongs_to :branch, optional: true
   belongs_to :semester, optional: true
 

@@ -2,7 +2,8 @@
   <br />
   <div class="field">
     <%= f.label :option %><br />
-    <%= f.text_field :opt, autofocus: true %>
+    <%= f.check_box :answer %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
   <div class="links">
     <%= link_to_remove_association "remove", f %>

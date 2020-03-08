@@ -4,6 +4,11 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_student, only: %i[edit update destroy]
+  def index
+    # byebug
+    @exams = current_user.assigns
+  end
+
   def new
     @user = User.new
   end
@@ -11,7 +16,6 @@ class StudentsController < ApplicationController
   def create
     # byebug
     @user = User.new(student_params)
-    @user.branch_id = params[:branch_id]
     if @user.save
       @user.add_role :student
       redirect_to new_student_path, notice: 'Student has been added!'

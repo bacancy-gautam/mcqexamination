@@ -6,12 +6,12 @@ class FacultiesController < ApplicationController
   before_action :find_faculty, only: %i[edit update destroy]
   before_action :all_faculty, only: %i[edit new]
   def new
-    @user = User.new
+    @faculty = User.new
   end
 
   def update
     # byebug
-    if @user.update(faculty_params)
+    if @faculty.update(faculty_params)
       redirect_to new_faculty_path, notice: 'Faculty updated Successfully'
     else
       render 'edit'
@@ -19,10 +19,9 @@ class FacultiesController < ApplicationController
   end
 
   def create
-    @user = User.new(faculty_params)
-    @user.branch_id = params[:branch_id]
-    if @user.save
-      @user.add_role :faculty
+    @faculty = User.new(faculty_params)
+    if @faculty.save
+      @faculty.add_role :faculty
       redirect_to new_faculty_path, notice: 'Faculty has been added'
     else
       render 'new'
@@ -30,7 +29,7 @@ class FacultiesController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @faculty.destroy
     redirect_to new_faculty_path
   end
 
@@ -43,7 +42,7 @@ class FacultiesController < ApplicationController
   end
 
   def find_faculty
-    @user = User.find(params[:id])
+    @faculty = User.find(params[:id])
   end
 
   def all_faculty

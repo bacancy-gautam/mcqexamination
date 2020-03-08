@@ -17,11 +17,7 @@
               <%= f.label :question %><br />
               <%= f.text_field :info, autofocus: true, autocomplete: "name" %>
             </div>
-
-            <div class="field">
-              <%= f.label :answer %><br />
-              <%= f.text_field :answer, autofocus: true, autocomplete: "answer" %>
-            </div>
+            
             <h3>Options</h3>
             <div id="options">
               <%= f.fields_for :options do |option| %>
@@ -40,3 +36,7 @@
     </thead>
   </table>
 </center>
+
+<script>
+  $('.myradio').prop('checked', true);
+</script>
