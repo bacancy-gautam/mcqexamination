@@ -2,7 +2,7 @@
 
 # exam from student side
 class StudentAnswersController < ApplicationController
-  before_action :find_exam, only: %i[new]
+  before_action :find_exam, only: :new
   def new
     @question = Question.new
     @questions = @exam.questions
