@@ -1,9 +1,9 @@
 <div class="text-center">
-  <%= form_with(model: @user,url: user_session_path, local: true) do |f| %>
-    <% if @user.errors.any? %>
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <%= form_with(model: @faculty, url: user_session_path, local: true) do |f| %>
+    <% if @faculty.errors.any? %>
+      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
-        <% @user.errors.full_messages.each do |message| %>
+        <% @faculty.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -31,7 +31,7 @@
 
     <div class="form-group row">
       <%= f.label :branch_id, class: "col-md-2" %><br />
-      <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class => "col-md-4", :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
+      <%= f.collection_select(:branch_id, Branch.all, :id, :name, prompt: 'Select Branch') %>
     </div>
 
     <div class="form-group row">
@@ -52,7 +52,7 @@
     </div>
     <div class="form-group row">
       <div class="col-md-2"></div>
-      <%= f.submit :class => "col-md-2 text-center" %>
+      <%= f.submit formaction: if @faculty.new_record? ? faculties_path : edit_faculty_path %>
     </div>
   <% end %>
 </div>

@@ -3,7 +3,7 @@
     <% if !@questions.blank? %>
       <table class="roundedCorners" id="questionlist">
         <th>
-          <%=link_to("Add More Question", new_exam_question_path(params[:exam_id])) %>
+          <%= link_to("Add More Question", new_exam_question_path(params[:exam_id])) %>
         </th>
       </table>
       <table class="table" id="questionlist">
@@ -14,23 +14,23 @@
             <th colspan="3">Operations</th>
           </tr>
         </thead>
-        <%count = 1%>
-        <%@questions.each do |question|%>
+        <% count = 1 %>
+        <% @questions.each do |question| %>
           <tr>
             <td><%= count %></td>
-            <td><%=question.info %></td>
-            <td><%=link_to("Edit", edit_exam_question_path(question.exam, question)) %></td>
+            <td><%= question.info %></td>
+            <td><%= link_to("Edit", edit_exam_question_path(question.exam, question)) %></td>
             <td>
-              <%=link_to("Delete", exam_question_path(question.exam, question), method: :delete, data: {confirm:"Are you sure?"}) %>
+              <%= link_to("Delete", exam_question_path(question.exam, question), method: :delete, data: {confirm:"Are you sure?"}) %>
             </td>
-            <td><%=link_to("Show option", exam_question_options_path(question.exam, question)) %></td>
+            <td><%= link_to("Show option", exam_question_options_path(question.exam, question)) %></td>
           </tr>
-          <%count+=1%>
+          <% count+=1 %>
         <% end %>
       </table>
-    <%else%>
+    <% else %>
       <h2 style="color:red">No Question has been added!!!</h2>
-      <h3><%=link_to("Add Question", new_exam_question_path(params[:exam_id]), data: {confirm:"Are you sure?"}) %>
+      <h3><%= link_to("Add Question", new_exam_question_path(params[:exam_id]), data: {confirm:"Are you sure?"}) %>
       </h3>
     <% end %>
   </center>

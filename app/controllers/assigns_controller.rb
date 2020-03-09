@@ -14,13 +14,23 @@ class AssignsController < ApplicationController
       new_assign = Assign.new
       new_assign.exam_id = @assign['exam_id']
       new_assign.user_id = assign
-      if new_assign.save
-        redirect_to new_exam_assign_path, notice: 'Exam has been assigned!'
-      end
+      assign_student
     end
   end
 
   private
+
+  def assign_student
+    begin
+      mynotice = 'Exam has been assigned!' if new_assign.save
+    rescue StandardError
+      e = true
+    end
+    if e
+      mynotice = 'Exam Assigned and students skipped who are already assigned!'
+    end
+    redirect_to new_exam_assign_path, notice: mynotice
+  end
 
   def assign_params
     params.permit(:exam_id, student_ids: [])

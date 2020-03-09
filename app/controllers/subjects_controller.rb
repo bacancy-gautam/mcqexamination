@@ -15,8 +15,6 @@ class SubjectsController < ApplicationController
   def create
     # byebug
     @subject = Subject.new(subject_params)
-    @subject.branch_id = params[:branch_id]
-    @subject.semester_id = params[:semester_id]
     if @subject.save
       redirect_to subjects_path, notice: 'Subject added Successfully'
     else

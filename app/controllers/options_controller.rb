@@ -43,7 +43,7 @@ class OptionsController < ApplicationController
   private
 
   def option_params
-    params.required(:option).permit(:opt, :question_id)
+    params.required(:option).permit(:name, :question_id)
   end
 
   def find_option

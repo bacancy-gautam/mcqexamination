@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.required(:question).permit(:info, :answer, :exam_id,
-                                      options_attributes: %i[opt _destroy])
+                                      options_attributes: %i[answer name _destroy])
   end
 
   def find_exam
