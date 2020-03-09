@@ -4,7 +4,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[edit update destroy]
-  before_action :find_exam, only: %i[index create new]
+  before_action :find_exam, only: %i[index create new edit]
   def index
     # byebug
     @questions = @exam.questions
@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.required(:question).permit(:info, :answer, :exam_id,
-                                      options_attributes: %i[opt _destroy])
+                                      options_attributes: %i[answer name _destroy])
   end
 
   def find_exam

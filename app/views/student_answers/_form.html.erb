@@ -1,0 +1,71 @@
+<body>
+  <h3 id="demo" class="alert"></h3> 
+  <%= form_with(model: @question, url: exam_student_answers_path, local: false, :html => { :id => "exam_question" }) do |f| %>
+    <% count = 1 %>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>No.</th>
+          <th style="width:95%;">Question</th>
+        </tr> 
+      </thead>
+      <% @questions.each do |question| %>
+        <tr>
+          <td><%= count %></td>
+          <td><%= question.info %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <% acount = 65 %>
+            <% question.options.each do |option| %>
+              (<%= [acount].pack("U") %>.)
+              <%= f.radio_button question.id, option.id, :checked => false %>
+              <%= option.name %>
+              <br />
+              <% acount += 1 %>
+            <% end %>
+          </td>
+        </tr>
+        <br/>
+        <% count += 1 %>
+      <% end %>
+    </table>
+    <%= f.submit "Submit Exam", :class => "btn btn-primary btn-xs" %> 
+  <% end %>
+
+  <script> 
+    dd = "<%= @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>"
+    var deadline = new Date(dd).getTime(); 
+    var x = setInterval(function() { 
+      var now = new Date().getTime(); 
+      var t = deadline - now; 
+      var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+      var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+      var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+      var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+      document.getElementById("demo").innerHTML ="Time remaining: " + hours + "h " + minutes + "m " + seconds + "s "; 
+          if (t < 0) { 
+              clearInterval(x); 
+              document.getElementById("demo").innerHTML = "EXPIRED"; 
+              document.getElementById("exam_question").submit();
+                } 
+              }, 1000);
+      function submitform(){
+        // clearInterval(x);
+        document.getElementById("exam_question").submit();
+      }
+
+      
+      history.pushState(null, document.title, location.href);
+      history.pushState(null, document.title, location.href);
+      window.addEventListener('popstate', function (event)
+      {
+        history.pushState(null, document.title, location.href);
+      });
+      window.onbeforeunload = function () {
+        return "selected answer will be lost";
+      }
+
+  </script>
+</body>

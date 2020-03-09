@@ -1,0 +1,33 @@
+<%= form_tag count_result_path do %>
+  <% count = 1 %>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>No.</th>
+        <th style="width:95%;">Question</th>
+      </tr> 
+    </thead>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= question.info %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <% acount = 65 %>
+          <% question.options.each do |option| %>
+            (<%= [acount].pack("U") %>.)
+            <%= option.name %>
+            <%= radio_button_tag "q_#{question.id}", option.id, false %>
+            <br />
+            <% acount += 1 %>
+          <% end %>
+        </td>
+      </tr>
+      <br/>
+      <% count += 1 %>
+    <% end %>
+  </table>
+  <%= submit_tag "Submit Exam", :class => "btn btn-primary btn-xs" %> 
+<% end %>

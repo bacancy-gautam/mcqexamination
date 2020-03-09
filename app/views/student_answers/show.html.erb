@@ -1,0 +1,23 @@
+<h3>Attempted Questions</h3>
+<body>
+  <table class="table">
+    <thead class="thead-dark">
+      <th>Questions</th>
+      <th></th>
+      <th>Selected Option</th>
+      <th>Answer</th>
+    </thead>
+    <% @useranswers.each_with_index do |useranswer, index| %>
+      <tr>
+        <td><%= useranswer.question.info %></td>
+        <% if useranswer.option.answer %>
+          <td style="color:green">True</td>
+        <% else %>
+          <td style="color:red">False</td>
+        <% end %>
+        <td><%= useranswer.option.name %></td>
+        <td><%= useranswer.question.options.where(answer: true).first.name %></td>   
+      </tr>
+    <% end %>
+  </table>
+</body>

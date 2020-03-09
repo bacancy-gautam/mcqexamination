@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_303_131_121) do
+ActiveRecord::Schema.define(version: 20_200_309_092_913) do
   create_table 'assigns', force: :cascade do |t|
     t.datetime 'date'
     t.integer 'user_id'
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20_200_303_131_121) do
     t.datetime 'updated_at', precision: 6, null: false
     t.integer 'exam_id'
     t.index ['exam_id'], name: 'index_assigns_on_exam_id'
+    t.index %w[user_id exam_id], name: 'index_assigns_on_user_id_and_exam_id', unique: true
     t.index ['user_id'], name: 'index_assigns_on_user_id'
   end
 
@@ -39,6 +40,8 @@ ActiveRecord::Schema.define(version: 20_200_303_131_121) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.integer 'subject_id'
+    t.datetime 'start_date'
+    t.datetime 'end_date'
     t.index ['subject_id'], name: 'index_exams_on_subject_id'
     t.index ['user_id'], name: 'index_exams_on_user_id'
   end
@@ -54,10 +57,11 @@ ActiveRecord::Schema.define(version: 20_200_303_131_121) do
   end
 
   create_table 'options', force: :cascade do |t|
-    t.string 'opt'
+    t.string 'name'
     t.integer 'question_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.boolean 'answer', default: false
     t.index ['question_id'], name: 'index_options_on_question_id'
   end
 
@@ -73,12 +77,12 @@ ActiveRecord::Schema.define(version: 20_200_303_131_121) do
 
   create_table 'results', force: :cascade do |t|
     t.integer 'score'
-    t.string 'string'
     t.integer 'user_id'
     t.integer 'exam_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['exam_id'], name: 'index_results_on_exam_id'
+    t.index %w[user_id exam_id], name: 'index_results_on_user_id_and_exam_id', unique: true
     t.index ['user_id'], name: 'index_results_on_user_id'
   end
 
@@ -109,17 +113,17 @@ ActiveRecord::Schema.define(version: 20_200_303_131_121) do
     t.index ['semester_id'], name: 'index_subjects_on_semester_id'
   end
 
-  create_table 'user_answer', force: :cascade do |t|
+  create_table 'user_answers', force: :cascade do |t|
     t.integer 'user_id'
     t.integer 'exam_id'
     t.integer 'option_id'
     t.integer 'question_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['exam_id'], name: 'index_user_answer_on_exam_id'
-    t.index ['option_id'], name: 'index_user_answer_on_option_id'
-    t.index ['question_id'], name: 'index_user_answer_on_question_id'
-    t.index ['user_id'], name: 'index_user_answer_on_user_id'
+    t.index ['exam_id'], name: 'index_user_answers_on_exam_id'
+    t.index ['option_id'], name: 'index_user_answers_on_option_id'
+    t.index ['question_id'], name: 'index_user_answers_on_question_id'
+    t.index ['user_id'], name: 'index_user_answers_on_user_id'
   end
 
   create_table 'users', force: :cascade do |t|
@@ -163,10 +167,10 @@ ActiveRecord::Schema.define(version: 20_200_303_131_121) do
   add_foreign_key 'results', 'users'
   add_foreign_key 'subjects', 'branches'
   add_foreign_key 'subjects', 'semesters'
-  add_foreign_key 'user_answer', 'exams'
-  add_foreign_key 'user_answer', 'options'
-  add_foreign_key 'user_answer', 'questions'
-  add_foreign_key 'user_answer', 'users'
+  add_foreign_key 'user_answers', 'exams'
+  add_foreign_key 'user_answers', 'options'
+  add_foreign_key 'user_answers', 'questions'
+  add_foreign_key 'user_answers', 'users'
   add_foreign_key 'users', 'branches'
   add_foreign_key 'users', 'semesters'
 end

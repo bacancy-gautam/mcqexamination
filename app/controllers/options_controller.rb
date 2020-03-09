@@ -4,8 +4,8 @@
 class OptionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_option, only: %i[edit update destroy]
-  before_action :find_question, only: %i[new find_exam index]
-  before_action :find_exam, only: %i[new]
+  before_action :find_question, only: %i[new find_exam index edit]
+  before_action :find_exam, only: %i[new edit]
 
   def index
     # byebug
@@ -43,7 +43,7 @@ class OptionsController < ApplicationController
   private
 
   def option_params
-    params.required(:option).permit(:opt, :question_id)
+    params.required(:option).permit(:name, :question_id)
   end
 
   def find_option

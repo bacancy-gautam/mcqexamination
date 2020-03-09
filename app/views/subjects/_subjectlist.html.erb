@@ -3,7 +3,7 @@
     <table class="roundedCorners" id="subjectNew">
       <thead>
         <tr>
-          <th><%= link_to 'Add new Subject', new_subject_path %></th>
+          <th><%= link_to "Add new Subject", new_subject_path %></th>
         </tr>
       </thead>
     </table>
@@ -18,13 +18,13 @@
         </tr>
       </thead>
 
-      <% @subjects.each do |subject|%>
+      <% @subjects.each do |subject| %>
         <tr>
-          <td><%=subject.branch.name %></td>
-          <td><%=subject.semester.sem %></td>
-          <td><%=subject.name %></td>
-          <td><%=link_to("Edit", edit_subject_path(subject), data: {confirm:"Are you sure?"}) %></td>
-          <td><%=link_to("Delete", subject_path(subject), method: :delete, data: {confirm:"Are you sure?"}) %></td>
+          <td><%= subject.branch.name %></td>
+          <td><%= subject.semester.sem %></td>
+          <td><%= subject.name %></td>
+          <td><%= link_to("Edit", edit_subject_path(subject), data: { confirm: "Are you sure?" }) %></td>
+          <td><%= link_to("Delete", subject_path(subject), method: :delete, data: { confirm: "Are you sure?" }) %></td>
         </tr>
       <% end %>
     </table>

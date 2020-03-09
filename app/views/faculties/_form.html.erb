@@ -1,13 +1,15 @@
 <div class="text-center">
-  <%= form_with(model: @user,url: user_session_path, local: true) do |f| %>
-    <% if @user.errors.any? %>
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <%= form_with(model: @faculty, url: user_session_path, local: true) do |f| %>
+    <% if @faculty.errors.any? %>
+      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
-        <% @user.errors.full_messages.each do |message| %>
+        <% @faculty.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     <% end %>
+
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
     <div class="form-group row">
       <%= f.label :first_name, class: "col-md-2" %><br />
@@ -31,7 +33,7 @@
 
     <div class="form-group row">
       <%= f.label :branch_id, class: "col-md-2" %><br />
-      <%= select_tag(:branch_id,  options_from_collection_for_select(Branch.all, :id, :name), {:class => "col-md-4", :prompt => 'Select Branch', :onchange => "myFunction(this.value);"}) %>
+      <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => "Select Branch") %>
     </div>
 
     <div class="form-group row">
@@ -48,11 +50,11 @@
     </div>
 
     <div class="form-group row">
-      <%= f.hidden_field :status, :value =>1, class: "col-md-2" %>
+      <%= f.hidden_field :status, :value => 1, class: "col-md-2" %>
     </div>
     <div class="form-group row">
       <div class="col-md-2"></div>
-      <%= f.submit :class => "col-md-2 text-center" %>
+      <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path %>
     </div>
   <% end %>
 </div>
@@ -81,8 +83,8 @@
         <td><%= faculty.branch&.name %></td>
         <td><%= faculty.mobile %></td>
         <td><%= faculty.status %></td>
-        <td><%= link_to 'Edit', edit_faculty_path(faculty.id) %></td>
-        <td><%= link_to 'Delete', faculty_path(faculty), method: :delete, data: {confirm:"Are you sure?"} %></td>
+        <td><%= link_to "Edit", edit_faculty_path(faculty.id) %></td>
+        <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </table>

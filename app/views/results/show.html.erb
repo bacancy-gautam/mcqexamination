@@ -1,0 +1,9 @@
+Exam name: <%= @exam.name %><br/>
+Exam desc.: <%= @exam.info %><br/>
+Exam date: <%= @exam.start_date.strftime("%d/%m/%Y") %><br/>
+Exam start time: <%= @exam.start_date.strftime("%I:%M%p") %><br/>
+Exam end time: <%= @exam.end_date.strftime("%I:%M%p") %>
+
+<h4>Your Score: <%= @result.score %> out of <%= @questions_count %></h4>
+<%= current_user.id %>
+<%= link_to "Attempted Question", exam_student_answer_path(@exam.id, current_user.id) %>
