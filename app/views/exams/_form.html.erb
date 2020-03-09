@@ -11,42 +11,42 @@
       <% end %>
 
       <div class="form-group row">
-        <%= f.label :name ,class: "col-md-4"%>
+        <%= f.label :name, class: "col-md-4" %>
         <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
-        <%= f.label :info ,class: "col-md-4"%>
+        <%= f.label :info, class: "col-md-4" %>
         <%= f.text_area :info, autofocus: true, autocomplete: "info", class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
-        <%= f.label :start_date ,class: "col-md-4" %><br />
+        <%= f.label :start_date, class: "col-md-4" %><br />
         <%= f.datetime_field :start_date, autofocus: true, class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
-        <%= f.label :end_date ,class: "col-md-4" %><br />
+        <%= f.label :end_date, class: "col-md-4" %><br />
         <%= f.datetime_field :end_date, autofocus: true, class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
-        <%= f.label :passing_marks ,class: "col-md-4"%><br />
+        <%= f.label :passing_marks, class: "col-md-4" %><br />
         <%= f.number_field :pmarks, autofocus: true, min: 1, value: 1, class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
-        <%= f.label :subject ,class: "col-md-4"%><br />
-        <%= f.collection_select(:subject_id, Subject.all, :id, :name, :prompt => 'Select Subject') %>
+        <%= f.label :subject, class: "col-md-4" %><br />
+        <%= f.collection_select(:subject_id, Subject.all, :id, :name, :prompt => "Select Subject") %>
       </div>
 
       <div class="form-group row">
-        <%= f.hidden_field :etype, :value =>"mcq" %>
+        <%= f.hidden_field :etype, :value => "mcq" %>
       </div>
 
       <div class="form-group row">
       <div class="col-md-4"></div>
-        <div class="col-md-4 text-center"><%= f.submit  %></div>
+        <div class="col-md-4 text-center"><%= f.submit %></div>
       </div>
     <% end %>
   </div>

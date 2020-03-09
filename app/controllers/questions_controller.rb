@@ -4,7 +4,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[edit update destroy]
-  before_action :find_exam, only: %i[index create new]
+  before_action :find_exam, only: %i[index create new edit]
   def index
     # byebug
     @questions = @exam.questions

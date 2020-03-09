@@ -10,7 +10,7 @@
       <% @students.each do |student| %>
       <tr>
         <td><%= student.enrollment %></td>
-        <td><%= check_box_tag 'student_ids[]', student.id, false, class: 'selectable' %></td>
+        <td><%= check_box_tag "student_ids[]", student.id, false, class: "selectable" %></td>
       </tr>
       <% end %>
     </tbody>
@@ -22,7 +22,7 @@
       </tr>
     </tfoot>
   </table>
-  <%= submit_tag "Assign selected", :class => 'btn btn-primary btn-xs' %>
+  <%= submit_tag "Assign selected", :class => "btn btn-primary btn-xs" %>
 <% end %>
 
 <script type="text/javascript">

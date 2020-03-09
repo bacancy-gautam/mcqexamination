@@ -3,7 +3,7 @@
 # ll
 class Question < ApplicationRecord
   has_many :options, dependent: :destroy
-  has_one :user_answer, dependent: :destroy
+  has_many :user_answers, dependent: :destroy
   belongs_to :exam
   accepts_nested_attributes_for :options, reject_if: :all_blank,
                                           allow_destroy: true

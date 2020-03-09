@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   resources :students do
     get 'download_excel', on: :collection
+    resources :exams do
+      resources :results
+      resources :student_answers
+    end
   end
   resources :admin
   resources :admin do

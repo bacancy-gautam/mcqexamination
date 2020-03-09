@@ -1,7 +1,7 @@
 <body>
   <h3 id="demo" class="alert"></h3> 
-  <%= form_with(model: @question, url: exam_student_answers_path, local: false, :html => {:id => 'exam_question' }) do |f| %>
-    <% count=1 %>
+  <%= form_with(model: @question, url: exam_student_answers_path, local: false, :html => { :id => "exam_question" }) do |f| %>
+    <% count = 1 %>
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -17,9 +17,9 @@
         <tr>
           <td></td>
           <td>
-            <% acount=65 %>
+            <% acount = 65 %>
             <% question.options.each do |option| %>
-              (<%= [acount].pack('U') %>.)
+              (<%= [acount].pack("U") %>.)
               <%= f.radio_button question.id, option.id, :checked => false %>
               <%= option.name %>
               <br />
@@ -28,10 +28,10 @@
           </td>
         </tr>
         <br/>
-        <% count += 1%>
+        <% count += 1 %>
       <% end %>
     </table>
-    <%= f.submit "Submit Exam", :class => 'btn btn-primary btn-xs', onclick: "submitform();" %> 
+    <%= f.submit "Submit Exam", :class => "btn btn-primary btn-xs" %> 
   <% end %>
 
   <script> 
@@ -52,7 +52,20 @@
                 } 
               }, 1000);
       function submitform(){
+        // clearInterval(x);
         document.getElementById("exam_question").submit();
       }
+
+      
+      history.pushState(null, document.title, location.href);
+      history.pushState(null, document.title, location.href);
+      window.addEventListener('popstate', function (event)
+      {
+        history.pushState(null, document.title, location.href);
+      });
+      window.onbeforeunload = function () {
+        return "selected answer will be lost";
+      }
+
   </script>
 </body>

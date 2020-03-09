@@ -11,7 +11,7 @@ class AssignsController < ApplicationController
   def create
     @assign = assign_params
     @assign['student_ids'].each do |assign|
-      new_assign = Assign.new(exam_id: @assign['exam_id'], user_id: assign)
+      @new_assign = Assign.new(exam_id: @assign['exam_id'], user_id: assign)
       assign_student
     end
   end
@@ -20,7 +20,7 @@ class AssignsController < ApplicationController
 
   def assign_student
     begin
-      mynotice = 'Exam has been assigned!' if new_assign.save
+      mynotice = 'Exam has been assigned!' if @new_assign.save
     rescue StandardError
       e = true
     end
