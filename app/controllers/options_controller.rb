@@ -6,7 +6,6 @@ class OptionsController < ApplicationController
   before_action :find_option, only: %i[edit update destroy]
   before_action :find_question, only: %i[new find_exam index edit]
   before_action :find_exam, only: %i[new edit]
-
   def index
     # byebug
     @options = @question.options

@@ -27,7 +27,7 @@
 
             <div class="field">
               <%= f.label :semester %><br />
-              <%= f.collection_select(:sem, Semester.all, :id, :sem, :prompt => "Select Semester") %>
+              <%= f.collection_select(:semester_id, Semester.all, :id, :sem, :prompt => "Select Semester") %>
             </div>
 
 

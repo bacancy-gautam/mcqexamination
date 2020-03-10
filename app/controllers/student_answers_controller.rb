@@ -2,6 +2,7 @@
 
 # exam from student side
 class StudentAnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_exam, only: %i[new create show edit]
   def new
     @result = current_user.results.where(exam_id: @exam.id)
@@ -17,6 +18,7 @@ class StudentAnswersController < ApplicationController
 
   def show
     @questions = @exam.questions
+    @result = current_user.results.where(exam_id: @exam.id).first
     @useranswers = UserAnswer.where(exam_id: params[:exam_id],
                                     user_id: params[:id])
   end
@@ -33,20 +35,11 @@ class StudentAnswersController < ApplicationController
       @count += 1 if Option.where(id: option).pluck(:answer).first
       save_my_selected(question, option)
     end
-
     @result = Result.new(score: @count, user_id: current_user.id,
                          exam_id: @exam.id)
-    if @result.save
-      # @result_ = current_user.results.where(exam_id: @exam.id).first
-      # binding.pry
-      redirect_to student_exam_result_path(current_user.id,
-                                           @exam.id, @result.id),
-                  notice: 'Exam submitted!'
-    else
-      redirect_to student_exam_result_path(current_user.id, @exam.id,
-                                           @result.id),
-                  alert: 'Error Occured!'
-    end
+    @result.save ? flash[:notice] = 'Exam submitted!' : flash[:alert] = 'Error!'
+    redirect_to student_exam_result_path(current_user.id, @exam.id,
+                                         @result.id)
   end
 
   private

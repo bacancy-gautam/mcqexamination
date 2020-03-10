@@ -1,5 +1,7 @@
 <% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") > @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
   <%= render "form" %>
 <% else %>
+  <%= link_to "My Dashboard", students_path %><br /><br />
   <h3 class="text-center">Session Expired!!!!</h3>
+  <p class="text-center" style = "color:red"><small>(It seems you have not given exam)</small></p>
 <% end %>

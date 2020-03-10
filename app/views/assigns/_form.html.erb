@@ -3,6 +3,7 @@
     <thead class="thead-dark">
       <tr>
         <th>Student Enrollment</th>
+        <th>Assigned?</th>
         <th data-sort-ignore="true"><input type="checkbox" id="selectAll" /></th>
       </tr>
     </thead>
@@ -10,7 +11,15 @@
       <% @students.each do |student| %>
       <tr>
         <td><%= student.enrollment %></td>
-        <td><%= check_box_tag "student_ids[]", student.id, false, class: "selectable" %></td>
+        
+          <% if student.assigns.where(exam_id: @exam.id).blank? %>
+            <td>No</td>
+            <td><%= check_box_tag "student_ids[]", student.id, false, class: "selectable" %></td>
+          <% else %>
+            <td style="color:green">Yes</td>
+            <td></td>
+          <% end %>
+        
       </tr>
       <% end %>
     </tbody>

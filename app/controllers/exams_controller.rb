@@ -4,6 +4,7 @@
 class ExamsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_exam, only: %i[edit update destroy student_exam]
+  before_action :check_branch, only: :new
   def index
     @exams = current_user.exams
   end
@@ -36,13 +37,7 @@ class ExamsController < ApplicationController
   end
 
   def student_exam
-    # byebug
     @questions = @exam.questions
-  end
-
-  def count_result
-    # method to count result
-    # byebug
   end
 
   private
@@ -55,5 +50,12 @@ class ExamsController < ApplicationController
 
   def find_exam
     @exam = Exam.find(params[:id])
+  end
+
+  def check_branch
+    if current_user.branch.subjects.blank?
+      flash[:alert] = 'Ask admin to add subject to your branch!'
+      redirect_to exams_path
+    end
   end
 end

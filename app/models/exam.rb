@@ -3,7 +3,7 @@
 # Exam model
 class Exam < ApplicationRecord
   belongs_to :user
-  has_one :result, dependent: :destroy
+  has_many :results, dependent: :destroy
   has_many :assigns, dependent: :destroy
   has_many :questions, dependent: :destroy
   belongs_to :subject

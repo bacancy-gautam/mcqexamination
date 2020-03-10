@@ -1,9 +1,30 @@
-Exam name: <%= @exam.name %><br/>
-Exam desc.: <%= @exam.info %><br/>
-Exam date: <%= @exam.start_date.strftime("%d/%m/%Y") %><br/>
-Exam start time: <%= @exam.start_date.strftime("%I:%M%p") %><br/>
-Exam end time: <%= @exam.end_date.strftime("%I:%M%p") %>
-
-<h4>Your Score: <%= @result.score %> out of <%= @questions_count %></h4>
-<%= current_user.id %>
-<%= link_to "Attempted Question", exam_student_answer_path(@exam.id, current_user.id) %>
+<%= link_to "My Dashboard", students_path %><br /><br />
+<table class = "table">
+  <tr>
+    <th>Exam name:</th>
+    <td><%= @exam.name %></td>
+  </tr>
+  <tr>
+    <th>Exam desc.:</th>
+    <td><%= @exam.info %></td>
+  </tr>
+  <tr>
+    <th>Exam date:</th>
+    <td><%= @exam.start_date.strftime("%d/%m/%Y") %></td>
+  </tr>
+  <tr>
+    <th>Exam start time:</th>
+    <td><%= @exam.start_date.strftime("%I:%M%p") %></td>
+  </tr>
+  <tr>
+    <th>Exam end time:</th>
+    <td><%= @exam.end_date.strftime("%I:%M%p") %></td>
+  </tr>
+  <tr>
+    <th>Exam Submission time:</th>
+    <td><%= @result.created_at.strftime("%d/%m/%Y, %I:%M%p") %></td>
+  </tr>
+</table>
+<br />
+<h4>Score: <%= @result.score %> out of <%= @questions_count %></h4>
+<%= link_to "Attempted Question(s)", exam_student_answer_path(@exam.id, current_user.id) %>

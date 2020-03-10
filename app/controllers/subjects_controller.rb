@@ -24,8 +24,6 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    @subject.branch_id = params[:branch_id]
-    @subject.semester_id = params[:semester_id]
     if @subject.update(subject_params)
       redirect_to subjects_path, notice: 'Subject updated Successfully'
     else
