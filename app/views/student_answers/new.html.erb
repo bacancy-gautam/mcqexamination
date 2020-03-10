@@ -1,7 +1,29 @@
-<% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") > @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
+<% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>
+  <%= link_to "My Dashboard", students_path %><br /><br />
+  <h3 class="text-center" style = "color:green">The Exam is yet to begin!!!!</h3>
+  <script>
+    // alert("HEllo")
+    YourFunction()
+    function YourFunction(){
+        var dateOne = "<%= DateTime.now.strftime("%b %d, %Y %H:%M:%S") %>";
+        var dateTwo = "<%= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>"; //new Date(dateOne.getTime() + 86400000); // + 1 day in ms
+        //now setting it to 5 AM
+
+        //getting the delay in ms 
+        var timeDelay = dateTwo - dateOne; // delay in ms until next day 5:00:00 AM
+        // alert(timeDelay);
+        //preparing for next day's execution:
+        setTimeout(function(){ 
+        window.location = window.location.pathname;
+        }, timeDelay);
+    }
+  </script>
+<% elsif DateTime.now.strftime("%b %d, %Y %H:%M:%S") >= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
   <%= render "form" %>
 <% else %>
+
   <%= link_to "My Dashboard", students_path %><br /><br />
   <h3 class="text-center">Session Expired!!!!</h3>
   <p class="text-center" style = "color:red"><small>(It seems you have not given exam on time)</small></p>
 <% end %>
+
