@@ -1,4 +1,10 @@
-<%= link_to "My Dashboard", students_path %><br /><br />
+<% if params[:faculty] == "1" %>
+  <%= link_to "Back", :back %>
+  <h4>Enrollment No.: <%= @result.user.enrollment %></h4>
+<% else %>
+  <%= link_to "My Dashboard", students_path %>
+<% end %>
+<br />
 <table class = "table">
   <tr>
     <th>Exam name:</th>

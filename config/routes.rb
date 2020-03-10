@@ -2,10 +2,12 @@
 
 Rails.application.routes.draw do
   root 'users#home'
-  resources :faculties
+  resources :faculties do
+    resources :exams do
+      resources :results
+    end
+  end
   resources :subjects
-  # resources :exams do
-  # end
   post '/exams/:exam_id/assigns/new' => 'assigns#create'
   resources :exams do
     get 'student_exam'
@@ -16,11 +18,6 @@ Rails.application.routes.draw do
       resources :options
     end
   end
-
-  # resources :questions do
-  #   resources :options
-  # end
-
   resources :students do
     get 'download_excel', on: :collection
     resources :exams do
@@ -33,7 +30,6 @@ Rails.application.routes.draw do
     collection { post :import }
     collection { post :import_faculty }
   end
-
   get 'admin/filltable'
   devise_for :users
 

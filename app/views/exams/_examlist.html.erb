@@ -12,6 +12,7 @@
           <th>Subject</th>
           <th colspan="4">Operations</th>
           <th>\\//</th>
+          <th>Result</th>
         </tr>
       </thead>
 
@@ -29,6 +30,7 @@
           <td><%= link_to 'Add Question', new_exam_question_path(exam) %></td>
           <td><%= link_to 'Show Question', exam_questions_path(exam) %></td> 
           <td>|| <%= link_to 'Assign', new_exam_assign_path(exam) %></td>
+          <td><%= link_to "Show Result", faculty_exam_results_path(current_user.id, exam.id) %></td>
         </tr>
       <% end %>
     </table>

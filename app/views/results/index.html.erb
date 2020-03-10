@@ -1,0 +1,28 @@
+  <%= link_to "Back", faculty_exams_path %>
+  <center>
+    <table class="table" id="resultlist">
+      <thead class="thead-dark">
+        <tr>
+          <th>Enrollment</th>
+          <th>Score</th>
+          <th>Status</th>
+          <th>Show Details</th>
+        </tr>
+      </thead>
+
+      <%@results.each do |result|%>
+        <tr>
+          <td><%= result.user.enrollment %></td>
+          <td><%= result.score %></td>
+          <td>
+            <% if result.score >= @exam.pmarks %>
+              <span style="color: green">Pass</span>
+            <% else %>
+              <span style="color: red">Fail</span>
+            <% end %>
+          </td>
+          <td><%= link_to "Info", student_exam_result_path(result.user.id, @exam.id, result.id, faculty: 1) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </center>
