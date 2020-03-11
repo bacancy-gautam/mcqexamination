@@ -19,6 +19,10 @@ gem 'jquery-rails'
 gem 'bootstrap-datetimepicker-rails'
 gem 'momentjs-rails'
 
+# Pdf generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record

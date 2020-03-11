@@ -30,6 +30,16 @@ class AdminController < ApplicationController
     redirect_to new_faculty_path, notice: 'Faculty added.'
   end
 
+  def promote_student
+    # render json: @user
+  end
+
+  def search
+    # byebug
+    @user = User.where(branch_id: params[:branch_id])
+    render json: { name: @user }
+  end
+
   private
 
   def admin_params

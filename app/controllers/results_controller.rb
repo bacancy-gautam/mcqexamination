@@ -6,6 +6,22 @@ class ResultsController < ApplicationController
   def index
     @exam = Exam.find(params[:exam_id])
     @results = @exam.results
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'Result',
+               page_size: 'A4',
+               template: 'results/index.html.erb',
+               layout: 'pdf.html',
+               type: 'application/pdf',
+               orientation: 'Landscape',
+               disposition: 'attachment',
+               lowquality: true,
+               zoom: 1,
+               dpi: 75
+      end
+    end
   end
 
   def show

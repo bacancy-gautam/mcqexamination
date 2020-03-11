@@ -1,28 +1,52 @@
-  <%= link_to "Back", faculty_exams_path %>
-  <center>
+<%= link_to "Back", faculty_exams_path %>
+<h1 class="text-center">RESULT</h1>
+<ul>
+<table>
+  <tr>
+  <th>Exam name</th> <td>:<%= @exam.name %></td>
+  </tr>
+  <tr>
+  <th>Exam info</th> <td>:<%= @exam.info %></td>
+  </tr>
+  <tr>
+  <th>Exam Date</th> <td>:<%= @exam.start_date.strftime("%b %d, %Y") %></td>
+  </tr>
+  <tr>
+  <th>No. of student(s) who attended exam</th><td>:<%= @results.count %></td>
+  </tr>
+</table>
+<table>
+
+  </table>
+</ul>
+<center>
+  <% unless @results.blank? %>
     <table class="table" id="resultlist">
       <thead class="thead-dark">
         <tr>
-          <th>Enrollment</th>
-          <th>Score</th>
-          <th>Status</th>
-          <th>Show Details</th>
+          <th class="text-center">Enrollment</th>
+          <th class="text-center">Score</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Show Details</th>
         </tr>
       </thead>
 
-      <%@results.each do |result|%>
+      <% @results.each do |result| %>
         <tr>
-          <td><%= result.user.enrollment %></td>
-          <td><%= result.score %></td>
-          <td>
+          <td class="text-center"><%= result.user.enrollment %></td>
+          <td class="text-center"><%= result.score %></td>
+          <td class="text-center">
             <% if result.score >= @exam.pmarks %>
               <span style="color: green">Pass</span>
             <% else %>
               <span style="color: red">Fail</span>
             <% end %>
           </td>
-          <td><%= link_to "Info", student_exam_result_path(result.user.id, @exam.id, result.id, faculty: 1) %></td>
+          <td class="text-center"><%= link_to "Info", student_exam_result_path(result.user.id, @exam.id, result.id, faculty: 1) %></td>
         </tr>
       <% end %>
     </table>
-  </center>
+  <% else %>
+    <h3 style="color:red">Result not available!</h3>
+  <% end %>
+</center>

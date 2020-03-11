@@ -20,6 +20,11 @@ class AssignsController < ApplicationController
     redirect_to new_exam_assign_path
   end
 
+  def search
+    @user = User.where(pyear: params[:pyear])
+    # byebug
+  end
+
   private
 
   def assign_student

@@ -25,13 +25,14 @@ Rails.application.routes.draw do
       resources :student_answers
     end
   end
-  resources :admin
   resources :admin do
+    get 'promote_student', on: :collection
+    get 'search', on: :collection
     collection { post :import }
     collection { post :import_faculty }
   end
+  get 'assigns/search' => 'assigns#search'
   get 'admin/filltable'
   devise_for :users
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

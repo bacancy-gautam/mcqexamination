@@ -1,29 +1,55 @@
 <% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>
   <%= link_to "My Dashboard", students_path %><br /><br />
-  <h3 class="text-center" style = "color:green">The Exam is yet to begin!!!!</h3>
-  <script>
-    // alert("HEllo")
-    YourFunction()
-    function YourFunction(){
-        var dateOne = "<%= DateTime.now.strftime("%b %d, %Y %H:%M:%S") %>";
-        var dateTwo = "<%= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>"; //new Date(dateOne.getTime() + 86400000); // + 1 day in ms
-        //now setting it to 5 AM
-
-        //getting the delay in ms 
-        var timeDelay = dateTwo - dateOne; // delay in ms until next day 5:00:00 AM
-        // alert(timeDelay);
-        //preparing for next day's execution:
-        setTimeout(function(){ 
-        window.location = window.location.pathname;
-        }, timeDelay);
-    }
+  <h3 id="demo" class="text-center" style="color: white; border-radius:20px; border: 2px solid #343A40; background: #007BFF; margin-right: 0px"></h3> 
+  <% # <h3 class="text-center" style = "color:green">The Exam is yet to begin!!!!</h3> %>
+  <script> 
+    OnClientClick = "return someJavaScriptFunction()"
+    dd = "<%= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>"
+    var deadline = new Date(dd).getTime(); 
+    var x = setInterval(function() { 
+      
+      var now = new Date().getTime(); 
+      var t = deadline - now; 
+      var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+      var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+      var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+      var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+      document.getElementById("demo").innerHTML ="The Exam will start in: "+days + "d " + hours + "h " + minutes + "m " + seconds + "s "; 
+          if (t < 0) { 
+              clearInterval(x); 
+              document.getElementById("demo").innerHTML = "Start"; 
+              window.location = window.location.pathname;
+              history.pushState(null, document.title, location.href);
+                } 
+              }, 1000);
+      history.pushState(null, document.title, location.href);
+      history.pushState(null, document.title, location.href);
+      window.addEventListener('popstate', function (event)
+      {
+        alert("Don't press back button and Don't reload the page!");
+        history.pushState(null, document.title, location.href);
+        history.pushState(null, document.title, location.href);
+      });
   </script>
-<% elsif DateTime.now.strftime("%b %d, %Y %H:%M:%S") >= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
-  <%= render "form" %>
-<% else %>
 
+<% elsif DateTime.now.strftime("%b %d, %Y %H:%M:%S") >= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
+  <ul>
+    <li>All Questions are mandatory</li>
+    <li>Passing marks: <%= @exam.pmarks %></li>
+    <li>You can see timer on right side top of the corner</li>
+  </ul>
+  <%= render "form" %>
+  <script>
+    history.pushState(null, document.title, location.href);
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function (event)
+    {
+      history.pushState(null, document.title, location.href);
+      history.pushState(null, document.title, location.href);
+    });
+  </script>
+<% else %>
   <%= link_to "My Dashboard", students_path %><br /><br />
   <h3 class="text-center">Session Expired!!!!</h3>
   <p class="text-center" style = "color:red"><small>(It seems you have not given exam on time)</small></p>
 <% end %>
-

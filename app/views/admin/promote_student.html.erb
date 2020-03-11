@@ -1,0 +1,18 @@
+
+
+<%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
+  <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => "Select Branch") %>
+  <%= f.collection_select(:sem, Semester.all, :id, :sem, :prompt => "Select Pass out Year") %>
+<% end %>
+
+
+<%= form_tag @student do %>
+  <table class="table">
+    <thead>
+      <tr><th>email</th></tr>
+    </thead>
+    <tbody id="users">
+    </tbody>
+  </table>
+<%= submit_tag "Assign selected", :class => "btn btn-primary btn-xs" %>
+<% end %>
