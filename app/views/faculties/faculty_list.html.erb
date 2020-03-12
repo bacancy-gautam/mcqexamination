@@ -1,0 +1,33 @@
+<%= link_to "Back", admin_index_path %>
+<div>
+  <div class="text-center">
+    <h1>Faculty list<%= link_to "", new_faculty_path, class: "btn-outline-success fa fa-plus-circle" %></h1>
+  </div>
+  <table class="table" id="faclist">
+    <thead class="thead-dark">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Branch</th>
+        <th>Mobile</th>
+        <% # <th>Status</th> %>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <% @faculties.each do |faculty| %>
+      <tr>
+        <td><%= faculty.fname %></td>
+        <td><%= faculty.lname %></td>
+        <td><%= faculty.email %></td>
+        <td><%= faculty.branch&.name %></td>
+        <td><%= faculty.mobile %></td>
+        <% # <td><%= faculty.status %>
+        <td><%= link_to "Edit", edit_faculty_path(faculty.id), class: "btn btn-outline-primary fa fa-pencil-square-o" %></td>
+        <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger fa fa-trash" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

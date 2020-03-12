@@ -11,7 +11,7 @@
           <tr>
             <th>No.</th>
             <th>Option</th>
-            <th colspan="2" class="align-center">Operations</th>
+            <th colspan="2" class="text-center">Operations</th>
           </tr>
         </thead>
         <% count = 1 %>
@@ -19,10 +19,10 @@
           <tr>
             <td><%= count %></td>
             <td><%= option.name %></td>
-            <td><%= link_to "Edit", edit_exam_question_option_path(option.question.exam, option.question, option) %>
+            <td class="text-center"><%= link_to "Edit", edit_exam_question_option_path(option.question.exam, option.question, option), class: "btn btn-outline-primary fa fa-pencil-square-o" %>
             </td>
-            <td>
-              <%= link_to("Remove", exam_question_option_path(option.question.exam, option.question, option), method: :delete, data: { confirm: "Are you sure?" }) %>
+            <td class="text-center">
+              <%= link_to "Remove", exam_question_option_path(option.question.exam, option.question, option), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger fa fa-trash" %>
             </td>
 
           </tr>

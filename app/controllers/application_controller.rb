@@ -33,14 +33,14 @@ class ApplicationController < ActionController::Base
   def devise_signup
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:enrollment, :sem, :fname, :lname, :email, :branch, :password,
-               :mobile, :pyear, :status)
+               :mobile, :pass_out_year, :status)
     end
   end
 
   def devise_update
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:enrollment, :sem, :fname, :lname, :email, :branch, :password,
-               :mobile, :pyear, :password_confirmation, :current_password,
+               :mobile, :pass_out_year, :password_confirmation, :current_password,
                :status)
     end
   end

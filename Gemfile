@@ -23,6 +23,9 @@ gem 'momentjs-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+# font-awesome
+gem 'font-awesome-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Use sqlite3 as the database for Active Record

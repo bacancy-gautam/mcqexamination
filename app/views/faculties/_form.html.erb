@@ -54,38 +54,7 @@
     </div>
     <div class="form-group row">
       <div class="col-md-2"></div>
-      <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path %>
+      <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path, class: "btn btn-primary btn-xs" %>
     </div>
   <% end %>
-</div>
-
-<div>
-  <h2>:::Faculty List:::</h2>
-  <table class="table" id="faclist">
-    <thead class="thead-dark">
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Branch</th>
-        <th>Mobile</th>
-        <th>Status</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <% @users.each do |faculty| %>
-      <tr>
-        <td><%= faculty.fname %></td>
-        <td><%= faculty.lname %></td>
-        <td><%= faculty.email %></td>
-        <td><%= faculty.branch&.name %></td>
-        <td><%= faculty.mobile %></td>
-        <td><%= faculty.status %></td>
-        <td><%= link_to "Edit", edit_faculty_path(faculty.id) %></td>
-        <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
-    <% end %>
-  </table>
 </div>

@@ -71,7 +71,7 @@ User.create([
                 enrollment: 121_212_121_212,
                 semester_id: 8,
                 branch_id: 1,
-                pyear: 2020,
+                pass_out_year: 2020,
                 email: 'student@student.com',
                 password: 'student'
               }

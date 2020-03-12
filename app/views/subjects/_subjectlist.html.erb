@@ -1,21 +1,17 @@
 <div>
   <center>
-    <table class="roundedCorners" id="subjectNew">
-      <thead>
-        <tr>
-          <th><%= link_to "Add new Subject", new_subject_path %></th>
-        </tr>
-      </thead>
-    </table>
-    <table class="roundedCorners" id="subjectlist">
-      <thead>
+    <div class="text-center">
+      <h1>Subject list<%= link_to "", new_subject_path, class: "btn-outline-success fa fa-plus-circle" %></h1>
+    </div>
+    <table class="table" id="subjectlist">
+      <thead class="thead-dark">
         <tr>
           <th>Branch</th>
           <th>Semester</th>
           <th>Subject</th>
           <th></th>
           <th></th>
-        </tr>
+        </tr> 
       </thead>
 
       <% @subjects.each do |subject| %>
@@ -23,8 +19,8 @@
           <td><%= subject.branch.name %></td>
           <td><%= subject.semester.sem %></td>
           <td><%= subject.name %></td>
-          <td><%= link_to("Edit", edit_subject_path(subject), data: { confirm: "Are you sure?" }) %></td>
-          <td><%= link_to("Delete", subject_path(subject), method: :delete, data: { confirm: "Are you sure?" }) %></td>
+          <td><%= link_to "Edit", edit_subject_path(subject), data: { confirm: "Are you sure?" }, class: "btn btn-outline-primary fa fa-pencil-square-o" %></td>
+          <td><%= link_to "Delete", subject_path(subject), method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-outline-danger fa fa-trash" %></td>
         </tr>
       <% end %>
     </table>

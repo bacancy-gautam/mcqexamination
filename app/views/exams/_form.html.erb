@@ -12,7 +12,7 @@
 
       <div class="form-group row">
         <%= f.label :name, class: "col-md-4" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-4" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-4", pattern: "^[a-zA-Z]+[0-9]*$", onfocus: "check_validation();" %>
       </div>
 
       <div class="form-group row">
@@ -32,7 +32,7 @@
 
       <div class="form-group row">
         <%= f.label :passing_marks, class: "col-md-4" %><br />
-        <%= f.number_field :pmarks, autofocus: true, min: 1, value: 1, class: "col-md-4" %>
+        <%= f.number_field :passing_marks, autofocus: true, min: 1, value: 1, class: "col-md-4" %>
       </div>
 
       <div class="form-group row">
@@ -46,12 +46,14 @@
 
       <div class="form-group row">
       <div class="col-md-4"></div>
-        <div class="col-md-4 text-center"><%= f.submit %></div>
+        <div class="col-md-4 text-center"><%= f.submit class: "btn btn-primary btn-xs" %></div>
       </div>
     <% end %>
   </div>
 
+<script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
 <script>
+
   $("#exam_end_date").change(checkdate);
   $("#exam_start_date").change(checkdate);
 
@@ -63,5 +65,9 @@
         alert("End date should be greater than Start date");
         document.getElementById("exam_end_date").value = "";
     }
+  }
+
+  function check_validation(){
+
   }
 </script>

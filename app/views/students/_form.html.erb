@@ -37,8 +37,8 @@
             </div>
 
             <div class="field">
-              <%= f.label :pyear %><br />
-              <%= f.text_field :pyear, autofocus: true, autocomplete: "pyear" %>
+              <%= f.label :pass_out_year %><br />
+              <%= f.text_field :pass_out_year, autofocus: true, autocomplete: "pass_out_year" %>
             </div>
 
             <div class="field">
@@ -59,7 +59,7 @@
             </div>
 
             <div class="actions">
-              <%= f.submit formaction: (@user.new_record?) ? students_path : edit_student_path %>
+              <%= f.submit formaction: (@user.new_record?) ? students_path : edit_student_path, class: "btn btn-primary btn-xs" %>
             </div>
           <% end %>
     </thead>

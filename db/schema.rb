@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_092913) do
+ActiveRecord::Schema.define(version: 2020_03_12_120432) do
 
   create_table "assigns", force: :cascade do |t|
     t.datetime "date"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_092913) do
     t.string "name"
     t.string "info"
     t.integer "duration"
-    t.integer "pmarks"
+    t.integer "passing_marks"
     t.string "etype"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_092913) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "answer", default: false
+    t.string "option_index"
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
@@ -137,7 +138,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_092913) do
     t.string "fname"
     t.string "lname"
     t.integer "mobile"
-    t.integer "pyear"
+    t.integer "pass_out_year"
     t.integer "status"
     t.integer "branch_id"
     t.integer "semester_id"

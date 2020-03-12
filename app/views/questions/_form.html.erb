@@ -18,13 +18,12 @@
               <%= f.text_field :info, autofocus: true, autocomplete: "name" %>
             </div>
             
-            <h3>Options</h3>
             <div id="options">
               <%= f.fields_for :options do |option| %>
                 <%= render "option_fields", f: option %>
               <% end %>
               <div class="links">
-                <%= link_to_add_association "Add Option", f, :options %><br />
+                <%= link_to_add_association "Add Option", f, :options, class: "fa fa-plus-square" %><br />
               </div>
             </div>
             <div class="actions">

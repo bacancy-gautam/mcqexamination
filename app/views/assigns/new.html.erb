@@ -1,5 +1,5 @@
 <%= link_to "Back", exams_path %> ||
 <% #= form_with(model: @user, url: user_session_path, remote: true) do |f| %>
-  <% #= f.collection_select(:pyear, User.select(:pyear).distinct, :pyear, :pyear, :prompt => "Select Pass out Year") %>
+  <% #= f.collection_select(:pass_out_year, User.select(:pass_out_year).distinct, :pass_out_year, :pass_out_year, :prompt => "Select Pass out Year") %>
 <% # end %>
 <%= render "form" %>

@@ -11,59 +11,70 @@
           <%= f.label :enrollment %><br />
           <%= f.text_field :enrollment, { autofocus: true,  disabled: true } %>
         </div>
+        <div class="field">
+          <%= f.label :semester %><br />
+          <%= f.text_field :branch_id, { value: @user.semester&.sem, autofocus: true, disabled: true } %>
+        </div>
       <% end %>
 
-      <div class="field">
-        <%= f.label :fname %><br />
-        <%= f.text_field :fname, autofocus: true %>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <%= f.label :first_name %><br />
+          <%= f.text_field :fname, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group col-md-3">
+          <%= f.label :last_name %><br />
+          <%= f.text_field :lname, autofocus: true, class: "form-control" %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :lname %><br />
-        <%= f.text_field :lname, autofocus: true %>
-      </div>
-
-      <div class="field">
+      <div class="form-group">
         <%= f.label :branch %><br />
-        <%= f.text_field :branch_id, { value: @user.branch&.name, autofocus: true, disabled: true } %>
+        <%= f.text_field :branch_id, { value: @user.branch&.name, autofocus: true, disabled: true, class: "form-control col-md-6" } %>
       </div>
 
-      <div class="field">
-        <%= f.label :mobile %><br />
-        <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile" %>
-      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <%= f.label :mobile %><br />
+          <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile", class: "form-control" %>
+        </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+        <div class="form-group col-md-3">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+      </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> characters minimum</em>
+          <em>(leave blank if you don't want to change)</em>
+        <% end %>
+      </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <div class="form-group col-md-3">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+      </div>
     </div>
-
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <i></i>
+    <div class="form-group ">
+      <%= f.label :current_password %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control col-md-3" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Update" %>
+      <%= f.submit "Update", class: "btn btn-primary btn-xs" %>
     </div>
   <% end %>
 

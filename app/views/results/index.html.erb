@@ -36,7 +36,7 @@
           <td class="text-center"><%= result.user.enrollment %></td>
           <td class="text-center"><%= result.score %></td>
           <td class="text-center">
-            <% if result.score >= @exam.pmarks %>
+            <% if result.score >= @exam.passing_marks %>
               <span style="color: green">Pass</span>
             <% else %>
               <span style="color: red">Fail</span>

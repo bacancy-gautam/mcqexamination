@@ -1,18 +1,41 @@
-
+<%= link_to "Back", admin_index_path %><br/><br/>
 
 <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
-  <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => "Select Branch") %>
-  <%= f.collection_select(:sem, Semester.all, :id, :sem, :prompt => "Select Pass out Year") %>
+  <%= f.collection_select(:branch_id, Branch.all, :id, :name, prompt: "Select Branch") %>
+  <%= f.collection_select(:semester_id, Semester.all, :id, :sem, prompt: "Select Semester") %>
 <% end %>
 
-
-<%= form_tag @student do %>
+<%= form_with(model: @user, url: admin_index_path, local: true) do |f| %>
   <table class="table">
-    <thead>
-      <tr><th>email</th></tr>
+    <thead class="thead-dark">
+      <tr>
+        <th class="text-right"><%= radio_button_tag "operation", "promote", "true" %>Promte</th>
+        <th class="text-left"><%= radio_button_tag "operation", "demote" %>Demote</th>
+      </tr>
+    </thead>
+  </table>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Enrollment</th>
+        <th data-sort-ignore="true"><input type="checkbox" id="selectAll" /></th>
+      </tr>
     </thead>
     <tbody id="users">
     </tbody>
   </table>
-<%= submit_tag "Assign selected", :class => "btn btn-primary btn-xs" %>
+<%= f.submit "submit", class: "btn btn-primary btn-xs" %>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#selectAll").on("click", function (event) {
+      var cbxs = $('input[type="checkbox"]');
+      if ($("#selectAll").prop("checked") == true) {
+        cbxs.prop("checked", true);
+      } else if ($("#selectAll").prop("checked") == false) {
+        cbxs.prop("checked", false);
+      }
+    });
+  });
+</script>

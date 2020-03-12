@@ -35,7 +35,7 @@
 <% elsif DateTime.now.strftime("%b %d, %Y %H:%M:%S") >= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
   <ul>
     <li>All Questions are mandatory</li>
-    <li>Passing marks: <%= @exam.pmarks %></li>
+    <li>Passing marks: <%= @exam.passing_marks %></li>
     <li>You can see timer on right side top of the corner</li>
   </ul>
   <%= render "form" %>

@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   root 'users#home'
   resources :faculties do
+    get 'faculty_list', on: :collection
     resources :exams do
       resources :results
     end

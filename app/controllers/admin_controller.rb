@@ -8,6 +8,18 @@ class AdminController < ApplicationController
     @user = User.new
   end
 
+  def create
+    params['student_ids']&.each do |student_id, _student_value|
+      student = User.find(student_id)
+      semester = Semester.find(student.semester_id)
+      (new_sem = semester.sem + 1) if params[:operation] == 'promote'
+      (new_sem = semester.sem - 1) if params[:operation] == 'demote'
+      semester = Semester.where(sem: new_sem).first
+      student.update_column(:semester_id, semester.id)
+    end
+    redirect_to promote_student_admin_index_path, notice: 'Done!!'
+  end
+
   def filltable
     @branch_name = Branch.find(params[:branch_id])
     respond_to do |format|
@@ -30,23 +42,23 @@ class AdminController < ApplicationController
     redirect_to new_faculty_path, notice: 'Faculty added.'
   end
 
-  def promote_student
-    # render json: @user
-  end
-
   def search
-    # byebug
-    @user = User.where(branch_id: params[:branch_id])
+    @user = User.with_role(:student).where(branch_id: params[:branch_id],
+                                           semester_id: params[:semester_id])
+                .order(:enrollment)
     render json: { name: @user }
   end
 
   private
 
   def admin_params
-    # byebug
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
-                                  :pyear, :password, :email, :fname, :lname,
+                                  :pass_out_year, :password, :email, :fname, :lname,
                                   :mobile, :password_confirmation)
+  end
+
+  def student_params
+    params.permit(:operation, :student_ids)
   end
 
   def find_user

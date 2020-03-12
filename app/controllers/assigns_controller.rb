@@ -21,7 +21,7 @@ class AssignsController < ApplicationController
   end
 
   def search
-    @user = User.where(pyear: params[:pyear])
+    @user = User.where(pass_out_year: params[:pass_out_year])
     # byebug
   end
 

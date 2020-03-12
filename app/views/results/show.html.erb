@@ -33,4 +33,4 @@
 </table>
 <br />
 <h4>Score: <%= @result.score %> out of <%= @questions_count %></h4>
-<%= link_to "Attempted Question(s)", exam_student_answer_path(@exam.id, current_user.id) %>
+<%= link_to "Attempted Question(s)", exam_student_answer_path(@exam.id, current_user.id), class: "btn btn-primary btn-xs" %>
