@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_120432) do
+ActiveRecord::Schema.define(version: 2020_03_15_105302) do
 
   create_table "assigns", force: :cascade do |t|
     t.datetime "date"

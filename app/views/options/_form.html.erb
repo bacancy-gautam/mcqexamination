@@ -13,14 +13,17 @@
                   <% end %>
               </ul>
             <% end %>
-
             <div class="field">
-              <%= f.label :option %><br />
+              <%= f.label :index %><span class="myspan">*</span><br />
+              <%= f.text_field :option_index, autofocus: true %>
+            </div>
+            <div class="field">
+              <%= f.label :option %><span class="myspan">*</span><br />
               <%= f.text_field :name, autofocus: true %>
             </div>
             <br />
             <div class="actions">
-              <%= f.submit "Add Option", class: "btn btn-primary btn-xs" %>
+              <%= f.submit class: "btn btn-primary btn-xs" %>
             </div>
           <% end %>
         </td>

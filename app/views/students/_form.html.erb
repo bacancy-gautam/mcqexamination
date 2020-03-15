@@ -3,42 +3,45 @@
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
-            <% if @user.errors.any? %>
-              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-              <ul>
-                <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-                <% end %>
-              </ul>
-            <% end %>
+          <%= form_with(model: @user, url: user_session_path, validate: true, local: true) do |f| %>
+
 
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
             <div class="field">
-              <%= f.label :enrollment %><br />
-              <%= f.text_field :enrollment, autofocus: true, autocomplete: "enrollment" %>
+              <%= f.label :enrollment %><span class="myspan">*</span><br />
+              <%= f.text_field :enrollment, autofocus: true, autocomplete: "enrollment", class: "col-md-12", required: true %>
             </div>
 
             <div class="field">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.label :first_name %><br />
+              <%= f.text_field :fname, autofocus: true, autocomplete: "fname", class: "col-md-12" %>
             </div>
 
             <div class="field">
-              <%= f.label :semester %><br />
-              <%= f.collection_select(:semester_id, Semester.all, :id, :sem, :prompt => "Select Semester") %>
+              <%= f.label :last_name %><br />
+              <%= f.text_field :lname, autofocus: true, autocomplete: "lname", class: "col-md-12" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :email %><span class="myspan">*</span><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-12" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :semester %><span class="myspan">*</span><br />
+              <%= f.collection_select :semester_id, Semester.all, :id, :sem, {prompt: "Select Semester"}, {class: "btn btn-secondary dropdown-toggle col-md-12"} %>
             </div>
 
 
             <div class="field">
-              <%= f.label :branch_id %><br />
-              <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => "Select Branch") %>
+              <%= f.label :branch_id %><span class="myspan">*</span><br />
+              <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch"}, {class: "btn btn-secondary dropdown-toggle col-md-12"} %>
             </div>
 
             <div class="field">
-              <%= f.label :pass_out_year %><br />
-              <%= f.text_field :pass_out_year, autofocus: true, autocomplete: "pass_out_year" %>
+              <%= f.label :pass_out_year %><span class="myspan">*</span><br />
+              <%= f.text_field :pass_out_year, autofocus: true, autocomplete: "pass_out_year", class: "col-md-12" %>
             </div>
 
             <div class="field">
@@ -46,20 +49,20 @@
               <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password" %>
+              <%= f.password_field :password, autocomplete: "new-password", class: "col-md-12" %>
             </div>
 
             <div class="field">
               <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation %>
+              <%= f.password_field :password_confirmation, class: "col-md-12" %>
             </div>
 
             <div class="field">
               <%= f.hidden_field :status, :value => 2 %>
             </div>
-
+            <br/>
             <div class="actions">
-              <%= f.submit formaction: (@user.new_record?) ? students_path : edit_student_path, class: "btn btn-primary btn-xs" %>
+              <%= f.submit formaction: (@user.new_record?) ? students_path : edit_student_path, class: "btn btn-primary btn-lg btn-block" %>
             </div>
           <% end %>
     </thead>
@@ -67,21 +70,19 @@
     </td>
   </table>
 </center>
-
+<br/><br/>
 <center>
   <h4>or</h4>
-
+  <br/><br/>
   <h2>:::Add data from Excell Sheet:::</h2>
   <%= link_to "Download sample", download_excel_students_path %>
   <table class="roundedCorners">
     <thead>
       <tr>
-        <td>
           <%= form_tag import_admin_index_path, multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Import" %>
+            <td class="text-center"><%= file_field_tag :file %></td>
+            <td class="text-center"><%= submit_tag "Import", class: "btn btn-primary" %></td>
           <% end %>
-        </td>
       </tr>
     </thead>
   </table>

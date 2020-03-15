@@ -7,6 +7,8 @@ class Exam < ApplicationRecord
   has_many :assigns, dependent: :destroy
   has_many :questions, dependent: :destroy
   belongs_to :subject
-  # validates :name, presence: true
-  # validates :end_date, presence: true, date: { after_or_equal_to: :start_date }
+  validates :name, format: { with: /[a-zA-Z]+/, message: "name should be started with alphabets" }
+  validates :passing_marks, format: { with: /[0-9]+/, message: "Enter valida marks" }
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 end

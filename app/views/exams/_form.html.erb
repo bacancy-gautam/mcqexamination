@@ -1,62 +1,66 @@
+<center>
+  <table class="roundedCorners">
+    <thead>
+      <tr>
+        <td>
+          <%= form_with(model: @exam, validate: true, local: true) do |f| %>
+            <% if @exam.errors.any? %>
+              <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <ul>
+                <% @exam.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
 
-  <div class="container">
-    <%= form_with(model: @exam, local: true) do |f| %>
-      <% if @exam.errors.any? %>
-        <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this user from being saved:</h2>
-        <ul>
-          <% @exam.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+            <div class="field">
+              <%= f.label :name%><span class="myspan">*</span><br/>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-12", pattern: "^[a-zA-Z]+[0-9]*$", onfocus: "check_validation();" %>
+            </div>
+
+            <div class="field"><span class="myspan">&nbsp;</span>
+              <%= f.label :info %><br/>
+              <%= f.text_area :info, autofocus: true, autocomplete: "info", class: "col-md-12" %>
+            </div>
+
+            <div class="field"><span class="myspan">*</span>
+              <%= f.label :start_date %><br />
+              <%= f.datetime_field :start_date, autofocus: true, class: "col-md-12" %>
+            </div>
+
+            <div class="field"><span class="myspan">*</span>
+              <%= f.label :end_date %><br />
+              <%= f.datetime_field :end_date, autofocus: true, class: "col-md-12" %>
+            </div>
+
+            <div class="field"><span class="myspan">*</span>
+              <%= f.label :passing_marks %><br />
+              <%= f.number_field :passing_marks, autofocus: true, min: 1, value: 1, class: "col-md-12" %>
+            </div>
+
+            <div class="field"><span class="myspan">*</span>
+              <%= f.label :subject %><br />
+              <%= f.collection_select(:subject_id, current_user.branch.subjects, :id, :name, {:prompt => "Select Subject"}, { class: "btn btn-secondary dropdown-toggle col-md-12" }) %>
+            </div>
+
+            <div class="field">
+              <%= f.hidden_field :etype, :value => "mcq" %>
+            </div>
+            <br/>
+            <div class="field">
+              <%= f.submit class: "btn btn-primary btn-xs col-md-12" %>
+            </div>
           <% end %>
-        </ul>
-      <% end %>
-
-      <div class="form-group row">
-        <%= f.label :name, class: "col-md-4" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-4", pattern: "^[a-zA-Z]+[0-9]*$", onfocus: "check_validation();" %>
-      </div>
-
-      <div class="form-group row">
-        <%= f.label :info, class: "col-md-4" %>
-        <%= f.text_area :info, autofocus: true, autocomplete: "info", class: "col-md-4" %>
-      </div>
-
-      <div class="form-group row">
-        <%= f.label :start_date, class: "col-md-4" %><br />
-        <%= f.datetime_field :start_date, autofocus: true, class: "col-md-4" %>
-      </div>
-
-      <div class="form-group row">
-        <%= f.label :end_date, class: "col-md-4" %><br />
-        <%= f.datetime_field :end_date, autofocus: true, class: "col-md-4" %>
-      </div>
-
-      <div class="form-group row">
-        <%= f.label :passing_marks, class: "col-md-4" %><br />
-        <%= f.number_field :passing_marks, autofocus: true, min: 1, value: 1, class: "col-md-4" %>
-      </div>
-
-      <div class="form-group row">
-        <%= f.label :subject, class: "col-md-4" %><br />
-        <%= f.collection_select(:subject_id, current_user.branch.subjects, :id, :name, :prompt => "Select Subject") %>
-      </div>
-
-      <div class="form-group row">
-        <%= f.hidden_field :etype, :value => "mcq" %>
-      </div>
-
-      <div class="form-group row">
-      <div class="col-md-4"></div>
-        <div class="col-md-4 text-center"><%= f.submit class: "btn btn-primary btn-xs" %></div>
-      </div>
-    <% end %>
-  </div>
+        </td>
+      </tr>
+    </thead>
+  </table>
+</center>
 
 <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
 <script>
-
   $("#exam_end_date").change(checkdate);
   $("#exam_start_date").change(checkdate);
-
   function checkdate() {
     var startDate = document.getElementById("exam_start_date").value;
     var endDate = document.getElementById("exam_end_date").value;

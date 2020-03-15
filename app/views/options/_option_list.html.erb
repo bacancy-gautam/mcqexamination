@@ -10,7 +10,9 @@
         <thead class="thead-dark">
           <tr>
             <th>No.</th>
+            <th>Index</th>
             <th>Option</th>
+            <th>Answer</th>
             <th colspan="2" class="text-center">Operations</th>
           </tr>
         </thead>
@@ -18,7 +20,9 @@
         <% @options.each do |option| %>
           <tr>
             <td><%= count %></td>
+            <td><%= option.option_index %></td>
             <td><%= option.name %></td>
+            <td><%= option.answer %></td>
             <td class="text-center"><%= link_to "Edit", edit_exam_question_option_path(option.question.exam, option.question, option), class: "btn btn-outline-primary fa fa-pencil-square-o" %>
             </td>
             <td class="text-center">

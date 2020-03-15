@@ -2,10 +2,10 @@
   <h1>Admin Dashboard</h1>(Welcome Admin!)
   <%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;|&nbsp;
   <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-  <br>
+  <br/><br/>
   <h3>==========================</h3>
-  <%= link_to "Faculty", faculty_list_faculties_path %>&nbsp;|&nbsp;
-  <%= link_to "Add Students", new_student_path %>&nbsp;|&nbsp;
-  <%= link_to "Subjects", subjects_path %>&nbsp;|&nbsp;
-  <%= link_to "Promote Students", promote_student_admin_index_path %>
+  <%= link_to " Faculty", faculty_list_faculties_path, class: "btn btn-outline-primary fa fa-users btn-lg" %>&nbsp;|&nbsp;
+  <%= link_to " Add Students", new_student_path, class: "btn btn-outline-success fa fa-plus-square btn-lg" %>&nbsp;|&nbsp;
+  <%= link_to " Subjects", subjects_path, class: "btn btn-outline-primary fa fa-book btn-lg" %>&nbsp;|&nbsp;
+  <%= link_to " Promote Students", promote_student_admin_index_path, class: "btn btn-outline-success fa fa-graduation-cap btn-lg" %>
 </center>

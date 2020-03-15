@@ -14,7 +14,9 @@ require("packs/custom")
 require('bootstrap')
 // require('moment')
 // require('bootstrap-datetimepicker')
-
+import '@client-side-validations/client-side-validations'
+require('@client-side-validations/client-side-validations')
+ClientSideValidations.start()
 import 'cocoon-js';
 // require('link_to_add_fields').start()
 //= require link_to_add_fields

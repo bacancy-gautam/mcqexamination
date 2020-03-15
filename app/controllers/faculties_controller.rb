@@ -20,7 +20,7 @@ class FacultiesController < ApplicationController
 
   def create
     @faculty = User.new(faculty_params)
-    if @faculty.save
+    if @faculty.save(context: :faculty)
       @faculty.add_role :faculty
       redirect_to faculty_list_faculties_path, notice: 'Faculty has been added'
     else

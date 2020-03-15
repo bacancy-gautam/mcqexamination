@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
   def create
     # byebug
     @user = User.new(student_params)
-    if @user.save
+    if @user.save(context: :student)
       @user.add_role :student
       redirect_to new_student_path, notice: 'Student has been added!'
     else

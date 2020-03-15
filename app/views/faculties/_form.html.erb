@@ -1,60 +1,61 @@
-<div class="text-center">
-  <%= form_with(model: @faculty, url: user_session_path, local: true) do |f| %>
-    <% if @faculty.errors.any? %>
-      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-        <% @faculty.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+<center>
+  <table class="roundedCorners">
+    <thead>
+      <tr>
+        <td>
+          <%= form_with(model: @faculty, url: user_session_path, validate: true, local: true) do |f| %>
 
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-    <div class="form-group row">
-      <%= f.label :first_name, class: "col-md-2" %><br />
-      <%= f.text_field :fname, autofocus: true, autocomplete: "fname", class: "col-md-4" %>
-    </div>
+            <div class="field">
+              <%= f.label :first_name %><span class="myspan">*</span><br />
+              <%= f.text_field :fname, autofocus: true, autocomplete: "fname", class: "col-md-12" %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.label :last_name, class: "col-md-2" %><br />
-      <%= f.text_field :lname, autofocus: true, autocomplete: "lname", class: "col-md-4" %>
-    </div>
+            <div class="field">
+              <%= f.label :last_name %><span class="myspan">*</span><br />
+              <%= f.text_field :lname, autofocus: true, autocomplete: "lname", class: "col-md-12" %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.label :email, class: "col-md-2" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-4" %>
-    </div>
+            <div class="field">
+              <%= f.label :email %><span class="myspan">*</span><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-12" %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.label :mobile, class: "col-md-2" %><br />
-      <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile", class: "col-md-4" %>
-    </div>
+            <div class="field">
+              <%= f.label :mobile %><span class="myspan">*</span><br />
+              <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile", class: "col-md-12" %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.label :branch_id, class: "col-md-2" %><br />
-      <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => "Select Branch") %>
-    </div>
+            <div class="field">
+              <%= f.label :branch_id %><span class="myspan">*</span><br />
+              <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch"}, {class: "btn btn-secondary dropdown-toggle col-md-12"} %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.label :password, class: "col-md-2" %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "col-md-4" %>
-    </div>
+            <div class="field">
+              <%= f.label :password %><span class="myspan">*</span>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password", class: "col-md-12" %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.label :password_confirmation, class: "col-md-2" %><br />
-      <%= f.password_field :password_confirmation, class: "col-md-4" %>
-    </div>
+            <div class="field">
+              <%= f.label :password_confirmation %><span class="myspan">*</span><br />
+              <%= f.password_field :password_confirmation, class: "col-md-12" %>
+            </div>
 
-    <div class="form-group row">
-      <%= f.hidden_field :status, :value => 1, class: "col-md-2" %>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-2"></div>
-      <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path, class: "btn btn-primary btn-xs" %>
-    </div>
-  <% end %>
-</div>
+            <div class="field">
+              <%= f.hidden_field :status, :value => 1 %>
+            </div>
+            <br />
+            <div class="field">
+              <div class="col-md-2"></div>
+              <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path, class: "btn btn-primary btn-xs col-md-12" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </thead>
+  </table>
+</center>

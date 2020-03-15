@@ -1,16 +1,16 @@
 <%= link_to "Back", admin_index_path %><br/><br/>
 
 <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
-  <%= f.collection_select(:branch_id, Branch.all, :id, :name, prompt: "Select Branch") %>
-  <%= f.collection_select(:semester_id, Semester.all, :id, :sem, prompt: "Select Semester") %>
+  <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch", required: true}, {class: "btn btn-secondary dropdown-toggle"} %>
+  <%= f.collection_select :semester_id, Semester.all, :id, :sem, {prompt: "Select Semester"}, {class: "btn btn-secondary dropdown-toggle"} %>
 <% end %>
 
 <%= form_with(model: @user, url: admin_index_path, local: true) do |f| %>
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th class="text-right"><%= radio_button_tag "operation", "promote", "true" %>Promte</th>
-        <th class="text-left"><%= radio_button_tag "operation", "demote" %>Demote</th>
+        <th class="text-right"><%= radio_button_tag "operation", "promote", "true" %><%= f.label :promote, id: :promote %></th>
+        <th class="text-left"><%= radio_button_tag "operation", "demote" %><%= f.label :demote, id: :demote %></th>
       </tr>
     </thead>
   </table>
@@ -24,7 +24,7 @@
     <tbody id="users">
     </tbody>
   </table>
-<%= f.submit "submit", class: "btn btn-primary btn-xs" %>
+<%= f.submit "submit", class: "btn btn-primary btn-xs col-md-2" %>
 <% end %>
 
 <script type="text/javascript">

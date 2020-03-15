@@ -19,8 +19,8 @@
           <td><%= subject.branch.name %></td>
           <td><%= subject.semester.sem %></td>
           <td><%= subject.name %></td>
-          <td><%= link_to "Edit", edit_subject_path(subject), data: { confirm: "Are you sure?" }, class: "btn btn-outline-primary fa fa-pencil-square-o" %></td>
-          <td><%= link_to "Delete", subject_path(subject), method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-outline-danger fa fa-trash" %></td>
+          <td><%= link_to "Edit", edit_subject_path(subject.id), class: "btn btn-outline-primary fa fa-pencil-square-o" %></td>
+          <td><%= link_to "Delete", subject_path(subject.id), method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-outline-danger fa fa-trash" %></td>
         </tr>
       <% end %>
     </table>

@@ -23,6 +23,9 @@ gem 'momentjs-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+# client_side_validation
+gem 'client_side_validations'
+
 # font-awesome
 gem 'font-awesome-rails'
 

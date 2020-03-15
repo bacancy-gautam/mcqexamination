@@ -3,7 +3,7 @@
 # add subject
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_student, only: %i[edit update destroy]
+  before_action :find_subjects, only: %i[edit update destroy]
   def index
     @subjects = Subject.all
   end

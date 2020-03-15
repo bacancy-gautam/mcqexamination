@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <td>
-          <%= form_with(model: @subject, local: true) do |f| %>
+          <%= form_with(model: @subject, validate: true, local: true, html: { id: "subject_form" }) do |f| %>
             <% if @subject.errors.any? %>
               <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this user from being saved:</h2>
               <ul>
@@ -14,22 +14,22 @@
             <% end %>
 
             <div class="field">
-              <%= f.label :branch %><br />
-              <%= f.collection_select(:branch_id, Branch.all, :id, :name, :prompt => "Select Branch") %>
+              <%= f.label :branch %><span class="myspan">*</span><br />
+              <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch" }, { class: "btn btn-secondary dropdown-toggle col-md-12" } %>
             </div>
 
             <div class="field">
-              <%= f.label :semester %><br />
-              <%= f.collection_select(:semester_id, Semester.all, :id, :sem, :prompt => "Select Semester") %>
+              <%= f.label :semester %><span class="myspan">*</span><br />
+              <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester", validate: true }, { class: "btn btn-secondary dropdown-toggle col-md-12" } %>
             </div>
 
             <div class="field">
-              <%= f.label :name %><br />
-              <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+              <%= f.label :name %><span class="myspan">*</span><br />
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'col-md-12' %>
             </div>
             <br/>
             <div class="actions">
-              <%= f.submit "Add Subject", id: "1", class: "btn btn-primary btn-xs" %>
+              <%= f.submit "Add Subject", id: "1", class: "btn btn-primary btn-xs col-md-12" %>
             </div>
           <% end %>
         </td>
@@ -37,3 +37,23 @@
     </thead>
   </table>
 </center>
+
+<script>
+// function your_validation_function(){
+//   alert("sdfdsf");
+//   return False;
+// }
+//  $("#subject_form").submit(function( event ) {
+//         event.preventDefault();
+//          $('.submit').prop("disabled",false);
+//         // alert("sfddsf");
+//         // $("#subject_form").get(0).allowDefault = true;
+
+//       // if( your_validation_function() )
+//       //   return;
+//       // else {
+//       //   event.preventDefault();
+//       //   $("#subject_form").get(0).allowDefault = true;
+//       // }
+    // });
+</script>
