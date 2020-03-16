@@ -20,11 +20,11 @@ class User < ApplicationRecord
   # devise :database_authenticatable, :authentication_keys => [:email], if: :user.has_role?(:faculty)
   validates :email, format: { with: /[^@]+@[^\.]+\..+/, message: 'Enter valid email address' }
   validates :branch_id, presence: { message: 'Select Branch' }
-  validates :fname, format: { with: /[a-zA-Z]/, message: 'Enter valid First Name' }
-  validates :lname, format: { with: /[a-zA-Z]/, message: 'Enter valid Last Name' }
-  validates :mobile, presence: { message: 'Enter mobile' }, on: :faculty
+  validates :fname, format: { with: /[a-zA-Z]{2,20}/, message: 'Enter valid First Name(minimum 2 characters)' }
+  validates :lname, format: { with: /[a-zA-Z]{2,20}/, message: 'Enter valid Last Name(minimum 2 characters)' }
+  validates :mobile, format: { with: /[0-9]{10}/, message: 'Enter valid mobile number(10 digits)' }, on: :faculty
   # validates :mobile, absence: true, on: :student
-  validates :pass_out_year, presence: { message: 'Enter Pass Out year' }, on: :student
+  validates :pass_out_year, format: { with: /[0-9]{4}/, message: 'Enter valid year(4 digits only)' }, on: :student
   validates :semester_id, presence: { message: 'Select Semester' }, on: :student
   validates :enrollment, format: { with: /[0-9]/, message: 'Enter valid enrollment' },  on: :student
   validates :password, length: { in: 6..20, message: 'Password length should be between 6-20' }, on: :student

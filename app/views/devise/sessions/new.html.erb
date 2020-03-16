@@ -1,35 +1,29 @@
-<center>
-  <h2>Log in</h2>
 
-  <table class="roundedCorners">
-    <thead>
-      <tr>
-        <td>
+<div class="container" style="margin: auto;width: 35%;border: 3px solid #9c27b0;border-radius: 25px;padding: 10px;text-align: center;">
+<h2>Log in</h2>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-          <div class="field">
-            <%= f.label :login %><br />
-            <%= f.text_field :login, autofocus: true %>
+          <div class="form-group row">
+            <%= f.label :login, class: "col-sm-6" %><br />
+            <%= f.text_field :login, autofocus: true, class: "col-sm-5" %>
           </div>
 
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
+          <div class="form-group row">
+            <%= f.label :password, class: "col-sm-6" %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: "col-sm-5" %>
           </div>
 
           <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
+          <div class="form-group row">
+            <%= f.check_box :remember_me, class: "col-sm-6 text-right" %>
             <%= f.label :remember_me %>
           </div>
           <% end %>
 
           <div class="field text-center">
-            <%= f.submit "Log in", class: "btn btn-primary col-md-12" %>
+            <%= f.submit "Log in", class: "btn btn-primary col-md-6" %>
           </div>
           <% end %>
-        </td>
-      </tr>
-    </thead>
-  </table>
-</center>
+
+  </div>
+

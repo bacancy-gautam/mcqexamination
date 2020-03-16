@@ -6,21 +6,21 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%# <%= javascript_include_tag :defaults, "rails.validations" %>
+  <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+  <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+  <% # <%= javascript_include_tag :defaults, "rails.validations" %>
 </head>
 
 <body>
   <center>
     <div>
-      <p class="notice" style="color:green;font-weight: bold;font-size: 15px;"><%= notice %></p>
+      <p class="notice" style="color:green;background-color: #ffffff;font-weight: bold;font-size: 15px;"><%= notice %></p>
     </div>
     <div>
-      <p class="alert" style="color:red;font-weight: bold;font-size: 15px;"><%= alert %></p>
+      <p class="alert" style="color:red;background-color: #ffffff;font-weight: bold;font-size: 15px;"><%= alert %></p>
     </div>
-  </center>
-  <%= yield %>
+  </center><%= yield %>
+  
 </body>
 
 </html>

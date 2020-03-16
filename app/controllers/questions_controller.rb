@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     # @question = Question.new(question_params)
     a = @exam.questions.build(question_params)
     if a.save
@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
 
   def update
     # byebug
-    binding.pry
+    # binding.pry
     if @question.update(question_params)
       redirect_to exam_questions_path, notice: 'Question updated Successfully'
     else
