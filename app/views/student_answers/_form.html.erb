@@ -1,5 +1,6 @@
 <body>
   <h3 id="demo" style="position: fixed; top: 0; right: 0; color: white; border-radius:20px; border: 2px solid #343A40; background: #007BFF; margin-right: 0px"></h3> 
+  <div >
   <%= form_with(model: @question, url: exam_student_answers_path, local: false, html: { id: "exam_question" }) do |f| %>
     <table class="table">
       <thead class="thead-dark">
@@ -19,13 +20,11 @@
         <tr>
           <td></td>
           <td>
-            <% acount = 65 %>
             <% question.options.each do |option| %>
-              (<%= [acount].pack("U") %>.)
               <%= f.radio_button question.id, option.id, :checked => false %>
+              (<%= option.option_index %>.)
               <%= option.name %>
               <br />
-              <% acount += 1 %>
             <% end %>
           </td>
         </tr>
@@ -35,6 +34,7 @@
     </table>
     <%= f.submit "Submit Exam", :class => "btn btn-primary btn-xs" %> 
   <% end %>
+  </div>
 
   <script> 
     dd = "<%= @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>"

@@ -27,10 +27,9 @@ Rails.application.routes.draw do
     end
   end
   resources :admin do
+    collection { post :import }
     get 'promote_student', on: :collection
     get 'search', on: :collection
-    collection { post :import }
-    collection { post :import_faculty }
   end
   get 'assigns/search' => 'assigns#search'
   get 'admin/filltable'

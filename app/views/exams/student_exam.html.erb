@@ -17,7 +17,7 @@
         <td>
           <% acount = 65 %>
           <% question.options.each do |option| %>
-            (<%= [acount].pack("U") %>.)
+            <%= option.option_index %>
             <%= option.name %>
             <%= radio_button_tag "q_#{question.id}", option.id, false %>
             <br />

@@ -44,7 +44,8 @@ $(document).ready(function () {
           for (i = 0; i < data["name"].length; i++) {
             // debugger
             checkbox = "<td><input type='checkbox' id='" + data["name"][i]["id"] + "' name='student_ids[" + data["name"][i]["id"] + "]' value='" + data["name"][i]["id"] + "'></input></td>";
-            string += "<tr><td>" + data["name"][i]["enrollment"] + "</td>" + checkbox + "</tr>";
+            pass_out_year = "<td class='text-right'>"+data['name'][i]['pass_out_year']+"</td>";
+            string += "<tr><td>" + data["name"][i]["enrollment"] + "</td>" + checkbox + pass_out_year + "</tr>";
           }
           $("#users").html(string);
         }

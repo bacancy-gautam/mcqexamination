@@ -1,8 +1,8 @@
 <%= link_to "Back", admin_index_path %><br/><br/>
 
 <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
-  <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch", required: true}, {class: "btn btn-secondary dropdown-toggle"} %>
-  <%= f.collection_select :semester_id, Semester.all, :id, :sem, {prompt: "Select Semester"}, {class: "btn btn-secondary dropdown-toggle"} %>
+  <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "btn btn-secondary dropdown-toggle" } %>
+  <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester" }, { class: "btn btn-secondary dropdown-toggle" } %>
 <% end %>
 
 <%= form_with(model: @user, url: admin_index_path, local: true) do |f| %>
@@ -17,8 +17,9 @@
   <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th>Enrollment</th>
-        <th data-sort-ignore="true"><input type="checkbox" id="selectAll" /></th>
+        <th >Enrollment</th>
+        <th data-sort-ignore="true" ><input type="checkbox" id="selectAll" /></th>
+        <th class="text-right">Pass Out Year</th>
       </tr>
     </thead>
     <tbody id="users">

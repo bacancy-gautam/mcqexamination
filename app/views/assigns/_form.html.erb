@@ -12,7 +12,7 @@
       <tr>
         <td><%= student.enrollment %></td>
         
-          <% if student.assigns.where(exam_id: @exam.id).blank? %>
+          <% if student_assigned?(student, @exam) %>
             <td>No</td>
             <td><%= check_box_tag "student_ids[]", student.id, false, class: "selectable" %></td>
           <% else %>
