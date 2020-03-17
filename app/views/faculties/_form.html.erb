@@ -29,7 +29,7 @@
 
             <div class="field">
               <%= f.label :branch_id %><span class="myspan">*</span><br />
-              <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch"}, {class: "btn btn-secondary dropdown-toggle col-md-12"} %>
+              <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch"}, {class: "nice-select wide col-md-12"} %>
             </div>
 
             <div class="field">
@@ -51,7 +51,7 @@
             <br />
             <div class="field">
               <div class="col-md-2"></div>
-              <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path, class: "btn btn-primary btn-xs col-md-12" %>
+              <%= f.submit formaction: @faculty.new_record? ? faculties_path : edit_faculty_path, class: "boxed-btn3 col-md-12" %>
             </div>
           <% end %>
         </td>

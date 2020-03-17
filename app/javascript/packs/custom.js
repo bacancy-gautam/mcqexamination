@@ -43,9 +43,10 @@ $(document).ready(function () {
           var textfield = "";
           for (i = 0; i < data["name"].length; i++) {
             // debugger
+
             checkbox = "<td><input type='checkbox' id='" + data["name"][i]["id"] + "' name='student_ids[" + data["name"][i]["id"] + "]' value='" + data["name"][i]["id"] + "'></input></td>";
             pass_out_year = "<td class='text-right'>"+data['name'][i]['pass_out_year']+"</td>";
-            string += "<tr><td>" + data["name"][i]["enrollment"] + "</td>" + checkbox + pass_out_year + "</tr>";
+            string += "<tr><td>" + data["name"][i]["enrollment"] + "</td><td>"+ data["name"][i]["fname"] + " " + data["name"][i]["lname"] + "</td>" + checkbox + pass_out_year + "</tr>";
           }
           $("#users").html(string);
         }

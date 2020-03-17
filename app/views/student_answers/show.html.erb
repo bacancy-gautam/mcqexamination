@@ -1,5 +1,5 @@
 <%= link_to "Back", student_exam_result_path(current_user.id, @exam.id,
-                                             @result.id) %>
+                                            @result.id) %>
 <h3>Attempted Questions</h3>
 <body>
   <table class="table">
@@ -18,7 +18,7 @@
           <td style="color:red">False</td>
         <% end %>
         <td><%= useranswer.option.name %></td>
-        <td><%= useranswer.question.options.where(answer: true).first.name %></td>   
+        <td><%= useranswer.question.options.where(answer: true).first&.name %></td>   
       </tr>
     <% end %>
   </table>

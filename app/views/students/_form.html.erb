@@ -29,13 +29,13 @@
 
             <div class="field">
               <%= f.label :semester %><span class="myspan">*</span><br />
-              <%= f.collection_select :semester_id, Semester.all, :id, :sem, {prompt: "Select Semester"}, {class: "btn btn-secondary dropdown-toggle col-md-12"} %>
+              <%= f.collection_select :semester_id, Semester.all, :id, :sem, {prompt: "Select Semester"}, {class: "nice-select wide col-md-12"} %>
             </div>
 
 
             <div class="field">
               <%= f.label :branch_id %><span class="myspan">*</span><br />
-              <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch"}, {class: "btn btn-secondary dropdown-toggle col-md-12"} %>
+              <%= f.collection_select :branch_id, Branch.all, :id, :name, {prompt: "Select Branch"}, {class: "nice-select wide dropdown-toggle col-md-12"} %>
             </div>
 
             <div class="field">
@@ -61,7 +61,7 @@
             </div>
             <br/>
             <div class="actions">
-              <%= f.submit formaction: (@user.new_record?) ? students_path : edit_student_path, class: "btn btn-primary btn-lg btn-block" %>
+              <%= f.submit formaction: (@user.new_record?) ? students_path : edit_student_path, class: "boxed-btn3 btn-lg btn-block" %>
             </div>
           <% end %>
     </thead>
@@ -80,7 +80,7 @@
       <tr>
           <%= form_tag import_admin_index_path, multipart: true do %>
             <td class="text-center"><%= file_field_tag :file %></td>
-            <td class="text-center"><%= submit_tag "Import", class: "btn btn-primary" %></td>
+            <td class="text-center"><%= submit_tag "Import", class: "boxed-btn3" %></td>
           <% end %>
       </tr>
     </thead>

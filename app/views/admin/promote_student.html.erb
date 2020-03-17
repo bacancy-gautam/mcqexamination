@@ -1,13 +1,14 @@
-<%= link_to "Back", admin_index_path %><br/><br/>
-
+<%# <%= link_to "Back", admin_index_path %>
 <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
-  <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "btn btn-secondary dropdown-toggle" } %>
-  <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester" }, { class: "btn btn-secondary dropdown-toggle" } %>
+<div class="form row">
+  <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "nice-select wide col-md-6" } %>
+  <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester" }, { class: "nice-select wide col-md-6" } %>
+  </div>
 <% end %>
 
 <%= form_with(model: @user, url: admin_index_path, local: true) do |f| %>
   <table class="table">
-    <thead class="thead-dark">
+    <thead class="thead-primary">
       <tr>
         <th class="text-right"><%= radio_button_tag "operation", "promote", "true" %><%= f.label :promote, id: :promote %></th>
         <th class="text-left"><%= radio_button_tag "operation", "demote" %><%= f.label :demote, id: :demote %></th>
@@ -15,9 +16,10 @@
     </thead>
   </table>
   <table class="table">
-    <thead class="thead-dark">
+    <thead class="thead-light">
       <tr>
         <th >Enrollment</th>
+        <th >Name</th>
         <th data-sort-ignore="true" ><input type="checkbox" id="selectAll" /></th>
         <th class="text-right">Pass Out Year</th>
       </tr>

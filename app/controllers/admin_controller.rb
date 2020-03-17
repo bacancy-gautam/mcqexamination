@@ -53,8 +53,8 @@ class AdminController < ApplicationController
 
   def admin_params
     params.required(:user).permit(:enrollment, :sem, :branch_id, :status,
-                                  :pass_out_year, :password, :email, :fname, :lname,
-                                  :mobile, :password_confirmation)
+                                  :pass_out_year, :password, :email, :fname,
+                                  :lname, :mobile, :password_confirmation)
   end
 
   def student_params

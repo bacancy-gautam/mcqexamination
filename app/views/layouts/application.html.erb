@@ -12,15 +12,33 @@
 </head>
 
 <body>
-  <center>
-    <div>
-      <p class="notice" style="color:green;background-color: #ffffff;font-weight: bold;font-size: 15px;"><%= notice %></p>
+    <div class="content">
+      <center>
+        <div style="background-color: #00D363;">
+          <span class="text-center" style="color: white; font-weight: bold; background-color: #00D363;"><%= notice %></span>
+        </div>
+        <div style="background-color: red;">
+          <span class="text-center" style="color: white; font-weight: bold"><%= alert %></span>
+        </div>
+      </center>
+      <% if user_signed_in? %>
+          <% if current_user.has_role? :admin %>
+            <%= render "layouts/admin_header" %>
+          <% end %>
+      <% end %>
+      <%= yield %>  
+       
     </div>
-    <div>
-      <p class="alert" style="color:red;background-color: #ffffff;font-weight: bold;font-size: 15px;"><%= alert %></p>
-    </div>
-  </center><%= yield %>
-  
+<script>
+function myFunction() {
+// alert("Hi");
+var x = document.getElementById("sidebar");
+if (x.style.display === "none") {
+x.style.display = "block";
+} else {
+x.style.display = "none";
+}
+}
+</script>
 </body>
-
 </html>

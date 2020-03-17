@@ -1,13 +1,16 @@
-
 <center>
-  <h1>Admin Dashboard</h1>(Welcome Admin!)
-  <%= link_to "Edit Profile", edit_user_registration_path %>&nbsp;|&nbsp;
-  <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-  <br/><br/>
-  <h3>==========================</h3>
-  <%= link_to " Faculty", faculty_list_faculties_path, class: "btn btn-outline-primary fa fa-users btn-lg" %>&nbsp;|&nbsp;
-  <%= link_to " Add Students", new_student_path, class: "btn btn-outline-success fa fa-plus-square btn-lg" %>&nbsp;|&nbsp;
-  <%= link_to " Subjects", subjects_path, class: "btn btn-outline-primary fa fa-book btn-lg" %>&nbsp;|&nbsp;
-  <%= link_to " Promote Students", promote_student_admin_index_path, class: "btn btn-outline-success fa fa-graduation-cap btn-lg" %>
+
+      <div class="container">
+        <div class="w3-animate-zoom">
+          <div class="slider_text">
+            <div class="col-lg-8 col-md-8">
+              <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Welcome Admin</h3>
+              <br /><br />
+              <%= column_chart User.group_by_day_of_week(:created_at, format: "%a").count %>
+              <%= column_chart User.with_role(:student).group('semester_id').count ,xtitle: "Semester", ytitle: "Students", refresh: 60, download: true, background: "#ffffff", messages: {empty: "No data"} %>Students are in semester
+            </div>
+          </div>
+        </div>
+      </div>
+   
 </center>
- 
