@@ -1,8 +1,8 @@
-<%# <%= link_to "Back", admin_index_path %>
+<% # <%= link_to "Back", admin_index_path %>
 <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
 <div class="form row">
-  <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "nice-select wide col-md-6" } %>
-  <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester" }, { class: "nice-select wide col-md-6" } %>
+  <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "nice-select wide col-md-3", title: "Branch of the students" } %>
+  <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester" }, { class: "nice-select wide col-md-3", title: "Semester of the students" } %>
   </div>
 <% end %>
 
@@ -10,12 +10,12 @@
   <table class="table">
     <thead class="thead-primary">
       <tr>
-        <th class="text-right"><%= radio_button_tag "operation", "promote", "true" %><%= f.label :promote, id: :promote %></th>
-        <th class="text-left"><%= radio_button_tag "operation", "demote" %><%= f.label :demote, id: :demote %></th>
+        <th class="text-right"><%= radio_button_tag "operation", "promote", "true" %><%= f.label :promote, id: :promote, title: "Increment semester" %></th>
+        <th class="text-left"><%= radio_button_tag "operation", "demote" %><%= f.label :demote, id: :demote, title: "Decrement semester" %></th>
       </tr>
     </thead>
   </table>
-  <table class="table">
+  <table class="table table-hover">
     <thead class="thead-light">
       <tr>
         <th >Enrollment</th>
@@ -27,7 +27,7 @@
     <tbody id="users">
     </tbody>
   </table>
-<%= f.submit "submit", class: "btn btn-primary btn-xs col-md-2" %>
+<%= f.submit "submit", class: "btn boxed-btn3 btn-xs col-md-2" %>
 <% end %>
 
 <script type="text/javascript">

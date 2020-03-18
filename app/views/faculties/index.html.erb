@@ -1,8 +1,16 @@
 <center>
-  <h1>Faculty Dashboard</h1>(<%= current_user.email %>)
-  <%= link_to "Edit Profile", edit_user_registration_path %> |
-  <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-  <br>
-  <h3>=========</h3>
-  <%= link_to "Exam", exams_path, class: "btn btn-outline-success" %> 
+<% @page_title = "My Dashboard" %>
+<%# <h2>Faculty Dashboard</h2> %>
 </center>
+<div class="popular_catagory_area">
+  <div class="row">
+    <div class="col-lg-4 col-xl-3 col-md-6">
+      <div class="single_catagory">
+        <a href="exams">
+          <h4>Exams you have created</h4>
+        </a>
+        <p> <span><%= current_user.exams.count %></span>exams</p>
+      </div>
+    </div>
+  </div>
+</div>

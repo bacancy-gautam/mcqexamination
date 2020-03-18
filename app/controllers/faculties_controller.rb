@@ -12,7 +12,7 @@ class FacultiesController < ApplicationController
   def update
     # byebug
     if @faculty.update(faculty_params)
-      redirect_to new_faculty_path, notice: 'Faculty updated Successfully'
+      redirect_to faculty_list_faculties_path, notice: 'Faculty updated Successfully'
     else
       render 'edit'
     end

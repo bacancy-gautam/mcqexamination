@@ -1,6 +1,5 @@
-<%= link_to "Back", faculties_path %>
-<div class="text-center">
-  <h1>Exam<%= link_to "", new_exam_path, class: "btn-outline-success fa fa-plus-circle" %></h1>
-  (<%= current_user.email %>)<br/><br/>
-  <%= render "examlist" %>
-</div>
+<% @page_title = "Exam List" %>
+<h6 class="text-center"><%= link_to "New Exam", new_exam_path, class: "boxed-btn3" %></h6>
+
+<%= render "examlist" %>
+

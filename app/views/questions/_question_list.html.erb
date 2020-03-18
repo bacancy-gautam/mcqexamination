@@ -3,11 +3,11 @@
     <% if !@questions.blank? %>
       <table class="roundedCorners" id="questionlist">
         <th>
-          <%= link_to("Add More Question", new_exam_question_path(params[:exam_id])) %>
+          <%= link_to("Add", new_exam_question_path(params[:exam_id]), title: "Add New Question", class: "boxed-btn3") %>
         </th>
       </table>
       <table class="table" id="questionlist">
-        <thead class="thead-dark">
+        <thead class="thead-light">
           <tr>
             <th>No.</th>
             <th>Question</th>
@@ -21,13 +21,13 @@
             <td><%= count %></td>
             <td><%= question.info %></td>
             <td class="text-center">
-              <%= link_to "Edit", edit_exam_question_path(question.exam, question), class: "btn btn-outline-primary fa fa-pencil-square-o" %>
+              <%= link_to "Edit", edit_exam_question_path(question.exam, question), class: "btn btn-outline-primary fa fa-pencil-square-o", title: "Edit Question" %>
             </td>
             <td class="text-center">
-              <%= link_to "Delete", exam_question_path(question.exam, question), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger fa fa-trash" %>
+              <%= link_to "Delete", exam_question_path(question.exam, question), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger fa fa-trash", title: "Delete Question" %>
             </td>
             <td class="text-center">
-              <%= link_to "Options", exam_question_options_path(question.exam, question), class: "btn btn-outline-success fa fa-braille" %>
+              <%= link_to "Options", exam_question_options_path(question.exam, question), class: "btn btn-outline-success fa fa-braille", title: "Show Options" %>
             </td>
           </tr>
           <% count += 1 %>

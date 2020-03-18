@@ -17,7 +17,7 @@ class ExamsController < ApplicationController
     @exam = current_user.exams.build(exam_params)
     # byebug
     if @exam.save
-      redirect_to new_exam_path, notice: 'Exam added Successfully'
+      redirect_to exams_path, notice: 'Exam added Successfully'
     else
       render 'new'
     end

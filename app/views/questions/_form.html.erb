@@ -1,40 +1,36 @@
-<center>
-  <table class="roundedCorners">
-    <thead>
-      <tr>
-        <td>
-          <%= form_with(model: [@exam, @question], validate: true, local: true) do |f| %>
-            <% if @question.errors.any? %>
-              <h2><%= pluralize(@question.errors.count, "error") %> prohibited this user from being saved:</h2>
-              <ul>
-                <% @question.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
+<div class="container">
+  <div class="row h-100 justify-content-center align-items-top">
+    <div class="col-10 col-md-8 col-lg-6">
+      <%= form_with(model: [@exam, @question], validate: true, local: true) do |f| %>
+        <% if @question.errors.any? %>
+          <h2><%= pluralize(@question.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @question.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
             <% end %>
+          </ul>
+        <% end %>
 
-            <div class="field">
-              <%= f.label :question %><span class="myspan">*</span><br />
-              <%= f.text_field :info, autofocus: true, autocomplete: "name" %>
-            </div>
-            
-            <div id="options">
-              <%= f.fields_for :options do |option| %>
-                <%= render "option_fields", f: option %>
-              <% end %>
-              <div class="links">
-                <%= link_to_add_association "Add Option", f, :options, class: "fa fa-plus-square" %><br />
-              </div>
-            </div>
-            <div class="actions">
-              <%= f.submit class: "btn btn-primary btn-xs"%>
-            </div>
+        <div class="field">
+          <%= f.label :question %><span class="myspan">*</span><br />
+          <%= f.text_field :info, autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <div id="options">
+          <%= f.fields_for :options do |option| %>
+            <%= render "option_fields", f: option %>
           <% end %>
-        </td>
-      </tr>
-    </thead>
-  </table>
-</center>
+          <div class="links">
+            <%= link_to_add_association "Add Option", f, :options, class: "fa fa-plus-square" %><br />
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit class: "btn btn-primary btn-xs" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <script>
   $('.myradio').prop('checked', true);

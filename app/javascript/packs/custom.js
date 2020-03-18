@@ -48,6 +48,9 @@ $(document).ready(function () {
             pass_out_year = "<td class='text-right'>"+data['name'][i]['pass_out_year']+"</td>";
             string += "<tr><td>" + data["name"][i]["enrollment"] + "</td><td>"+ data["name"][i]["fname"] + " " + data["name"][i]["lname"] + "</td>" + checkbox + pass_out_year + "</tr>";
           }
+          if(data["name"].length == 0){
+            string = "<span style='color:red; font-weight: bold'>***Data not available</span>";
+          }
           $("#users").html(string);
         }
       }

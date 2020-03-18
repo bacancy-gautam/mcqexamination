@@ -1,10 +1,11 @@
 <% # <%= link_to "Back", admin_index_path %>
+<% @page_title = "Faculty List" %>
 <body style="background-color: #F5F7FA">
 <div>
   <div class="text-center">
-    <h1>Faculty list<%= link_to "", new_faculty_path, class: "btn-outline-success fa fa-plus-circle" %></h1>
+    <h6><%= link_to "Add Faculty", new_faculty_path, class: "boxed-btn3", title: "Add new Faculty" %></h6>
   </div>
-  <table class="table" id="faclist">
+  <table class="table table-hover" id="faclist">
     <thead class="thead-light">
       <tr>
         <th>First Name</th>
@@ -20,14 +21,14 @@
 
     <% @faculties.each do |faculty| %>
       <tr>
-        <td><%= faculty.fname %></td>
-        <td><%= faculty.lname %></td>
-        <td><%= faculty.email %></td>
-        <td><%= faculty.branch&.name %></td>
-        <td><%= faculty.mobile %></td>
+        <td title ="First Name"><%= faculty.fname %></td>
+        <td title ="Last Name"><%= faculty.lname %></td>
+        <td title ="Email"><%= faculty.email %></td>
+        <td title ="Branch Name"><%= faculty.branch&.name %></td>
+        <td title ="Mobile Number"><%= faculty.mobile %></td>
         <% # <td><%= faculty.status %>
-        <td><%= link_to "Edit", edit_faculty_path(faculty.id), class: "btn btn-outline-primary fa fa-pencil-square-o" %></td>
-        <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger fa fa-trash" %></td>
+        <td><%= link_to "Edit", edit_faculty_path(faculty.id), class: "genric-btn info-border radius medium fa fa-pencil-square-o", title: 'Edit faculty' %></td>
+        <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" }, class: "genric-btn danger-border radius medium fa fa-trash", title: 'Delete faculty' %></td>
       </tr>
     <% end %>
   </table>

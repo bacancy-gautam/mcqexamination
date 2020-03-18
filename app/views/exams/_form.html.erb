@@ -1,77 +1,87 @@
-<center>
-  <table class="roundedCorners">
-    <thead>
-      <tr>
-        <td>
-          <%= form_with(model: @exam, validate: true, local: true) do |f| %>
-            <% if @exam.errors.any? %>
-              <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this user from being saved:</h2>
-              <ul>
-                <% @exam.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            <% end %>
-
-            <div class="field">
-              <%= f.label :name%><span class="myspan">*</span><br/>
-              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "col-md-12", pattern: "^[a-zA-Z]+[0-9]*$", onfocus: "check_validation();" %>
-            </div>
-
-            <div class="field"><span class="myspan">&nbsp;</span>
-              <%= f.label :info %><br/>
-              <%= f.text_area :info, autofocus: true, autocomplete: "info", class: "col-md-12" %>
-            </div>
-
-            <div class="field"><span class="myspan">*</span>
-              <%= f.label :start_date %><br />
-              <%= f.datetime_field :start_date, autofocus: true, class: "col-md-12" %>
-            </div>
-
-            <div class="field"><span class="myspan">*</span>
-              <%= f.label :end_date %><br />
-              <%= f.datetime_field :end_date, autofocus: true, class: "col-md-12" %>
-            </div>
-
-            <div class="field"><span class="myspan">*</span>
-              <%= f.label :passing_marks %><br />
-              <%= f.number_field :passing_marks, autofocus: true, min: 1, value: 1, class: "col-md-12" %>
-            </div>
-
-            <div class="field"><span class="myspan">*</span>
-              <%= f.label :subject %><br />
-              <%= f.collection_select(:subject_id, current_user.branch.subjects, :id, :name, {:prompt => "Select Subject"}, { class: "btn btn-secondary dropdown-toggle col-md-12" }) %>
-            </div>
-
-            <div class="field">
-              <%= f.hidden_field :etype, :value => "mcq" %>
-            </div>
-            <br/>
-            <div class="field">
-              <%= f.submit class: "btn btn-primary btn-xs col-md-12" %>
-            </div>
+<div class="popular_catagory_area" style="padding-top: 5px;">
+  <div class="container">
+    <div class="row h-100 justify-content-center align-items-top">
+      <div class="col-10 col-md-8 col-lg-6">
+        <%= form_with(model: @exam, validate: true, local: true) do |f| %>
+          <% if @exam.errors.any? %>
+            <h2><%= pluralize(@exam.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <ul>
+              <% @exam.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
           <% end %>
-        </td>
-      </tr>
-    </thead>
-  </table>
-</center>
 
-<script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
+          <div class="field">
+            <%= f.label :name %><span class="myspan">*</span><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form_text col-md-12", pattern: "^[a-zA-Z]+[0-9]*$", onfocus: "check_validation();" %>
+          </div>
+
+          <div class="field"><span class="myspan">&nbsp;</span>
+            <%= f.label :info %><br />
+            <%= f.text_area :info, autofocus: true, autocomplete: "info", class: "form_text col-md-12" %>
+          </div>
+
+          <div class="field"><span class="myspan">*</span>
+            <%= f.label :start_date %><br />
+            <%= f.datetime_field :start_date, autofocus: true, class: "form_text col-md-12" %>
+          </div>
+
+          <div class="field"><span class="myspan">*</span>
+            <%= f.label :end_date %><br />
+            <%= f.datetime_field :end_date, autofocus: true, class: "form_text col-md-12" %>
+          </div>
+
+          <div class="field"><span class="myspan">*</span>
+            <%= f.label :passing_marks %><br />
+            <%= f.number_field :passing_marks, autofocus: true, min: 1, value: 1, class: "form_text col-md-12" %>
+          </div>
+
+          <div class="field"><span class="myspan">*</span>
+            <%= f.label :subject %><br />
+            <%= f.collection_select(:subject_id, current_user.branch.subjects, :id, :name, { prompt: "Select Subject" }, { class: "nice-select wide col-md-12" }) %>
+          </div>
+
+          <div class="field">
+            <%= f.hidden_field :etype, :value => "mcq" %>
+          </div>
+          <br/>
+          <div class="field">
+            <%= f.submit class: "boxed-btn3 col-md-12" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js">
+</script>
 <script>
   $("#exam_end_date").change(checkdate);
   $("#exam_start_date").change(checkdate);
+
   function checkdate() {
     var startDate = document.getElementById("exam_start_date").value;
     var endDate = document.getElementById("exam_end_date").value;
+    startdatet = startDate.split('T');
+    enddatet = endDate.split('T');
+    // alert(startdatet[0]);
+    if ($("#exam_end_date").val()) {
+      if (Date.parse(startdatet[0]) != Date.parse(enddatet[0])) {
+        alert("Start date and End date should be same");
+        document.getElementById("exam_end_date").value = "";
+      }
+    }
+
 
     if ((Date.parse(startDate) >= Date.parse(endDate))) {
-        alert("End date should be greater than Start date");
-        document.getElementById("exam_end_date").value = "";
+      alert("End time should be greater than Start time");
+      document.getElementById("exam_end_date").value = "";
     }
   }
 
-  function check_validation(){
+  function check_validation() {
 
   }
 </script>

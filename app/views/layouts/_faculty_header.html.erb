@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" style="background-color: #343a40;">
+    <div class="sidebar-header" style='background-color:#343a40;'>
+      <h3 style="color: #00D363"><span style="color: white">Faculty </span>Dashboard</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li>
+        <a href="/faculties" aria-expanded="false">My Dashboard</a>
+      </li>
+
+      <li>
+        <a href="#exam" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exams</a>
+        <ul class="collapse list-unstyled" id="exam" style="background-color: #343a40">
+          <li>
+            <a href="/exams/new">Add new exam</a>
+          </li>
+          <li>
+            <a href="/exams">Exam list</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/admin/promote_student">Student list</a>
+      </li>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-light" title="toggle" onclick="myFunction()">
+          <i class="fa fa-align-left"></i>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-align-justify"></i>
+        </button>
+
+        <li class="nav-item">
+          <h3><%= @page_title %></h3>
+        </li>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+
+            <li class="nav-item">
+              <a class="nav-link" href="/users/edit" style="color:#008def"
+                title="Edit Profile"><%= current_user.email %></a>
+            </li>
+            &nbsp;&nbsp;
+            <li class="nav-item active">
+              <% if user_signed_in? %>
+              <%= link_to "", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger circle fa fa-sign-out", title: "Log out" %>
+              <% else %>
+              <%= link_to("Log-In", user_session_path) %>
+              <% end %>
+            </li>
+            <%# <li class="nav-item">
+<a class="nav-link" href="#">Page</a>
+</li> %>
+          </ul>
+        </div>
+      </div>
+    </nav>

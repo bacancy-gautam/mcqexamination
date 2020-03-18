@@ -1,33 +1,29 @@
-<center>
-  <table class="table">
-    <thead>
-      <tr>
-        <td>
-          <%= form_with(model: [@exam, @question, @option], local: true) do |f| %>
-            <% if @option.errors.any? %>
-              <h2><%= pluralize(@option.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container">
+  <div class="row h-100 justify-content-center align-items-top">
+    <div class="col-10 col-md-8 col-lg-6">
+      <%= form_with(model: [@exam, @question, @option], local: true) do |f| %>
+        <% if @option.errors.any? %>
+          <h2><%= pluralize(@option.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-              <ul>
-                <% @option.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                  <% end %>
-              </ul>
+          <ul>
+            <% @option.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
             <% end %>
-            <div class="field">
-              <%= f.label :index %><span class="myspan">*</span><br />
-              <%= f.text_field :option_index, autofocus: true %>
-            </div>
-            <div class="field">
-              <%= f.label :option %><span class="myspan">*</span><br />
-              <%= f.text_field :name, autofocus: true %>
-            </div>
-            <br />
-            <div class="actions">
-              <%= f.submit class: "btn btn-primary btn-xs" %>
-            </div>
-          <% end %>
-        </td>
-      </tr>
-    </thead>
-  </table>
-</center>
+          </ul>
+        <% end %>
+        <div class="field">
+          <%= f.label :index %><span class="myspan">*</span><br />
+          <%= f.text_field :option_index, autofocus: true %>
+        </div>
+        <div class="field">
+          <%= f.label :option %><span class="myspan">*</span><br />
+          <%= f.text_field :name, autofocus: true %>
+        </div>
+        <br />
+        <div class="actions">
+          <%= f.submit class: "btn btn-primary btn-xs" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

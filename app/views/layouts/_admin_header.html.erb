@@ -1,8 +1,8 @@
 <div class="wrapper">
   <!-- Sidebar -->
-  <nav id="sidebar" style="background-color: #008def">
-    <div class="sidebar-header" style='background-color:#00D363;'>
-      <h3 style="color:white">Admin Dashboard</h3>
+  <nav id="sidebar" style="background-color: #343a40;">
+    <div class="sidebar-header" style='background-color:#343a40;'>
+      <h3 style="color: #00D363"><span style="color: white">Admin </span>Dashboard</h3>
     </div>
 
     <ul class="list-unstyled components">
@@ -11,8 +11,8 @@
       </li>
 
       <li>
-        <a href="#faculty" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Faculties</a>
-        <ul class="collapse list-unstyled"  id="faculty">
+        <a href="#faculty" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Faculty section">Faculties</a>
+        <ul class="collapse list-unstyled"  id="faculty" style="background-color: #343a40">
           <li>
             <a href="/faculties/new" >Add new faculty</a>
           </li>
@@ -23,7 +23,7 @@
       </li>
 
        <li>
-        <a href="#student" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Students</a>
+        <a href="#student" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Student section">Students</a>
         <ul class="collapse list-unstyled" id="student">
           <li>
             <a href="/students/new">Add new student</a>
@@ -95,7 +95,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
 
-        <button type="button" id="sidebarCollapse" class="btn btn-light" onclick="myFunction()">
+        <button type="button" id="sidebarCollapse" class="btn btn-light" title="Toggle Side Bar" onclick="myFunction()">
           <i class="fa fa-align-left"></i>
         </button>
         <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
@@ -104,19 +104,23 @@
           <i class="fas fa-align-justify"></i>
         </button>
 
+        <li class="nav-item">
+            <h3><%= @page_title %></h3>
+         </li>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link" href="/users/edit" style="color:#008def"><%=current_user.email%></a>
+              <a class="nav-link" href="/users/edit" style="color:#008def" title="Edit Profile"><%= current_user.email %></a>
             </li>
             &nbsp;&nbsp;
             <li class="nav-item active">
-              <%if user_signed_in? %>
-              <%= link_to '', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger circle fa fa-sign-out" %>
-              <%else%>
-              <%= link_to('Log-In', user_session_path) %>
-              <%end%>
+              <% if user_signed_in? %>
+              <%= link_to "", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger circle fa fa-sign-out", title: "Log out", data: { confirm: "Do you really want to log-out?" } %>
+              <% else %>
+              <%= link_to("Log-In", user_session_path) %>
+              <% end %>
             </li>
 
 

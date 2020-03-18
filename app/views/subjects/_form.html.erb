@@ -1,59 +1,55 @@
-<center>
-  <table class="roundedCorners">
-    <thead>
-      <tr>
-        <td>
-          <%= form_with(model: @subject, validate: true, local: true, html: { id: "subject_form" }) do |f| %>
-            <% if @subject.errors.any? %>
-              <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this user from being saved:</h2>
-              <ul>
-                <% @subject.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
+<div class="container">
+  <div class="row h-100 justify-content-center align-items-top">
+    <div class="col-10 col-md-8 col-lg-6">
+      <%= form_with(model: @subject, validate: true, local: true, html: { id: "subject_form" }) do |f| %>
+        <% if @subject.errors.any? %>
+          <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @subject.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
             <% end %>
+          </ul>
+        <% end %>
 
-            <div class="field">
-              <%= f.label :branch %><span class="myspan">*</span><br />
-              <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch" }, { class: "nice-select wide col-md-12" } %>
-            </div>
+        <div class="field">
+          <%= f.label :branch %><span class="myspan">*</span><br />
+          <%= f.collection_select :branch_id, Branch.all, :id, :name, { prompt: "Select Branch" }, { class: "nice-select wide col-md-12" } %>
+        </div>
 
-            <div class="field">
-              <%= f.label :semester %><span class="myspan">*</span><br />
-              <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester", validate: true }, { class: "nice-select wide col-md-12" } %>
-            </div>
+        <div class="field">
+          <%= f.label :semester %><span class="myspan">*</span><br />
+          <%= f.collection_select :semester_id, Semester.all, :id, :sem, { prompt: "Select Semester", validate: true }, { class: "nice-select wide col-md-12" } %>
+        </div>
 
-            <div class="field">
-              <%= f.label :name %><span class="myspan">*</span><br />
-              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'col-md-12' %>
-            </div>
-            <br/>
-            <div class="actions">
-              <%= f.submit "Add Subject", id: "1", class: "boxed-btn3 btn-xs col-md-12" %>
-            </div>
-          <% end %>
-        </td>
-      </tr>
-    </thead>
-  </table>
-</center>
+        <div class="field">
+          <%= f.label :name %><span class="myspan">*</span><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form_text col-md-12" %>
+        </div>
+        <br />
+        <div class="actions">
+          <%= f.submit "Add Subject", id: "1", class: "boxed-btn3 btn-xs col-md-12" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <script>
-// function your_validation_function(){
-//   alert("sdfdsf");
-//   return False;
-// }
-//  $("#subject_form").submit(function( event ) {
-//         event.preventDefault();
-//          $('.submit').prop("disabled",false);
-//         // alert("sfddsf");
-//         // $("#subject_form").get(0).allowDefault = true;
+  // function your_validation_function(){
+  //   alert("sdfdsf");
+  //   return False;
+  // }
+  //  $("#subject_form").submit(function( event ) {
+  //         event.preventDefault();
+  //          $('.submit').prop("disabled",false);
+  //         // alert("sfddsf");
+  //         // $("#subject_form").get(0).allowDefault = true;
 
-//       // if( your_validation_function() )
-//       //   return;
-//       // else {
-//       //   event.preventDefault();
-//       //   $("#subject_form").get(0).allowDefault = true;
-//       // }
-    // });
+  //       // if( your_validation_function() )
+  //       //   return;
+  //       // else {
+  //       //   event.preventDefault();
+  //       //   $("#subject_form").get(0).allowDefault = true;
+  //       // }
+  // });
 </script>

@@ -1,39 +1,50 @@
-<div>
-  <center>
-    <table class="table table-hover" id="faclist">
-      <thead class="thead-dark">
-        <tr>
-          <th class="text-center">Name</th>
-          <th class="text-center">Description</th>
-          <th class="text-center">Date</th>
-          <th class="text-center">Start time</th>
-          <th class="text-center">End time</th>
-          <th class="text-center">Passing Marks</th>
-          <th class="text-center">Subject</th>
-          <th colspan="2" class="text-center">Operations</th>
-          <th colspan="2"class="text-center">Questions</th>
-          <th class="text-center">\\//</th>
-          <th class="text-center">Result</th>
-        </tr>
-      </thead>
+<style>
+  td, th{
+    text-align: center;
+  }
+</style>
+<center>
+<table class="table table-hover" id="faclist">
+  <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Passing Marks</th>
+      <th>Subject</th>
+      <th colspan="2">Operations</th>
+      <th colspan="2">Questions</th>
+      <th>\\//</th>
+      <th>Result</th>
+    </tr>
+  </thead>
 
-      <%@exams.each do |exam|%>
-        <tr>
-          <td class="text-center"><%= exam.name %></td>
-          <td class="text-center"><%= exam.info %></td>
-          <td class="text-center"><%= exam.start_date.strftime("%d/%m/%Y") %></td>
-          <td class="text-center"><%= exam.start_date.strftime("%I:%M%p")  %></td>
-          <td class="text-center"><%= exam.end_date.strftime("%I:%M%p") %></td>
-          <td class="text-center"><%= exam.passing_marks %></td>
-          <td class="text-center"><%= exam.subject.name %></td>
-          <td class="text-center"><%= link_to 'Edit', edit_exam_path(exam), class: "btn btn-outline-primary fa fa-pencil-square-o" %></td>
-          <td class="text-center"><%= link_to 'Delete', exam_path(exam), method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-outline-danger fa fa-trash" %></td>
-          <td class="text-center"><%= link_to 'Add', new_exam_question_path(exam), class: "btn btn-outline-secondary fa fa-plus-square" %></td>
-          <td class="text-center"><%= link_to 'Questions', exam_questions_path(exam), class: "btn btn-outline-primary fa fa-list-ol" %></td> 
-          <td class="text-center"><%= link_to 'Assign', new_exam_assign_path(exam), class: "btn btn-outline-success fa fa-tags" %></td>
-          <td class="text-center"><%= link_to "Result", faculty_exam_results_path(current_user.id, exam.id), class: "btn btn-outline-primary fa fa-trophy" %></td>
-        </tr>
-      <% end %>
-    </table>
-  </center>
-</div>
+  <% @exams.each do |exam| %>
+  <tr>
+    <td title="Exam name"><%= exam.name %></td>
+    <td title="Exam description"><%= exam.info %></td>
+    <td title="Exam start date"><%= exam.start_date.strftime("%d/%m/%Y") %></td>
+    <td title="Exam start time"><%= exam.start_date.strftime("%I:%M%p") %></td>
+    <td title="Exam end time"><%= exam.end_date.strftime("%I:%M%p") %></td>
+    <td title="Exam passing marks"><%= exam.passing_marks %></td>
+    <td title="Exam subject name"><%= exam.subject.name %></td>
+    <td>
+      <%= link_to "", edit_exam_path(exam), class: "btn btn-outline-primary fa fa-pencil-square-o", title: "Edit Exam" %></td>
+    <td>
+      <%= link_to "", exam_path(exam), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger fa fa-trash", title: "Delete Exam" %>
+    </td>
+    <td>
+      <%= link_to "", new_exam_question_path(exam), class: "btn btn-outline-secondary fa fa-plus-square", title: "Add Question" %></td>
+    <td><%= link_to "", exam_questions_path(exam), class: "btn btn-outline-primary fa fa-list-ol", title: "Questions" %>
+    </td>
+    <td>
+      <%= link_to "Assign", new_exam_assign_path(exam), class: "btn btn-outline-success fa fa-tags", title: "Exam Assign" %></td>
+    <td>
+      <%= link_to "", faculty_exam_results_path(current_user.id, exam.id), class: "btn btn-outline-primary fa fa-trophy", title: "Result" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+</center>

@@ -4111,6 +4111,16 @@ h3 {
   margin-bottom: 20px;
 }
 
+.form_text {
+  height: 35px;
+  border: 1px solid #E8E8E8;
+  width: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding-left: 20px;
+}
+
 /* line 171, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
 .job_details_area .apply_job_form .input_field input::placeholder, .job_details_area .apply_job_form .input_field textarea::placeholder {
   color: #7A838B;
