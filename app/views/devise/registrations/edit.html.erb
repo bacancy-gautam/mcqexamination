@@ -1,20 +1,21 @@
 <% @page_title = "Edit Profile" %>
 <%# <%= link_to "Back", :back %>
 <%# <%= resource_name.to_s.humanize %>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, html: { method: :put }) do |f| %>
+    <%# <%= render "devise/shared/error_messages", resource: resource %>
 
     <% if current_user.has_role?(:faculty) or current_user.has_role?(:student) %>
       
       <% if current_user.has_role?(:student) %>
         <div class="field">
           <%= f.label :enrollment %><br />
-          <%= f.text_field :enrollment, { autofocus: true,  disabled: true } %>
+          <%= f.text_field :enrollment, { autofocus: true,  disabled: true, class: "form-control col-md-6" } %>
         </div>
         <div class="field">
           <%= f.label :semester %><br />
-          <%= f.text_field :branch_id, { value: @user.semester&.sem, autofocus: true, disabled: true } %>
+          <%= f.text_field :branch_id, { value: @user.semester&.sem, autofocus: true, disabled: true, class: "form-control col-md-6" } %>
         </div>
+       
       <% end %>
 
       <div class="form-row">
@@ -39,8 +40,9 @@
           <%= f.label :mobile %><br />
           <%= f.text_field :mobile, autofocus: true, autocomplete: "mobile", class: "form-control" %>
         </div>
+        </div>
     <% end %>
-
+        <div class="form-row">
         <div class="form-group col-md-3">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>

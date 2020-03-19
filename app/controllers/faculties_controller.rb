@@ -12,7 +12,8 @@ class FacultiesController < ApplicationController
   def update
     # byebug
     if @faculty.update(faculty_params)
-      redirect_to faculty_list_faculties_path, notice: 'Faculty updated Successfully'
+      flash[:notice] = 'Faculty updated Successfully'
+      redirect_to faculty_list_faculties_path
     else
       render 'edit'
     end
@@ -33,7 +34,17 @@ class FacultiesController < ApplicationController
     redirect_to faculty_list_faculties_path
   end
 
-  def faculty_list; end
+  def search
+    @user = User.with_role(:student).where(branch_id: params[:branch_id],
+                                           semester_id: params[:semester_id])
+                .order(:enrollment)
+    render json: { name: @user }
+  end
+
+  def search_by_enrollment
+    @user = User.with_role(:student).where(enrollment: params[:enrollment])
+    render json: { name: @user }
+  end
 
   private
 

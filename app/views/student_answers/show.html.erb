@@ -1,5 +1,6 @@
-<%= link_to "Back", student_exam_result_path(current_user.id, @exam.id,
-                                            @result.id) %>
+<%= render(partial: "layouts/student_header") %>
+
+<br/>                                            
 <h3>Attempted Questions</h3>
 <body>
   <table class="table">

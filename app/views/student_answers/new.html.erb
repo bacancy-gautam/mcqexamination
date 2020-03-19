@@ -1,35 +1,35 @@
 <% if DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>
   <%= link_to "My Dashboard", students_path %><br /><br />
-  <h3 id="demo" class="text-center" style="color: white; border-radius:20px; border: 2px solid #343A40; background: #007BFF; margin-right: 0px"></h3> 
+  <h3 id="demo" class="text-center"
+    style="color: white; border-radius:20px; border: 2px solid #343A40; background: #007BFF; margin-right: 0px"></h3>
   <% # <h3 class="text-center" style = "color:green">The Exam is yet to begin!!!!</h3> %>
-  <script> 
+  <script>
     OnClientClick = "return someJavaScriptFunction()"
-    dd = "<%= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") %>"
-    var deadline = new Date(dd).getTime(); 
-    var x = setInterval(function() { 
-      
-      var now = new Date().getTime(); 
-      var t = deadline - now; 
-      var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
-      var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-      var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-      var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-      document.getElementById("demo").innerHTML ="The Exam will start in: "+days + "d " + hours + "h " + minutes + "m " + seconds + "s "; 
-          if (t < 0) { 
-              clearInterval(x); 
-              document.getElementById("demo").innerHTML = "Start"; 
-              window.location = window.location.pathname;
-              history.pushState(null, document.title, location.href);
-                } 
-              }, 1000);
+    dd = "<%= @exam.start_date.strftime(" % b % d, % Y % H: % M: % S ") %>"
+    var deadline = new Date(dd).getTime();
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var t = deadline - now;
+      var days = Math.floor(t / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((t % (1000 * 60)) / 1000);
+      document.getElementById("demo").innerHTML = "The Exam will start in: " + days + "d " + hours + "h " + minutes +
+        "m " + seconds + "s ";
+      if (t < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "Start";
+        window.location = window.location.pathname;
+        history.pushState(null, document.title, location.href);
+      }
+    }, 1000);
+    history.pushState(null, document.title, location.href);
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function (event) {
+      alert("Don't press back button and Don't reload the page!");
       history.pushState(null, document.title, location.href);
       history.pushState(null, document.title, location.href);
-      window.addEventListener('popstate', function (event)
-      {
-        alert("Don't press back button and Don't reload the page!");
-        history.pushState(null, document.title, location.href);
-        history.pushState(null, document.title, location.href);
-      });
+    });
   </script>
 
 <% elsif DateTime.now.strftime("%b %d, %Y %H:%M:%S") >= @exam.start_date.strftime("%b %d, %Y %H:%M:%S") && DateTime.now.strftime("%b %d, %Y %H:%M:%S") < @exam.end_date.strftime("%b %d, %Y %H:%M:%S") %>
@@ -42,14 +42,22 @@
   <script>
     history.pushState(null, document.title, location.href);
     history.pushState(null, document.title, location.href);
-    window.addEventListener('popstate', function (event)
-    {
+    window.addEventListener('popstate', function (event) {
       history.pushState(null, document.title, location.href);
       history.pushState(null, document.title, location.href);
     });
   </script>
+
 <% else %>
   <%= link_to "My Dashboard", students_path %><br /><br />
-  <h3 class="text-center">Session Expired!!!!</h3>
-  <p class="text-center" style = "color:red"><small>(It seems you have not given exam on time)</small></p>
+  <div class="popular_catagory_area">
+    <div class="row">
+      <div class="col-lg-4 col-xl-12 col-md-6">
+        <div class="single_catagory">
+          <h3 class="text-center">Session Expired!!!!</h3>
+          <p class="text-center" style="color:red"><small>(It seems you have not given exam on time)</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

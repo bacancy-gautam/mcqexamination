@@ -33,8 +33,10 @@ class AdminController < ApplicationController
   end
 
   def import
-    User.import(params[:file])
-    redirect_to new_student_path, notice: 'Students added.'
+    imported, skipped = User.import(params[:file])
+    # binding.pry
+    flash[:notice] = "#{imported} Students added, #{skipped} Students skipped"
+    redirect_to new_student_path
   end
 
   def import_faculty
@@ -46,6 +48,17 @@ class AdminController < ApplicationController
     @user = User.with_role(:student).where(branch_id: params[:branch_id],
                                            semester_id: params[:semester_id])
                 .order(:enrollment)
+    render json: { name: @user }
+  end
+
+  def search_by_enrollment
+    @user = User.with_role(:student).where(enrollment: params[:enrollment])
+    render json: { name: @user }
+  end
+
+  def search_by_branch
+    # binding.pry
+    @user = User.with_role(:faculty).where(branch_id: params[:branch_id])
     render json: { name: @user }
   end
 

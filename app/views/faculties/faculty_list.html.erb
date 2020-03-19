@@ -1,10 +1,18 @@
 <% # <%= link_to "Back", admin_index_path %>
 <% @page_title = "Faculty List" %>
+
 <body style="background-color: #F5F7FA">
 <div>
+
   <div class="text-center">
-    <h6><%= link_to "Add Faculty", new_faculty_path, class: "boxed-btn3", title: "Add new Faculty" %></h6>
+   <%= form_with(model: @user, url: faculty_list_faculties_path, local: true) do |f| %>
+    <%= f.collection_select :search_branch_faculty, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "nice-select wide col-md-3", title: "Branch of the students" } %>
+    <% # <%= f.submit "sdf", class:"text-left" %>
+  <% end %>
+    <h6 class="text-right"><%= link_to "Add Faculty", new_faculty_path, class: "boxed-btn3", title: "Add new Faculty" %></h6>
+    
   </div>
+  
   <table class="table table-hover" id="faclist">
     <thead class="thead-light">
       <tr>
@@ -18,19 +26,22 @@
         <th></th>
       </tr>
     </thead>
-
-    <% @faculties.each do |faculty| %>
-      <tr>
-        <td title ="First Name"><%= faculty.fname %></td>
-        <td title ="Last Name"><%= faculty.lname %></td>
-        <td title ="Email"><%= faculty.email %></td>
-        <td title ="Branch Name"><%= faculty.branch&.name %></td>
-        <td title ="Mobile Number"><%= faculty.mobile %></td>
-        <% # <td><%= faculty.status %>
-        <td><%= link_to "Edit", edit_faculty_path(faculty.id), class: "genric-btn info-border radius medium fa fa-pencil-square-o", title: 'Edit faculty' %></td>
-        <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" }, class: "genric-btn danger-border radius medium fa fa-trash", title: 'Delete faculty' %></td>
-      </tr>
-    <% end %>
+    <tbody id="faculty_list_body">
+      <% @faculties.each do |faculty| %>
+        <tr>
+          <td title ="First Name"><%= faculty.fname %></td>
+          <td title ="Last Name"><%= faculty.lname %></td>
+          <td title ="Email"><%= faculty.email %></td>
+          <td title ="Branch Name"><%= faculty.branch&.name %></td>
+          <td title ="Mobile Number"><%= faculty.mobile %></td>
+          <% # <td><%= faculty.status %>
+          <td><%= link_to "Edit", edit_faculty_path(faculty.id), class: "genric-btn info-border radius medium fa fa-pencil-square-o", title: "Edit faculty" %></td>
+          <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" }, class: "genric-btn danger-border radius medium fa fa-trash", title: "Delete faculty" %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 </div>
 </body>
+
+

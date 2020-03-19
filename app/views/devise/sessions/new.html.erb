@@ -1,47 +1,39 @@
-
   <div class="slider_area">
-  
     <div class="single_slider  d-flex align-items-center slider_bg_1">
-    
-    
       <div class="container h-100">
-     
         <div class="row h-100 justify-content-center align-items-center">
-        
           <div class="col-10 col-md-8 col-lg-6">
           <a href="/" class="fa fa-arrow-left" style="color:white" >Home</a>
           <center>
-          <br/>
-            <div class="container">
-            
-              <div class="w3-animate-zoom">
-              <h3 style="color:white">Login</h3>
-              <br/>
-                <div class="slider_text">
-                  <div class="col-lg-8 col-md-8">
+            <br/>
+              <div class="container">       
+                <div class="w3-animate-zoom">
+                  <h3 style="color:white">Login</h3>
+                  <br/>
+                  <div class="slider_text">
+                    <div class="col-lg-8 col-md-8">
 
-                    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                      <div class="form-group row">
-                        <%= f.text_field :login, autofocus: true, class: "single-input", placeholder: "Enrollment or Email" %>
-                      </div>
-                      <div class="form-group row">
-                        <%= f.password_field :password, autocomplete: "current-password", class: "single-input", placeholder: "Passoword" %>
-                      </div>
-                      <% if devise_mapping.rememberable? %>
-                        <div class="text-right">
-                          <%= f.check_box :remember_me, class: "primary-checkbox" %>
-                          <%= f.label :remember_me, style: "color:white" %>
+                      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                        <div class="form-group row">
+                          <%= f.text_field :login, autofocus: true, class: "form_text single-input", placeholder: "Enrollment or Email" %>
+                        </div>
+                        <div class="form-group row">
+                          <%= f.password_field :password, autocomplete: "current-password", class: "form_text single-input", placeholder: "Passoword" %>
+                        </div>
+                        <% if devise_mapping.rememberable? %>
+                          <div class="text-right">
+                            <%= f.check_box :remember_me, class: "primary-checkbox" %>
+                            <%= f.label :remember_me, style: "color:white" %>
+                          </div>
+                        <% end %>
+                        <div class="field text-center">
+                          <%= f.submit "Log in", class: "boxed-btn3" %>
                         </div>
                       <% end %>
-                      <div class="field text-center">
-                      
-                        <%= f.submit "Log in", class: "boxed-btn3" %>
-                      </div>
-                    <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </center>
           </div>
         </div>

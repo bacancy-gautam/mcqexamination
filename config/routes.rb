@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root 'users#home'
   resources :faculties do
     get 'faculty_list', on: :collection
+    get 'students_list', on: :collection
+    get 'search', on: :collection
+    get 'search_by_enrollment', on: :collection
     resources :exams do
       resources :results
     end
@@ -21,6 +24,7 @@ Rails.application.routes.draw do
   end
   resources :students do
     get 'download_excel', on: :collection
+    get 'exam_list', on: :collection
     resources :exams do
       resources :results
       resources :student_answers
@@ -29,7 +33,10 @@ Rails.application.routes.draw do
   resources :admin do
     collection { post :import }
     get 'promote_student', on: :collection
+    get 'students_list', on: :collection
     get 'search', on: :collection
+    get 'search_by_enrollment', on: :collection
+    get 'search_by_branch', on: :collection
   end
   get 'assigns/search' => 'assigns#search'
   get 'admin/filltable'

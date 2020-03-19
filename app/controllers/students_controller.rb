@@ -4,11 +4,7 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_student, only: %i[edit update destroy]
-  def index
-    # byebug
-    @exams = current_user.assigns
-  end
-
+  before_action :all_exams, only: %i[exam_list]
   def new
     @user = User.new
   end
@@ -18,7 +14,7 @@ class StudentsController < ApplicationController
     @user = User.new(student_params)
     if @user.save(context: :student)
       @user.add_role :student
-      redirect_to new_student_path, notice: 'Student has been added!'
+      redirect_to students_list_admin_index_path, notice: 'Student has been added!'
     else
       flash[:alert] = 'Something went wrong'
       render 'new'
@@ -27,7 +23,7 @@ class StudentsController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to new_faculty_path
+    redirect_to students_list_admin_index_path
   end
 
   def download_excel
@@ -36,6 +32,7 @@ class StudentsController < ApplicationController
       filename: 'add_student.csv',
       type: 'application/csv'
     )
+    # redirect_to new_student_path
   end
 
   private
@@ -49,5 +46,11 @@ class StudentsController < ApplicationController
 
   def find_student
     @user = User.find(params[:id])
+  end
+
+  def all_exams
+    @exams = current_user.assigns
+    @exams_remaining = current_user.assigns.where.not(exam_id: Result.pluck(:exam_id))
+    @exams_attempted = current_user.assigns.where(exam_id: Result.pluck(:exam_id))
   end
 end

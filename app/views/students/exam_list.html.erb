@@ -1,0 +1,61 @@
+<% @page_title = "Assigned Exam(s)" %>
+<br/>
+<h3 class="text-center">Exams Remaining</h3>
+<% if !@exams_remaining.blank? %>
+  <table class="table table-hover">
+    <thead class="thead-primary">
+      <tr>
+        <th>Exam name</th>
+        <th>Exam description</th>
+        <th>Exam Date</th>
+        <th>Exam start time</th>
+        <th>Exam end time</th>
+        <th>Option</th>
+      </tr> 
+    </thead>
+    <% @exams_remaining.each do |exam| %>
+      <tr>
+        <td title="Exam name"><%= exam.exam.name %></td>
+        <td title="Description about exam"><%= exam.exam.info %></td>
+        <td title="Exam Date"><%= exam.exam.start_date.strftime("%d/%m/%Y") %></td>
+        <td title="Exam starting time"><%= exam.exam.start_date.strftime("%I:%M%p") %></td>
+        <td title="Exam ending time"><%= exam.exam.end_date.strftime("%I:%M%p") %></td>
+        <td title="Enter into Exam"><%= link_to "Sign in", new_exam_student_answer_path(exam.exam.id), class: "genric-btn info radius medium" %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <div class="text-center">
+    <strong style="color: white; background: green">=====No exam has been assigned to you!!!=====</strong>
+  </div>
+<% end %>
+<br/>
+<h3 class="text-center">Exams Completed</h3>
+<% if !@exams_attempted.blank? %>
+  <table class="table table-hover">
+    <thead class="thead-primary">
+      <tr>
+        <th>Exam name</th>
+        <th>Exam description</th>
+        <th>Exam Date</th>
+        <th>Exam start time</th>
+        <th>Exam end time</th>
+        <th>Option</th>
+      </tr> 
+    </thead>
+    <% @exams_attempted.each do |exam| %>
+      <tr>
+        <td title="Exam name"><%= exam.exam.name %></td>
+        <td title="Description about exam"><%= exam.exam.info %></td>
+        <td title="Exam Date"><%= exam.exam.start_date.strftime("%d/%m/%Y") %></td>
+        <td title="Exam starting time"><%= exam.exam.start_date.strftime("%I:%M%p") %></td>
+        <td title="Exam ending time"><%= exam.exam.end_date.strftime("%I:%M%p") %></td>
+        <td title="Enter into Exam"><%= link_to "Result", new_exam_student_answer_path(exam.exam.id), class: "genric-btn info-border radius medium" %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <div class="text-center">
+    <strong style="color: white; background: green">=====No exam has been attempted by you!!!=====</strong>
+  </div>
+<% end %>

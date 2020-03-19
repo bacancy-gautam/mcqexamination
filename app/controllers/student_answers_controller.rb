@@ -9,8 +9,7 @@ class StudentAnswersController < ApplicationController
     unless @result.blank?
       # binding.pry
       redirect_to student_exam_result_path(current_user.id, @exam.id,
-                                           @result.first.id),
-                  alert: 'You have already submitted exam!'
+                                           @result.first.id)
     end
     @question = Question.new
     @questions = @exam.questions

@@ -1,0 +1,45 @@
+<% # <%= link_to "Back", admin_index_path %>
+<% @page_title = "Students List" %>
+<div class="popular_catagory_area" style="padding-top: 0%; padding-bottom: 0%; margin: 0">
+  <div class="row">
+    <div class="col-lg-2 col-xl-12 col-md-6">
+      <div class="single_catagory" style="padding-top: 12px; padding-bottom: 12px;">
+        <%= form_with(model: @user, url: user_session_path, local: true) do |f| %>
+          <div class="form row">
+            <%= f.collection_select :search_branch_id, Branch.all, :id, :name, { prompt: "Select Branch", required: true }, { class: "nice-select wide col-md-3", title: "Branch of the students" } %>
+            <%= f.collection_select :search_semester_id, Semester.all, :id, :sem, { prompt: "Select Semester" }, { class: "nice-select wide col-md-3", title: "Semester of the students" } %>
+            <div class="col-md-3"></div>
+            <%= f.number_field :search_enrollment, class: "form_text col-md-3", title: "Enter enrollment to search", placeholder: "Enter Enrollment No.", min: 0 %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>Enrollment</th>
+      <th>Name</th>
+      <th >Email</th>
+      <th class="text-center">Pass Out Year</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="users">
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#selectAll").on("click", function (event) {
+      var cbxs = $('input[type="checkbox"]');
+      if ($("#selectAll").prop("checked") == true) {
+        cbxs.prop("checked", true);
+      } else if ($("#selectAll").prop("checked") == false) {
+        cbxs.prop("checked", false);
+      }
+    });
+  });
+</script>
