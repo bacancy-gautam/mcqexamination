@@ -34,17 +34,28 @@ class FacultiesController < ApplicationController
     redirect_to faculty_list_faculties_path
   end
 
-  def search
-    @user = User.with_role(:student).where(branch_id: params[:branch_id],
-                                           semester_id: params[:semester_id])
-                .order(:enrollment)
-    render json: { name: @user }
+  def students_search
+    @students = User.with_role(:student).where(branch_id: params[:branch_id],
+                                               semester_id:
+      params[:semester_id])
+                    .order(:enrollment)
   end
 
   def search_by_enrollment
-    @user = User.with_role(:student).where(enrollment: params[:enrollment])
-    render json: { name: @user }
+    @students = User.with_role(:student).where(enrollment: params[:enrollment])
   end
+
+  # def search
+  #   @user = User.with_role(:student).where(branch_id: params[:branch_id],
+  #                                          semester_id: params[:semester_id])
+  #               .order(:enrollment)
+  #   render json: { name: @user }
+  # end
+
+  # def search_by_enrollment
+  #   @user = User.with_role(:student).where(enrollment: params[:enrollment])
+  #   render json: { name: @user }
+  # end
 
   private
 

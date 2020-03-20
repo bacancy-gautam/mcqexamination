@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :faculties do
     get 'faculty_list', on: :collection
     get 'students_list', on: :collection
-    get 'search', on: :collection
+    get 'students_search', on: :collection
     get 'search_by_enrollment', on: :collection
     resources :exams do
       resources :results
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :results
       resources :student_answers
     end
+    resources :charges
   end
   resources :admin do
     collection do
