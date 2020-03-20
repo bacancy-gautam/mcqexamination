@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_student, only: %i[edit update destroy]
   before_action :all_exams, only: %i[exam_list]
+  before_action :all_students, only: :students_list
   def new
     @user = User.new
   end
@@ -14,7 +15,7 @@ class StudentsController < ApplicationController
     @user = User.new(student_params)
     if @user.save(context: :student)
       @user.add_role :student
-      redirect_to students_list_admin_index_path, notice: 'Student has been added!'
+      redirect_to students_list_admin_index_path, notice: 'Student #been added!'
     else
       flash[:alert] = 'Something went wrong'
       render 'new'
@@ -46,6 +47,10 @@ class StudentsController < ApplicationController
 
   def find_student
     @user = User.find(params[:id])
+  end
+
+  def all_students
+    @students = User.with_role :student
   end
 
   def all_exams

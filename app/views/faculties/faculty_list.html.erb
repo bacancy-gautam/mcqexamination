@@ -27,18 +27,7 @@
       </tr>
     </thead>
     <tbody id="faculty_list_body">
-      <% @faculties.each do |faculty| %>
-        <tr>
-          <td title ="First Name"><%= faculty.fname %></td>
-          <td title ="Last Name"><%= faculty.lname %></td>
-          <td title ="Email"><%= faculty.email %></td>
-          <td title ="Branch Name"><%= faculty.branch&.name %></td>
-          <td title ="Mobile Number"><%= faculty.mobile %></td>
-          <% # <td><%= faculty.status %>
-          <td><%= link_to "Edit", edit_faculty_path(faculty.id), class: "genric-btn info-border radius medium fa fa-pencil-square-o", title: "Edit faculty" %></td>
-          <td><%= link_to "Delete", faculty_path(faculty), method: :delete, data: { confirm: "Are you sure?" }, class: "genric-btn danger-border radius medium fa fa-trash", title: "Delete faculty" %></td>
-        </tr>
-      <% end %>
+      <%= render "faculties.html.erb" %>
     </tbody>
   </table>
 </div>

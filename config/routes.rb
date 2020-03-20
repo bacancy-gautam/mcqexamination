@@ -23,21 +23,29 @@ Rails.application.routes.draw do
     end
   end
   resources :students do
-    get 'download_excel', on: :collection
-    get 'exam_list', on: :collection
+    collection do
+      get :download_excel
+      get :exam_list
+      get :students_list
+    end
     resources :exams do
       resources :results
       resources :student_answers
     end
   end
   resources :admin do
-    collection { post :import }
-    get 'promote_student', on: :collection
-    get 'students_list', on: :collection
-    get 'search', on: :collection
-    get 'search_by_enrollment', on: :collection
-    get 'search_by_branch', on: :collection
+    collection do
+      post :import
+      get :promote_student
+      get :students_list
+      get :search_students
+      get :search_by_enrollment
+      get :search_by_branch
+      get :students_promote
+      # get :students_search
+    end
   end
+  resources :charges
   get 'assigns/search' => 'assigns#search'
   get 'admin/filltable'
   devise_for :users

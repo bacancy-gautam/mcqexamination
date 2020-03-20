@@ -4,6 +4,7 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, only: %i[edit update destroy]
+  before_action :students_search, only: %i[search_students students_promote]
   def new
     @user = User.new
   end
@@ -44,22 +45,23 @@ class AdminController < ApplicationController
     redirect_to new_faculty_path, notice: 'Faculty added.'
   end
 
-  def search
-    @user = User.with_role(:student).where(branch_id: params[:branch_id],
-                                           semester_id: params[:semester_id])
-                .order(:enrollment)
-    render json: { name: @user }
+  def students_promote
+    render json: { name: @students }
+  end
+
+  def students_search
+    @students = User.with_role(:student).where(branch_id: params[:branch_id],
+                                               semester_id:
+      params[:semester_id])
+                    .order(:enrollment)
   end
 
   def search_by_enrollment
-    @user = User.with_role(:student).where(enrollment: params[:enrollment])
-    render json: { name: @user }
+    @students = User.with_role(:student).where(enrollment: params[:enrollment])
   end
 
   def search_by_branch
-    # binding.pry
-    @user = User.with_role(:faculty).where(branch_id: params[:branch_id])
-    render json: { name: @user }
+    @faculties = User.with_role(:faculty).where(branch_id: params[:branch_id])
   end
 
   private

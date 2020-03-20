@@ -25,6 +25,9 @@ gem 'momentjs-rails'
 gem 'chartkick'
 gem 'groupdate'
 
+# payment gem
+gem 'stripe'
+
 # Pdf generation
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

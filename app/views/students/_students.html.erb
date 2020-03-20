@@ -1,0 +1,18 @@
+<%# <% binding.pry %>
+<% if !@students.blank? %>
+  <% @students.each do |student| %>
+    <tr>
+      <td title ="Enrollment"><%= student.enrollment %></td>
+      <td title ="First Name"><%= student.fname %></td>
+      <td title ="Last Name"><%= student.lname %></td>
+      <td title ="Email"><a href="mailto:<%= student.email %>"><%= student.email %></a></td>
+      <td title ="Mobile Number"><%= student.mobile %></td>
+      <th style="display: none" class="my_th" title="Branch"><%= student.branch.name %></th>
+      <th style="display: none" class="my_th" title="Semester"><%= student.semester.sem %></th>
+      <td title = "Pass out year of the student"><%= student.pass_out_year %></td>
+      <td><%= link_to "Delete", student_path(student), method: :delete, data: { confirm: "Are you sure?" }, class: "genric-btn danger-border radius medium fa fa-trash", title: "Delete student" %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <span style="color: red; font-weight: bold">***Data not available</span>
+<% end %>
